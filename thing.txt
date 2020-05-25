@@ -1,1 +1,1 @@
-Hello
+Hello. i would like to store my username and password on my git config file.
