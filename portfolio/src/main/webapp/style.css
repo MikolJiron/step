@@ -1,9 +1,18 @@
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  width: 1080px; 
 }
 
 #quote-container {
   margin-top: 20px;
+}
+
+
+.image_gallery{
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 250px;
+  max-width: 300px;
+  margin: 50px 0px;
 }
