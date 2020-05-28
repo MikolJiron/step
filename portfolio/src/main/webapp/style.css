@@ -1,17 +1,16 @@
 /* Styling for the entire page. */
 body{
   font: 100%/1.6 Helvetica;
-  color: white;
-  background-color: black;
+  color: #fff;
+  background-color:#25274D;
 }
 
 
 /* Styling for the top header container containing the portfolio writer's name */
 #top-header-container{
   overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-  color: black;
+  background-color: #464866;
+  color: #fff;
   text-align: center;
 }
 
@@ -19,22 +18,66 @@ body{
 #content{
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 55%;
+}
+
+#link-bar{
+  text-align: center;
+}
+
+#link-bar a{ 
+  padding:15px; 
+  font-weight:bold;
+  background-color:#464866;
+}
+
+#link-bar a:link{ 
+  color: #29648A;  
+}
+
+#link-bar a:visited{ 
+  color:#2E9CCA; 
+}
+
+#link-bar a:hover{ 
+  color:#ffffff;
 }
 
 /* Styling for top-tab-bar, this is the container for section-tab class elements */
-#top-tab-bar{
-    background-color:#ccc;
+.top-tab-bar{
+  background-color:#29648A;
+  overflow: hidden;
 }
 
 /* Styling for .section-tab, this is a container for the buttons that represent each tab in the top-tab-bar */
-.section-tab{
-    background-color: #f1f1f1;
+.top-tab-bar button{
+  background-color: #29648A;
+  border: none;
+  float:left;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Active behavior for .section-tab */
+.top-tab-bar button.active{
+  background-color: #2E9CCA;
 }
 
 /* Hover behavior for .section-tab */
-.section-tab:hover{
-    background-color: #ccc;
+.top-tab-bar button:hover{
+  background-color: #2E9CCA;
+}
+
+
+/* Styling for content within each section */
+.section-content{
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+  animation: fade-in ease 3s;
 }
 
 /* Styling for an image container, meant to hold photographs (.jpg's typically) */
@@ -47,5 +90,15 @@ body{
 
 /* Hover behavior for the .image-container */
 .image-container:hover{
-  border: thick solid white;
+  border: thick solid #fff;
+}
+
+@keyframes fade-in{
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
