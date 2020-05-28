@@ -6,97 +6,111 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
-    <div id="page">
-        
-      <!--This is the container for the top of the web page that contains my name.-->
-      <div id="top-header-container">
-        <h1>Michael Jiron - Portfolio</h1>
-      </div>
-    
-      <div id = "content">
-        <!-- Background Section, basically telling what my "life-story" is. 
-        I'll have a paragraph talking about my high-school life, and one talking about my college life.-->
-        <div id="section">
-          <h2>My Background</h2>
-          <p>I am a rising junior at Duke University and a STEP
-            software engineering intern at Google.
-            I am interested in frontend web development and product management. This is my Portfolio! </p>
-        
-          <!-- A picture of myself -->
-          <img src="/images/michael.jpg" alt="Michael Jiron" class="image-container">
-          <p>This is me!</p>
-          <p> I grew up in rural South Carolina, as a first generation low-income student.</p>
-          <p> I am a David M Rubenstein Scholar at Duke University.</p>
-        </div>
-
-        <!-- This contains my projects, I will list about 3-4 projects I've worked on and a description of each.-->
-        <div id="projects">
-          <h2>Projects</h2>
-          <h3>Project 1</h3>
-          <p>This is my first project</p>
-          <h3>Project 2</h3>
-          <p>This is my second project</p>
-          <h3>Project 3</h3>
-          <p>This is my third project</p>
-        </div>
-
-        <!-- This section includes contact information links like LinkedIn and GitHub -->
-        <div id="contact-info">
-          <h2>Contact Information</h2>
-          <a href="https://www.linkedin.com/in/michael-jiron-9a5205169">LinkedIn</a>
-          <a href="https://github.com/MikolJiron">GitHub</a>
-        </div>
-
-        <!-- This section includes my favorite places -->
-        <div id="places">
-          <h2>Places</h2>
-          <h3>The Gym</h3>
-          <img src="/images/workout.jpg" alt="The Gym" class="image-container" >
-          <p>Weightlifting is one of my hobbies; therefore, the gym is one of my favorite places to go to.
-              I enjoy working out and pushing myself to improve each time I go to the gym. 
-              Although sometimes I may lack the motivation, I always come out of the gym feeling good 
-              knowing that I had accomplished something that will inevitably improve my health and well-being. 
-              Going with my friends motivates me a lot as we can push each other and hold each other accountable.
-              When I put 250 pounds on my back and perform squats, I feel powerful and motivated to succeed in other endeavors. 
-              Weightlifting truly is one the coolest things that I used to do. Now that the coronavirus has basically cut off 
-              any access that I may have to a gym, given my remote location, it has unfortunately been a couple months since the
-              last time I lifted. I sorely miss it.</p>
-          <h3>Duke University</h3>
-          <img src="/images/Duke.JPG" alt="Duke's Campus" class="image-container">
-          <p>Duke University's campus is one of my favorite places on Earth. Duke feels like a completely different place, as if
-              it is in its own bubble. The architecture is majestic and truly breathtaking. The facilities are packed with resources:
-              I have access to over 40 local restaurants on campus alone, two enormous gym facilities, countless places to study,
-              multiple libraries, about a dozen graduate and professional schools, and world-class professors. Although the overwhelming
-              amount of resources available to is a huge draw, I feel like the people is what makes Duke such a great place. I've made so 
-              many amazing friends throughout my two years there and I have met so many valuable connections along the way. 
-              It's like home away from home.</p>
-          <h3>Home</h3>
-        </div>
-
-        <!-- This section includes paragraphs about things I like photographing, along with associated photographs-->
-        <div id="photographing">
-          <h2>Photographing</h2>
-          <p>I enjoy photographing architecture.</p>
-          <p>I enjoy photographing nature.</p>
-          <p>I enjoy photographing cars in Forza Horizon 4.</p>
-        </div>
-        
-        <!-- These are blog posts on of my few "unique talents": speedcubing -->
-        <div id="blog-posts">
-          <h2>Blog Posts</h2>
-          <h3>Speedcubing</h3>
-          <p>Speedcubing is the art of cubing fast.</p>
-          <h3>CFOP/Fridrich Method</h3>
-          <p>The Fridrich Method is one of the popular speedsolving methods for 3x3x3 Rubik's cubes.</p>
-          <h3>Solving 4x4x4 and 5x5x5 cubes</h3>
-          <p>The basic methods for solving 4x4x4 and 5x5x5 Rubik's cubes are extremely similar to solving 3x3x3 cubes.</p>
-        </div>
-        
-      </div>
-      <!-- This is the end of the div with id="content" -->
-
+  <body> 
+    <!--This is the container for the top of the web page that contains my name.-->
+    <div id="top-header-container">
+	  <h1>Michael Jiron - Portfolio</h1>
+	  <!-- This section includes contact information links like LinkedIn and GitHub -->
+	  <div id="contact-info">
+	    <h2>Contact Information</h2>
+	    <a href="https://www.linkedin.com/in/michael-jiron-9a5205169">LinkedIn</a>
+	    <a href="https://github.com/MikolJiron">GitHub</a>
+	  </div>
     </div>
-    <!-- This is the end of the div with id="page" -->
+
+    <!-- This is the container for the top tabs, which includes tabs for each section in the div with id="content"-->
+    <div id="top-tab-bar">
+      <button class="section-tab">Background</button>
+      <button class="section-tab">Projects</button>
+      <button class="section-tab">Places</button>
+      <button class="section-tab">Photographing</button>
+      <button class="section-tab">Blog Posts</button>
+    </div>
+
+    <div id = "content">
+      <!-- Background Section, basically telling what my "life-story" is. 
+      I'll have a paragraph talking about my high-school life, and one talking about my college life.-->
+      <div id="background">
+        <h2>My Background</h2>
+        <p>I am a rising junior at Duke University and a STEP
+        software engineering intern at Google.
+        I am interested in software engineering and product management. This is my Portfolio! </p>
+    
+        <!-- A picture of myself -->
+        <img src="/images/michael.jpg" alt="Michael Jiron" class="image-container">
+        <p>This is me!</p>
+        <p> I grew up in rural South Carolina, as a first generation low-income student.</p>
+        <p> I am a David M Rubenstein Scholar at Duke University.</p>
+      </div>
+
+      <!-- This contains my projects, I will list about 2-3 projects I've worked on and a description of each.-->
+      <div id="projects">
+        <h2>Projects</h2>
+        <h3>Jetson Nano OpenCV Security</h3>
+        <p>Developed a facial recognition application using OpenCV and Dlib to be used as an extra layer of physical security. Our program could remotely unlock doors based on whether an authorized person was detected
+        Harnessed low-cost, low-powered, embedded solution that could be implemented on the edge of a network
+        Tested on devices such as Raspberry Pi and Jetson Nano; made various presentations to stakeholders throughout</p>
+        <h3>+DataScience in Medicine Research</h3>
+        <p>Harnessed Pytorch models using transfer learning for thyroid cancer prediction and malignancy probability
+        Developed an autofocus algorithm using a gaussian filter and variance to increase algorithm accuracy/p>
+        <h3>Workout Tracking iOS App</h3>
+        <p></p>
+    </div>
+
+    <!-- This section includes my favorite places -->
+    <div id="places">
+        <h2>Places</h2>
+        <h3>The Gym</h3>
+        <img src="/images/workout.jpg" alt="The Gym" class="image-container" >
+        <p>Weightlifting is one of my hobbies; therefore, the gym is one of my favorite places to go to.
+            I enjoy working out and pushing myself to improve each time I go to the gym. 
+            Although sometimes I may lack the motivation, I always come out of the gym feeling good 
+            knowing that I had accomplished something that will inevitably improve my health and well-being. 
+            Going with my friends motivates me a lot as we can push each other and hold each other accountable.
+            When I put 250 pounds on my back and perform squats, I feel powerful and motivated to succeed in other endeavors.</p>
+        <h3>Duke University</h3>
+        <img src="/images/Duke.JPG" alt="Duke's Campus" class="image-container">
+        <p>Duke University's campus is one of my favorite places on Earth. Duke feels like a completely different place, as if
+            it is in its own bubble. The architecture is majestic and truly breathtaking. The facilities are packed with resources:
+            I have access to over 40 local restaurants on campus alone, two enormous gym facilities, countless places to study,
+            multiple libraries, about a dozen graduate and professional schools, and world-class professors. Although the overwhelming
+            amount of resources available to is a huge draw, I feel like the people is what makes Duke such a great place. I've made so 
+            many amazing friends throughout my two years there and I have made so many valuable connections along the way. 
+            It's like home away from home.</p>
+    </div>
+
+    <!-- This section includes paragraphs about things I like photographing, along with associated photographs-->
+    <div id="photographing">
+        <h2>Photographing</h2>
+        <h3>Architecture</h3>
+        <p>I enjoy photographing architecture.</p>
+        <h3>Nature</h3>
+        <p>I enjoy photographing nature.</p>
+        <h3>Cars</h3>
+        <p>I enjoy photographing cars in Forza Horizon 4.</p>
+    </div>
+    
+    <!-- These are blog posts on of my few "unique talents": speedcubing -->
+    <div id="blog-posts">
+        <h2>Blog Posts</h2>
+        <h3>Speedcubing</h3>
+        <p>When I was younger, I always thought of the Rubik's cube as an enigma, easy to pick up, impossible to solve. However, once I set
+            out to teach my self how to solve the Rubik's cube, I realized how simple and logical it really was. A Rubik's cube can be solved in
+            a series of steps called algorithms, which are essentially combinations of moves or turns that must be performed when the cube is
+            aligned or oriented in a certain way. I quickly grew to love it and eventually bought a speedcube, which is made for fast, smooth
+            turns in comparison to the standard Rubik's cube. Once I had learned the basic algorithms and could solve a Rubik's cube within 1.5
+            minutes, I decided to learn a speedsolving method. There are hundreds of speedsolving methods ranging from bottom-up, top-down,
+            corners-first, edges-first, columns-first, etc. Each has their own unique strenghts and weaknesses. On my next post, I will talk about 
+            the Fridrich method, also known as CFOP, one of the most famous bottom-up speedsolving methods.
+            
+            </p>
+        <h3>CFOP/Fridrich Method</h3>
+        <p>The Fridrich Method is one of the most prolific speedsolving methods for 3x3x3 Rubik's cubes.</p>
+        <h3>Solving 4x4x4 and 5x5x5 cubes</h3>
+        <p>The basic methods for solving 4x4x4 and 5x5x5 Rubik's cubes are extremely similar to solving 3x3x3 cubes.</p>
+    </div>
+    
+    </div>
+    <!-- This is the end of the div with id="content" -->
   </body>
 </html>

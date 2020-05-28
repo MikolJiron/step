@@ -1,14 +1,17 @@
 /* Styling for the entire page. */
-#page {
-  width: 100%; 
+body{
   font: 100%/1.6 Helvetica;
+  color: white;
+  background-color: black;
 }
+
 
 /* Styling for the top header container containing the portfolio writer's name */
 #top-header-container{
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
+  color: black;
   text-align: center;
 }
 
@@ -17,6 +20,21 @@
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+/* Styling for top-tab-bar, this is the container for section-tab class elements */
+#top-tab-bar{
+    background-color:#ccc;
+}
+
+/* Styling for .section-tab, this is a container for the buttons that represent each tab in the top-tab-bar */
+.section-tab{
+    background-color: #f1f1f1;
+}
+
+/* Hover behavior for .section-tab */
+.section-tab:hover{
+    background-color: #ccc;
 }
 
 /* Styling for an image container, meant to hold photographs (.jpg's typically) */
@@ -29,5 +47,5 @@
 
 /* Hover behavior for the .image-container */
 .image-container:hover{
-  border: thick solid #ccc
+  border: thick solid white;
 }
