@@ -12,15 +12,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-// function addRandomQuote() {
-//   const quotes =[]
-//   // Pick a random greeting.
-//   const quote = quotes[Math.floor(Math.random() * quotes.length)];
 
-//   // Add it to the page.
-//   const quoteContainer = document.getElementById('quote-container');
-//   quoteContainer.innerText = quote;
-// }
+/*TODO: Will write scripting for tabs so that only certain Sections will show when a specific tab is selected at the top */
