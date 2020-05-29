@@ -28,8 +28,8 @@ function displayDefaultSection(){
 
 /* Displays certain Sections will when a specific tab is selected at the top" */
 function displaySection(event, sectionName){
-    setContentToNone();
-    setTabsToDefault();
+    setContentToNone("section-content");
+    setToDefault("section-tab");
     /* Displays the appropriate content for the sectionName associated with the tab the user just clicked on  */
     document.getElementById(sectionName).style.display = "block";
 
@@ -37,20 +37,20 @@ function displaySection(event, sectionName){
     event.currentTarget.className += " active";
 }
 
-/* Set all section-content elements to display = none*/
-function setContentToNone(){
+/* Set all elements of given className name to style.display = none*/
+function setContentToNone(name){
     var i, sectionContent;
-    sectionContent = document.getElementsByClassName("section-content");
+    sectionContent = document.getElementsByClassName(name);
 
     for(i = 0; i < sectionContent.length; i++){
         sectionContent[i].style.display = "none";
     }
 }
 
-/* Set all section-tab elements from "active" to "" which changes to default styling for section-tab*/
-function setTabsToDefault(){
+/*Sets className of all elements of a given className name from "active" to default ""*/
+function setToDefault(name){
     var i, sectionTabs;
-    sectionTabs = document.getElementsByClassName("section-tab");
+    sectionTabs = document.getElementsByClassName(name);
     for(i = 0; i < sectionTabs.length; i++){
         sectionTabs[i].className = sectionTabs[i].className.replace(" active", "");
     }
