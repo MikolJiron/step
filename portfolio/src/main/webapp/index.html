@@ -21,7 +21,7 @@
 	  </div>
     </div>
 
-    <!-- This is the container for the top tabs, which includes tabs for each section in the div with id="content"-->
+    <!-- This is the container for the top tabs, which includes tabs for each "section-content" element in the div with id="content"-->
     <div class="top-tab-bar">
       <button class="section-tab" id="default-tab" onClick="displaySection(event, 'background')">Background</button>
       <button class="section-tab" onClick="displaySection(event, 'projects')">Projects</button>
@@ -51,6 +51,7 @@
           my first ever computer sciencd course. Teaching myself how to program in Java was a challenging, 
           yet rewarding experience and it was then that I realized that I wanted to pursue a degree and career in 
           a technology-related field. Through hard-work and dedication, I was able to graduate from my high-school as valedictorian.</p>  
+        <!-- A picture of home: my backyard -->  
         <img src="/images/home.jpg" alt="Photo of home" class="image-container">
         <p>I received a full-scholarship to attend Duke University through the David M. Rubenstein Scholarship, a program designed
           to give support to promising first-generation college students. It was through this program that
@@ -123,9 +124,13 @@
         <p>Forza Horizon 4 is an open-world racing game set in Great Britain. It is perhaps one of the most beautiful and fun racing games currently available.
           It is so technically impressive in fact, that a Photo Mode is included which allows the player to take amazing photographs of cars in the breathtaking vistas of the UK.
           Here I have included some photos taken in-game:</p>
+
+        <!-- This is the container for the entire slideshow -->  
         <div id =fh4-photographs>
           <h3 style:"text-align: center">Cars in Forza Horizon 4</h3>
           <div class="slide-container">
+
+            <!-- These are the slides in the slide show, only one will be shown at a time. -->  
             <div class="slide">
               <img src="/images/forza/chiron.png" alt="Bugatti Chiron racing down the highway" style="width: 100%">
             </div>
@@ -150,7 +155,7 @@
             <div class="slide-caption">
               <p id="caption"></p>
             </div>
-
+            <!-- This consists of six pictures that make up the selection pane for my slideshow -->
             <div class="slideshow-row">
               <div class="slideshow-column">
                 <img class="slide-demo" src="/images/forza/chiron.png" alt="Bugatti Chiron racing down the highway" style="width: 100%"
@@ -182,7 +187,7 @@
         <p>Photos courtesy of <a href ="https://pz.reddit.com/r/forza/#pz" >r/forza Redditors</a>.</p>
       </div>
     
-      <!-- These are blog posts on of my few "unique talents": speedcubing -->
+      <!-- These are blog posts on one of my few "unique talents": speedcubing -->
       <div id="blog-posts" class="section-content">
         <h2>Blog Posts</h2>
         <h3>Speedcubing</h3>
