@@ -121,28 +121,61 @@
       <div id="photographing" class="section-content">
         <h2>Photographing</h2>
         <p>Forza Horizon 4 is an open-world racing game set in Great Britain. It is perhaps one of the most beautiful and fun racing games currently available.
-            It is so technically impressive in fact, that a Photo Mode is included which allows the player to take amazing photographs of cars in the breathtaking vistas of the UK.
-            Here I have included some photos taken in-game:</p>
+          It is so technically impressive in fact, that a Photo Mode is included which allows the player to take amazing photographs of cars in the breathtaking vistas of the UK.
+          Here I have included some photos taken in-game:</p>
         <div id =fh4-photographs>
           <h3 style:"text-align: center">Cars in Forza Horizon 4</h3>
           <div class="slide-container">
             <div class="slide">
-              <img src="/images/forza/chiron.png" alt="Bugatti Chiron Racing down the highway" class="image-container">
+              <img src="/images/forza/chiron.png" alt="Bugatti Chiron racing down the highway" style="width: 100%">
             </div>
             <div class="slide">
-              <img src="/images/forza/ford-gt-night.png" alt="Ford GT at Night" class="image-container">
+              <img src="/images/forza/ford-gt-night.png" alt="Ford GT at Night" style="width: 100%">
             </div>
             <div class="slide">
-              <img src="/images/forza/jeep.png" alt="Jeep driving along the shoreside" class="image-container">
+              <img src="/images/forza/jeep.png" alt="Jeep driving along the shoreline" style="width: 100%">
             </div>
             <div class="slide">
-              <img src="/images/forza/lambo-night.jpg" alt="Lamborghini at Night" class="image-container">
+              <img src="/images/forza/lambo-night.jpg" alt="Lamborghini at Night" style="width: 100%">
             </div>
             <div class="slide">
-              <img src="/images/forza/rx7-winter.jpg" alt="Custom RX-7 Racing in Winter" class="image-container">
+              <img src="/images/forza/rx7-winter.jpg" alt="Custom RX-7 racing in Winter" style="width: 100%">
             </div>
             <div class="slide">
-              <img src="/images/forza/spring.png" alt="Several hypercars racing in spring" class="image-container">
+              <img src="/images/forza/porsche-town.jpg" alt="Porsche Cayman GT4 in Edinburgh" style="width: 100%">
+            </div>
+            <a class="previous-button" onClick="changeSlide(-1)">❮</a>
+            <a class="next-button" onClick="changeSlide(+1)">❯</a>
+
+            <div class="slide-caption">
+              <p id="caption"></p>
+            </div>
+
+            <div class="slideshow-row">
+              <div class="slideshow-column">
+                <img class="slide-demo" src="/images/forza/chiron.png" alt="Bugatti Chiron racing down the highway" style="width: 100%"
+                  onclick="currentSlide(1)">
+              </div>
+              <div class="slideshow-column">
+                <img class="slide-demo" src="/images/forza/ford-gt-night.png" alt="Ford GT at Night" style="width: 100%"
+                  onclick="currentSlide(2)">
+              </div>
+              <div class="slideshow-column">
+                <img class="slide-demo" src="/images/forza/jeep.png" alt="Jeep driving along the shoreline" style="width: 100%"
+                  onclick="currentSlide(3)">
+              </div>
+              <div class="slideshow-column">
+                <img class="slide-demo" src="/images/forza/lambo-night.jpg" alt="Lamborghini at Night" style="width: 100%"
+                  onclick="currentSlide(4)">
+              </div>
+              <div class="slideshow-column">
+                <img class="slide-demo" src="/images/forza/rx7-winter.jpg" alt="Custom RX-7 racing in Winter" style="width: 100%"
+                  onclick="currentSlide(5)">
+              </div>
+              <div class="slideshow-column">
+                <img class=" slide-demo" src="/images/forza/porsche-town.jpg" alt="Porsche Cayman GT4 in Edinburgh" style="width: 100%"
+                  onclick="currentSlide(6)">
+              </div>
             </div>
           </div>
         </div>
@@ -162,7 +195,6 @@
           minutes, I decided to learn a speedsolving method. There are hundreds of speedsolving methods ranging from bottom-up, top-down,
           corners-first, edges-first, columns-first, etc. Each has their own unique strenghts and weaknesses. On my next post, I will talk about 
           the Fridrich method, also known as CFOP, one of the most famous bottom-up speedsolving methods.</p>
-        
 
         <h3>CFOP/Fridrich Method</h3>
         <img src="/images/speedcube.jpg" alt="3 by 3 by 3 Speedcube" class="image-container">

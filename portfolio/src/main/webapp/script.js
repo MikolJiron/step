@@ -16,9 +16,15 @@
 
 /* JavaScript "clicks" on the default tab so that content is shown when first going into the website */
 
+
+/*global variable that gives me which slide I'm currently on in the SlideShow*/
+var slideIndex;
+
 /* Performs necessary functions when page is first loaded */
 window.onload = function( ){
     displayDefaultSection();
+    slideIndex = 1;
+    showSlides(slideIndex);
 }
 
 /* Sets the default-tab by "clicking" on the "Background" tab, which has id="default-tab*/
@@ -28,8 +34,8 @@ function displayDefaultSection(){
 
 /* Displays certain Sections will when a specific tab is selected at the top" */
 function displaySection(event, sectionName){
-    setContentToNone("section-content");
-    setToDefault("section-tab");
+    setToNone("section-content");
+    setToDefault("section-tab", " active");
     /* Displays the appropriate content for the sectionName associated with the tab the user just clicked on  */
     document.getElementById(sectionName).style.display = "block";
 
@@ -38,22 +44,51 @@ function displaySection(event, sectionName){
 }
 
 /* Set all elements of given className name to style.display = none*/
-function setContentToNone(name){
-    var i, sectionContent;
-    sectionContent = document.getElementsByClassName(name);
-
-    for(i = 0; i < sectionContent.length; i++){
-        sectionContent[i].style.display = "none";
+function setToNone(name){
+    var i, content;
+    content = document.getElementsByClassName(name);
+    for(i = 0; i < content.length; i++){
+        content[i].style.display = "none";
     }
 }
 
 /*Sets className of all elements of a given className name from "active" to default ""*/
-function setToDefault(name){
-    var i, sectionTabs;
-    sectionTabs = document.getElementsByClassName(name);
-    for(i = 0; i < sectionTabs.length; i++){
-        sectionTabs[i].className = sectionTabs[i].className.replace(" active", "");
+function setToDefault(name, toRemove){
+    var i, elements;
+    elements = document.getElementsByClassName(name);
+    for(i = 0; i < elements.length; i++){
+        elements[i].className = elements[i].className.replace(toRemove, "");
     }
 }
 
+/*Changes the current slide in a slideshow by incrementing by the given n*/
+function changeSlide(n){
+    showSlides(slideIndex += n);
+}
+
+/*Display the current nth slide*/
+function currentSlide(n){
+    showSlides(slideIndex = n);
+}
+
+/*Event handler that takes care of which slide to display in the slideshow*/
+function showSlides(n){
+    var slides = document.getElementsByClassName("slide");
+    var slideDemos = document.getElementsByClassName("slide-demo");
+    var caption = document.getElementById("caption")
+
+    /* Handles n-overflow when n is not in the range of the number of slides or when n is <1*/
+    if(n > slides.length){
+        slideIndex = 1;
+    }
+    if(n < 1){
+        slideIndex = slides.length;
+    }
+    setToNone("slide");
+    setToDefault("slide-demo", " slide-active");
+
+    slides[slideIndex -1].style.display = "block"
+    slideDemos[slideIndex -1].className += " slide-active"
+    caption.innerHTML = slideDemos[slideIndex -1].alt;
+}
 
