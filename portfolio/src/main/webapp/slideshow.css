@@ -3,88 +3,8 @@
   --blue-secondary: #29648A;
   --blue-active: #2E9CCA;
   --text-color: #fff;
+
 }
-
-/* Styling for the top header container containing the portfolio writer's name */
-#top-header-container {
-  overflow: hidden;
-  background-color: #29648A;
-  color: #fff;
-  text-align: center;
-}
-
-#content  {
-  margin-left: auto;
-  margin-right: auto;
-  width: 55%;
-}
-
-#link-bar {
-  text-align: center;
-}
-
-#link-bar a { 
-  padding: 15px; 
-  font-weight: bold;
-}
-
-#link-bar a:link { 
-  color: #25274D;  
-}
-
-#link-bar a:visited { 
-  color: #2E9CCA; 
-}
-
-#link-bar a:hover { 
-  color: #ffffff;
-}
-
-/* Styling for top-tab-bar, this is the container for section-tab class elements */
-.top-tab-bar {
-  background-color: #29648A;
-  overflow: hidden;
-}
-
-/* Styling for .section-tab, this is a container for the buttons that represent each tab in the top-tab-bar */
-.top-tab-bar button {
-  background-color: #29648A;
-  border: none;
-  float: left;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
-
-/* Active behavior for .section-tab */
-.top-tab-bar button.active {
-  background-color: #2E9CCA;
-}
-
-/* Hover behavior for .section-tab */
-.top-tab-bar button:hover {
-  background-color: #2E9CCA;
-}
-
-
-/* Styling for content within each section */
-.section-content {
-  display: none;
-  padding: 6px 12px;
-  border-top: none;
-  animation: fade-in ease 3s;
-}
-
-/* Styling for an image container, meant to hold photographs (.jpg's typically) */
-.image-container {
-  display: block;
-  max-height: 250px;
-  max-width: 300px;
-  margin: 50px 0px;
-}
-
 
 /* Position the slide container so that we can use the left-right arrows */
 .slide-container {
@@ -107,7 +27,7 @@ and the other is on the left*/
   width: auto;
   padding: 16px;
   margin-top: -50px;
-  color: #fff;
+  color: var(--text-color);
   font: bold 100%/1.6;
   border-radius: 0 3px 3px 0;
   user-select: none;
@@ -122,7 +42,7 @@ and the other is on the left*/
 
 /*Hover behaviour for previous and next buttons*/
 .previous-button:hover, .next-button:hover {
-  background-color: #25274D;
+  background-color: var(--blue-default);
   opacity: 0.8;
 }
 
@@ -130,9 +50,9 @@ and the other is on the left*/
 .slide-caption {
   margin-top: none;
   text-align: center;
-  background-color: #25274D;
+  background-color: var(--blue-default);
   padding: 2px 16px;
-  color: #fff;
+  color: var(--text-color);
   font: bold;
 }
 
@@ -162,13 +82,6 @@ and the other is on the left*/
 /*When I hover over a slide, display the pointer cursor*/
 .slide-demo:hover, .slide-active:hover {
   cursor: pointer;
-}
-
-/* Styling for the entire page. */
-body {
-  font: 100%/1.6 Helvetica;
-  color: #fff;
-  background-color: #25274D;
 }
 
 * {

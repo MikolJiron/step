@@ -1,0 +1,110 @@
+:root {
+  --blue-default: #25274D;
+  --blue-secondary: #29648A;
+  --blue-active: #2E9CCA;
+  --text-color: #fff;
+}
+
+/* Styling for the top header container containing the portfolio writer's name */
+#top-header-container {
+  overflow: hidden;
+  background-color: var(--blue-secondary);
+  color: var(--text-color);
+  text-align: center;
+}
+
+#content  {
+  margin-left: auto;
+  margin-right: auto;
+  width: 55%;
+}
+
+#link-bar {
+  text-align: center;
+}
+
+#link-bar a { 
+  padding: 15px; 
+  font-weight: bold;
+}
+
+#link-bar a:link { 
+  color: var(--blue-default);  
+}
+
+#link-bar a:visited { 
+  color: var(--blue-secondary); 
+}
+
+#link-bar a:hover { 
+  color: var(--text-color);
+}
+
+/* Styling for top-tab-bar, this is the container for section-tab class elements */
+.top-tab-bar {
+  background-color: var(--blue-secondary);
+  overflow: hidden;
+}
+
+/* Styling for .section-tab, this is a container for the buttons that represent each tab in the top-tab-bar */
+.top-tab-bar button {
+  background-color: inherit;
+  border: none;
+  float: left;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Active behavior for .section-tab */
+.top-tab-bar button.active {
+  background-color: var(--blue-active);
+}
+
+/* Hover behavior for .section-tab */
+.top-tab-bar button:hover {
+  background-color: var(--blue-active);
+}
+
+
+/* Styling for content within each section */
+.section-content {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+  animation: fade-in ease 3s;
+}
+
+/* Styling for an image container, meant to hold photographs (.jpg's or .png's typically) */
+.image-container {
+  display: block;
+  max-height: 250px;
+  max-width: 300px;
+  margin: 50px 0px;
+}
+
+
+/* Styling for the entire page. */
+body {
+  font: 100%/1.6 Helvetica;
+  color: var(--text-color);
+  background-color: var(--blue-default);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@keyframes fade-in {
+    
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+
+}
