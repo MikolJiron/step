@@ -9,11 +9,10 @@ body{
 /* Styling for the top header container containing the portfolio writer's name */
 #top-header-container{
   overflow: hidden;
-  background-color: #464866;
+  background-color: #29648A;
   color: #fff;
   text-align: center;
 }
-
 
 #content{
   margin-left: auto;
@@ -28,11 +27,10 @@ body{
 #link-bar a{ 
   padding:15px; 
   font-weight:bold;
-  background-color:#464866;
 }
 
 #link-bar a:link{ 
-  color: #29648A;  
+  color: #25274D;  
 }
 
 #link-bar a:visited{ 
