@@ -21,21 +21,21 @@
 var slideIndex;
 
 /* Performs necessary functions when page is first loaded */
-window.onload = function( ){
+window.onload = function() {
     displayDefaultSection();
     slideIndex = 1;
-    showSlides(slideIndex);
+    showSlide(slideIndex);
 }
 
 /* Sets the default-tab by "clicking" on the "Background" tab, which has id="default-tab*/
-function displayDefaultSection(){
+function displayDefaultSection() {
     document.getElementById("default-tab").click();
 }
 
 /* Displays certain Sections will when a specific tab is selected at the top" */
-function displaySection(event, sectionName){
+function displaySection(event, sectionName) {
     setToNone("section-content");
-    setToDefault("section-tab", " active");
+    replaceClassName("section-tab", " active");
     /* Displays the appropriate content for the sectionName associated with the tab the user just clicked on  */
     document.getElementById(sectionName).style.display = "block";
 
@@ -44,51 +44,51 @@ function displaySection(event, sectionName){
 }
 
 /* Set all elements of given className name to style.display = none*/
-function setToNone(name){
+function setToNone(name) {
     var i, content;
     content = document.getElementsByClassName(name);
-    for(i = 0; i < content.length; i++){
+    for (i = 0; i < content.length; i++) {
         content[i].style.display = "none";
     }
 }
 
 /*Sets className of all elements of a given className name from "active" to default ""*/
-function setToDefault(name, toRemove){
+function replaceClassName(name, toRemove) {
     var i, elements;
     elements = document.getElementsByClassName(name);
-    for(i = 0; i < elements.length; i++){
+    for (i = 0; i < elements.length; i++) {
         elements[i].className = elements[i].className.replace(toRemove, "");
     }
 }
 
 /*Changes the current slide in a slideshow by incrementing by the given n*/
-function changeSlide(n){
-    showSlides(slideIndex += n);
+function showNextSlide(n) {
+    showSlide(slideIndex += n);
 }
 
 /*Display the current nth slide*/
-function currentSlide(n){
-    showSlides(slideIndex = n);
+function showCurrentSlide(n) {
+    showSlide(slideIndex = n);
 }
 
 /*Event handler that takes care of which slide to display in the slideshow*/
-function showSlides(n){
+function showSlide(n) {
     var slides = document.getElementsByClassName("slide");
     var slideDemos = document.getElementsByClassName("slide-demo");
     var caption = document.getElementById("caption")
 
     /* Handles n-overflow when n is not in the range of the number of slides or when n is <1*/
-    if(n > slides.length){
+    if (n > slides.length) {
         slideIndex = 1;
     }
-    if(n < 1){
+    if (n < 1) {
         slideIndex = slides.length;
     }
     setToNone("slide");
-    setToDefault("slide-demo", " slide-active");
+    replaceClassName("slide-demo", " slide-active");
 
-    slides[slideIndex -1].style.display = "block"
-    slideDemos[slideIndex -1].className += " slide-active"
-    caption.innerHTML = slideDemos[slideIndex -1].alt;
+    slides[slideIndex - 1].style.display = "block"
+    slideDemos[slideIndex - 1].className += " slide-active"
+    caption.innerHTML = slideDemos[slideIndex - 1].alt;
 }
 
