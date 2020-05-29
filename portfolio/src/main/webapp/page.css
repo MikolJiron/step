@@ -1,7 +1,7 @@
 :root {
-  --blue-default: #25274D;
-  --blue-secondary: #29648A;
-  --blue-active: #2E9CCA;
+  --blue-default: #25274d;
+  --blue-secondary: #29648a;
+  --blue-active: #2E9cca;
   --text-color: #fff;
 }
 
@@ -88,7 +88,7 @@
 
 /* Styling for the entire page. */
 body {
-  font: 100%/1.6 Helvetica;
+  font: 100%/1.6 helvetica;
   color: var(--text-color);
   background-color: var(--blue-default);
 }
