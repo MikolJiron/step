@@ -78,10 +78,12 @@ function showSlide(n) {
     var caption = document.getElementById("caption")
 
     /* Handles n-overflow when n is not in the range of the number of slides or when n is <1*/
+
     if (n > slides.length) {
         slideIndex = 1;
     }
-    if (n < 1) {
+
+    else if (n < 1) {
         slideIndex = slides.length;
     }
     setToNone("slide");
