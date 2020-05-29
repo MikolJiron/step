@@ -5,7 +5,7 @@
   --text-color: #fff;
 }
 
-/* Styling for the top header container containing the portfolio writer's name */
+/* Styling for the top header container containing the portfolio writer's name. */
 #top-header-container {
   overflow: hidden;
   background-color: var(--blue-secondary);
@@ -33,21 +33,21 @@
 }
 
 #link-bar a:visited { 
-  color: var(--blue-secondary); 
+  color: var(--blue-active); 
 }
 
 #link-bar a:hover { 
   color: var(--text-color);
 }
 
-/* Styling for top-tab-bar, this is the container for section-tab class elements */
-.top-tab-bar {
+/* Styling for tab-bar, this is the container for section-tab class elements. */
+.tab-bar {
   background-color: var(--blue-secondary);
   overflow: hidden;
 }
 
-/* Styling for .section-tab, this is a container for the buttons that represent each tab in the top-tab-bar */
-.top-tab-bar button {
+/* Styling for .section-tab, this is a container for the buttons that represent each tab in the tab-bar. */
+.tab-bar button {
   background-color: inherit;
   border: none;
   float: left;
@@ -58,33 +58,32 @@
   font-size: 17px;
 }
 
-/* Active behavior for .section-tab */
-.top-tab-bar button.active {
+/* Active behavior for .section-tab. */
+.tab-bar button.active {
   background-color: var(--blue-active);
 }
 
-/* Hover behavior for .section-tab */
-.top-tab-bar button:hover {
+/* Hover behavior for .section-tab. */
+.tab-bar button:hover {
   background-color: var(--blue-active);
 }
 
-
-/* Styling for content within each section */
+/* Styling for content within each section. */
 .section-content {
   display: none;
   padding: 6px 12px;
   border-top: none;
   animation: fade-in ease 3s;
+  -webkit-animation: fade-in ease 3s;
 }
 
-/* Styling for an image container, meant to hold photographs (.jpg's or .png's typically) */
+/* Styling for an image container, meant to hold photographs (.jpg's or .png's typically). */
 .image-container {
   display: block;
   max-height: 250px;
   max-width: 300px;
   margin: 50px 0px;
 }
-
 
 /* Styling for the entire page. */
 body {
@@ -97,14 +96,20 @@ body {
   box-sizing: border-box;
 }
 
-@keyframes fade-in {
-    
+@keyframes fade-in { 
   0% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
+}
 
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

@@ -12,38 +12,40 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/* This code script executes when the website is first loaded in  */
-
-/* JavaScript "clicks" on the default tab so that content is shown when first going into the website */
-
-
-/*global variable that gives me which slide I'm currently on in the SlideShow*/
+/* global variable that gives me which slide I'm currently on in the SlideShow. */
 var slideIndex;
 
-/* Performs necessary functions when page is first loaded */
+/* Performs necessary functions when page is first loaded. */
 window.onload = function() {
     displayDefaultSection();
     slideIndex = 1;
     showSlide(slideIndex);
 }
 
-/* Sets the default-tab by "clicking" on the "Background" tab, which has id="default-tab*/
+/* 
+Sets the default-tab by "clicking" on the "Background" tab, 
+which has id="default-tab.
+*/
 function displayDefaultSection() {
     document.getElementById("default-tab").click();
 }
 
-/* Displays certain Sections will when a specific tab is selected at the top" */
+/* 
+Displays certain Sections will when a specific tab is 
+selected at the top". 
+*/
 function displaySection(event, sectionName) {
     setToNone("section-content");
     replaceClassName("section-tab", " active");
-    /* Displays the appropriate content for the sectionName associated with the tab the user just clicked on  */
+    // Displays the appropriate content for the sectionName 
+    // associated with the tab the user just clicked on. 
     document.getElementById(sectionName).style.display = "block";
 
-    /* Changes the styling to active for the tab the user just clicked on */
+    // Changes the styling to active for the tab the user just clicked on.
     event.currentTarget.className += " active";
 }
 
-/* Set all elements of given className name to style.display = none*/
+// Set all elements of given className name to style.display = none.
 function setToNone(name) {
     var i, content;
     content = document.getElementsByClassName(name);
@@ -52,7 +54,10 @@ function setToNone(name) {
     }
 }
 
-/*Sets className of all elements of a given className name from "active" to default ""*/
+/*
+Sets className of all elements of a given 
+className name from "active" to default "".
+*/
 function replaceClassName(name, toRemove) {
     var i, elements;
     elements = document.getElementsByClassName(name);
@@ -61,23 +66,24 @@ function replaceClassName(name, toRemove) {
     }
 }
 
-/*Changes the current slide in a slideshow by incrementing by the given n*/
+/* Changes the current slide in a slideshow by incrementing by the given n. */
 function showNextSlide(n) {
     showSlide(slideIndex += n);
 }
 
-/*Display the current nth slide*/
+/* Display the current nth slide. */
 function showCurrentSlide(n) {
     showSlide(slideIndex = n);
 }
 
-/*Event handler that takes care of which slide to display in the slideshow*/
+/* Event handler that takes care of which slide to display in the slideshow. */
 function showSlide(n) {
     var slides = document.getElementsByClassName("slide");
     var slideDemos = document.getElementsByClassName("slide-demo");
     var caption = document.getElementById("caption")
 
-    /* Handles n-overflow when n is not in the range of the number of slides or when n is <1*/
+    //Handles n-overflow when n is not in the range of the number 
+    //of slides or when n is <1.
 
     if (n > slides.length) {
         slideIndex = 1;

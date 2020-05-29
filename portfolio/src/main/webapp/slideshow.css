@@ -3,23 +3,33 @@
   --blue-secondary: #29648a;
   --blue-active: #2E9cca;
   --text-color: #fff;
-
 }
 
-/* Position the slide container so that we can use the left-right arrows */
+/* 
+Position the slide container so that
+we can use the left-right arrows. 
+*/
 .slide-container {
   position: relative;
 }
 
-/* By default, we don't want to display any slides, since we only want one at a time */
+/* 
+By default, we don't want to display any slides, 
+since we only want one at a time. 
+*/
 .slide {
   display: none;
   border-bottom: none;
   animation: fade-in ease 3s;
+  -webkit-animation: fade-in ease 3s;
 }
 
-/*We want to style the previous and next buttons identically except for the fact that one is on the :right
-and the other is on the left*/
+/* 
+We want to style the previous and 
+next buttons identically except for the 
+fact that one is on the :right
+and the other is on the left. 
+*/
 .previous-button, .next-button {
   cursor: pointer;
   position: absolute;
@@ -34,19 +44,19 @@ and the other is on the left*/
   -webkit-user-select: none;
 }
 
-/* Next button goes on the right */
+/* Next button goes on the right. */
 .next-button {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
-/*Hover behaviour for previous and next buttons*/
+/* Hover behaviour for previous and next buttons. */
 .previous-button:hover, .next-button:hover {
   background-color: var(--blue-default);
   opacity: 0.8;
 }
 
-/*Styling for image captions*/
+/* Styling for image captions. */
 .slide-caption {
   margin-top: none;
   text-align: center;
@@ -56,30 +66,30 @@ and the other is on the left*/
   font: bold;
 }
 
-/*This 'row' will hold all of the 'columns' containing each image in the slideshow*/
+/* This 'row' will hold all of the 'columns' containing each image in the slideshow. */
 .slideshow-row:after {
   content: "";
   display: table;
   clear: both;
 }
 
-/*There are six images within my specific slide show, how would I change this css to fit any size n slideshow?*/
+/* There are six images within my specific slide show, how would I change this css to fit any size n slideshow? */
 .slideshow-column {
   float: left;
   width: 16.66%;
 }
 
-/*If an image is not selected then make it translucent*/
+/* If an image is not selected then make it translucent. */
 .slide-demo {
   opacity: 0.4;
 }
 
-/*If an image is selected then make it solidly visible*/
+/* If an image is selected then make it solidly visible. */
 .slide-demo:hover, .slide-active {
   opacity: 1;
 }
 
-/*When I hover over a slide, display the pointer cursor*/
+/* When I hover over a slide, display the pointer cursor. */
 .slide-demo:hover, .slide-active:hover {
   cursor: pointer;
 }
@@ -93,6 +103,15 @@ and the other is on the left*/
     opacity: 0;
   }
 
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
   100% {
     opacity: 1;
   }
