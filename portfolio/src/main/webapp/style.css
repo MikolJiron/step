@@ -1,60 +1,49 @@
-/* Styling for the entire page. */
-body{
-  font: 100%/1.6 Helvetica;
-  color: #fff;
-  background-color:#25274D;
-}
-
-*{
-  box-sizing:border-box;
-}
-
 /* Styling for the top header container containing the portfolio writer's name */
-#top-header-container{
+#top-header-container {
   overflow: hidden;
   background-color: #29648A;
   color: #fff;
   text-align: center;
 }
 
-#content{
+#content  {
   margin-left: auto;
   margin-right: auto;
   width: 55%;
 }
 
-#link-bar{
+#link-bar {
   text-align: center;
 }
 
-#link-bar a{ 
-  padding:15px; 
-  font-weight:bold;
+#link-bar a { 
+  padding: 15px; 
+  font-weight: bold;
 }
 
-#link-bar a:link{ 
+#link-bar a:link { 
   color: #25274D;  
 }
 
-#link-bar a:visited{ 
-  color:#2E9CCA; 
+#link-bar a:visited { 
+  color: #2E9CCA; 
 }
 
-#link-bar a:hover{ 
-  color:#ffffff;
+#link-bar a:hover { 
+  color: #ffffff;
 }
 
 /* Styling for top-tab-bar, this is the container for section-tab class elements */
-.top-tab-bar{
-  background-color:#29648A;
+.top-tab-bar {
+  background-color: #29648A;
   overflow: hidden;
 }
 
 /* Styling for .section-tab, this is a container for the buttons that represent each tab in the top-tab-bar */
-.top-tab-bar button{
+.top-tab-bar button {
   background-color: #29648A;
   border: none;
-  float:left;
+  float: left;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
@@ -63,18 +52,18 @@ body{
 }
 
 /* Active behavior for .section-tab */
-.top-tab-bar button.active{
+.top-tab-bar button.active {
   background-color: #2E9CCA;
 }
 
 /* Hover behavior for .section-tab */
-.top-tab-bar button:hover{
+.top-tab-bar button:hover {
   background-color: #2E9CCA;
 }
 
 
 /* Styling for content within each section */
-.section-content{
+.section-content {
   display: none;
   padding: 6px 12px;
   border-top: none;
@@ -82,7 +71,7 @@ body{
 }
 
 /* Styling for an image container, meant to hold photographs (.jpg's typically) */
-.image-container{
+.image-container {
   display: block;
   max-height: 250px;
   max-width: 300px;
@@ -91,12 +80,12 @@ body{
 
 
 /* Position the slide container so that we can use the left-right arrows */
-.slide-container{
-    position: relative;
+.slide-container {
+  position: relative;
 }
 
 /* By default, we don't want to display any slides, since we only want one at a time */
-.slide{
+.slide {
   display: none;
   border-bottom: none;
   animation: fade-in ease 3s;
@@ -104,14 +93,14 @@ body{
 
 /*We want to style the previous and next buttons identically except for the fact that one is on the :right
 and the other is on the left*/
-.previous-button, .next-button{
+.previous-button, .next-button {
   cursor: pointer;
   position: absolute;
-  top:40%;
+  top: 40%;
   width: auto;
   padding: 16px;
   margin-top: -50px;
-  color:#fff;
+  color: #fff;
   font: bold 100%/1.6;
   border-radius: 0 3px 3px 0;
   user-select: none;
@@ -119,56 +108,67 @@ and the other is on the left*/
 }
 
 /* Next button goes on the right */
-.next-button{
+.next-button {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
 /*Hover behaviour for previous and next buttons*/
-.previous-button:hover, .next-button:hover{
+.previous-button:hover, .next-button:hover {
   background-color: #25274D;
   opacity: 0.8;
 }
 
 /*Styling for image captions*/
-.slide-caption{
-  margin-top:none;
+.slide-caption {
+  margin-top: none;
   text-align: center;
-  background-color:#25274D;
+  background-color: #25274D;
   padding: 2px 16px;
   color: #fff;
   font: bold;
 }
 
 /*This 'row' will hold all of the 'columns' containing each image in the slideshow*/
-.slideshow-row:after{
+.slideshow-row:after {
   content: "";
   display: table;
   clear: both;
 }
 
 /*There are six images within my specific slide show, how would I change this css to fit any size n slideshow?*/
-.slideshow-column{
+.slideshow-column {
   float: left;
   width: 16.66%;
 }
 
 /*If an image is not selected then make it translucent*/
-.slide-demo{
+.slide-demo {
   opacity: 0.4;
 }
 
 /*If an image is selected then make it solidly visible*/
-.slide-demo:hover, .slide-active{
+.slide-demo:hover, .slide-active {
   opacity: 1;
 }
 
 /*When I hover over a slide, display the pointer cursor*/
-.slide-demo:hover, .slide-active:hover{
+.slide-demo:hover, .slide-active:hover {
   cursor: pointer;
 }
 
-@keyframes fade-in{
+/* Styling for the entire page. */
+body {
+  font: 100%/1.6 Helvetica;
+  color: #fff;
+  background-color: #25274D;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@keyframes fade-in {
   0% {
     opacity: 0;
   }
