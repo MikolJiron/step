@@ -12,89 +12,114 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/* global variable that gives me which slide I'm currently on in the SlideShow. */
-let slideIndex;
+/** 
+ * Global variable that gives me which 
+ * slide I'm currently on in the SlideShow. 
+ */
+let slideIndex = 1;
 
-/* Performs necessary functions when page is first loaded. */
+/** Performs necessary functions when page is first loaded. */
 window.onload = function() {
-    displayDefaultSection();
-    slideIndex = 1;
-    showSlide(slideIndex);
+  displayDefaultSection();
+  showSlide(slideIndex);
 }
 
-/* 
-Sets the default-tab by "clicking" on the "Background" tab, 
-which has id="default-tab.
-*/
+/**  
+ * Sets the default-tab by "clicking" on the "Background" tab, 
+ * which has id="default-tab.
+ */
 function displayDefaultSection() {
-    document.getElementById("default-tab").click();
+  document.getElementById("default-tab").click();
 }
 
-/* 
-Displays certain Sections will when a specific tab is 
-selected at the top". 
-*/
+/**  
+ * Displays certain Sections will when a specific tab is 
+ * selected at the top". 
+ * @param {event} arg The event that triggers the website to display section-content element.
+ * @param {sectionName} arg This is the sectionName that is used to determine which section to display. 
+ */
 function displaySection(event, sectionName) {
-    setToNone("section-content");
-    replaceClassName("section-tab", " active");
-    // Displays the appropriate content for the sectionName 
-    // associated with the tab the user just clicked on. 
-    document.getElementById(sectionName).style.display = "block";
-
-    // Changes the styling to active for the tab the user just clicked on.
-    event.currentTarget.className += " active";
+  setToNone("section-content");
+  replaceClassName("section-tab", " active");
+  // Displays the appropriate content for the sectionName 
+  // associated with the tab the user just clicked on. 
+  document.getElementById(sectionName).style.display = "block";
+  // Changes the styling to active for the tab the user just clicked on.
+  event.currentTarget.className += " active";
 }
 
-// Set all elements of given className name to style.display = none.
+/** 
+ * Set all elements of given className name to style.display = none.
+ * @param {name} arg The name of the class that I need to modify.
+ */
 function setToNone(name) {
-    const content = document.getElementsByClassName(name);
-    for (let i = 0; i < content.length; i++) {
-        content[i].style.display = "none";
-    }
+  const content = document.getElementsByClassName(name);
+  for (let i = 0; i < content.length; i++) {
+    content[i].style.display = "none";
+  }
+  // Using forEach made the sections no longer display even when I clicked on a tab 
+
+  /* content.forEach((element) => {
+    element.style.display = "none";
+  }) */
 }
 
-/*
-Sets className of all elements of a given 
-className name from "active" to default "".
-*/
+/**
+ * Sets className of all elements of a given 
+ * className name from "active" to default "".
+ * @param {name} arg The name of the class I need to modify.
+ * @param {toRemove} arg The string that I need to remove from the class name I'm modifying.
+ */
 function replaceClassName(name, toRemove) {
-    const elements = document.getElementsByClassName(name);
-    for (let i = 0; i < elements.length; i++) {
-        elements[i].className = elements[i].className.replace(toRemove, "");
-    }
+  const elements = document.getElementsByClassName(name);
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].className = elements[i].className.replace(toRemove, "");
+  }
+  // Using forEach made the sections no longer display even when I clicked on a tab
+
+  /* elements.forEach((element) => {
+    element.className = element.className.replace(toRemove, "");
+  }) */
 }
 
-/* Changes the current slide in a slideshow by incrementing by the given n. */
+/** 
+ * Changes the current slide in a slideshow 
+ * by incrementing by the given n. 
+ * @param {n} arg The increment/decrement value for showing the next slide.
+ */
 function showNextSlide(n) {
-    showSlide(slideIndex += n);
+  showSlide(slideIndex += n);
 }
 
-/* Display the current nth slide. */
+/** Display the current nth slide. */
 function showCurrentSlide(n) {
-    showSlide(slideIndex = n);
+  showSlide(slideIndex = n);
 }
 
-/* Event handler that takes care of which slide to display in the slideshow. */
+/** 
+ * Event handler that takes care of which slide to display in the slideshow.
+ * @param {n} arg The variable containing the index for the current nth slide.
+ */
 function showSlide(n) {
-    const slides = document.getElementsByClassName("slide");
-    const slideDemos = document.getElementsByClassName("slide-demo");
-    const caption = document.getElementById("caption")
+  const slides = document.getElementsByClassName("slide");
+  const slideDemos = document.getElementsByClassName("slide-demo");
+  const caption = document.getElementById("caption");
 
-    //Handles n-overflow when n is not in the range of the number 
-    //of slides or when n is <1.
+  // Handles n-overflow when n is not in the range of the number 
+  // of slides or when n is <1.
 
-    if (n > slides.length) {
-        slideIndex = 1;
-    }
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+    
+  else if (n < 1) {
+    slideIndex = slides.length;
+  }
+  setToNone("slide");
+  replaceClassName("slide-demo", " slide-active");
 
-    else if (n < 1) {
-        slideIndex = slides.length;
-    }
-    setToNone("slide");
-    replaceClassName("slide-demo", " slide-active");
-
-    slides[slideIndex - 1].style.display = "block"
-    slideDemos[slideIndex - 1].className += " slide-active"
-    caption.innerHTML = slideDemos[slideIndex - 1].alt;
+  slides[slideIndex - 1].style.display = "block";
+  slideDemos[slideIndex - 1].className += " slide-active";
+  caption.innerHTML = slideDemos[slideIndex - 1].alt;
 }
 
