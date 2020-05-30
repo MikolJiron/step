@@ -13,7 +13,7 @@
 // limitations under the License.
 
 /* global variable that gives me which slide I'm currently on in the SlideShow. */
-var slideIndex;
+let slideIndex;
 
 /* Performs necessary functions when page is first loaded. */
 window.onload = function() {
@@ -47,9 +47,8 @@ function displaySection(event, sectionName) {
 
 // Set all elements of given className name to style.display = none.
 function setToNone(name) {
-    var i, content;
-    content = document.getElementsByClassName(name);
-    for (i = 0; i < content.length; i++) {
+    const content = document.getElementsByClassName(name);
+    for (let i = 0; i < content.length; i++) {
         content[i].style.display = "none";
     }
 }
@@ -59,9 +58,8 @@ Sets className of all elements of a given
 className name from "active" to default "".
 */
 function replaceClassName(name, toRemove) {
-    var i, elements;
-    elements = document.getElementsByClassName(name);
-    for (i = 0; i < elements.length; i++) {
+    const elements = document.getElementsByClassName(name);
+    for (let i = 0; i < elements.length; i++) {
         elements[i].className = elements[i].className.replace(toRemove, "");
     }
 }
@@ -78,9 +76,9 @@ function showCurrentSlide(n) {
 
 /* Event handler that takes care of which slide to display in the slideshow. */
 function showSlide(n) {
-    var slides = document.getElementsByClassName("slide");
-    var slideDemos = document.getElementsByClassName("slide-demo");
-    var caption = document.getElementById("caption")
+    const slides = document.getElementsByClassName("slide");
+    const slideDemos = document.getElementsByClassName("slide-demo");
+    const caption = document.getElementById("caption")
 
     //Handles n-overflow when n is not in the range of the number 
     //of slides or when n is <1.
