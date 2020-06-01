@@ -19,7 +19,7 @@
 let slideIndex = 1;
 
 /** Performs necessary functions when page is first loaded. */
-window.onload = function() {
+window.onload = () => {
   displayDefaultSection();
   showSlide(slideIndex);
 }
@@ -28,17 +28,19 @@ window.onload = function() {
  * Sets the default-tab by "clicking" on the "Background" tab, 
  * which has id="default-tab.
  */
-function displayDefaultSection() {
+displayDefaultSection = () => {
   document.getElementById("default-tab").click();
 }
 
 /**  
  * Displays certain Sections will when a specific tab is 
  * selected at the top". 
- * @param {event} arg The event that triggers the website to display section-content element.
- * @param {sectionName} arg This is the sectionName that is used to determine which section to display. 
+ * @param {event} arg The event that triggers the website to display
+ *  section-content element.
+ * @param {sectionName} arg This is the sectionName that is used 
+ *  to determine which section to display. 
  */
-function displaySection(event, sectionName) {
+displaySection = (event, sectionName) => {
   setToNone("section-content");
   replaceClassName("section-tab", " active");
   // Displays the appropriate content for the sectionName 
@@ -52,12 +54,13 @@ function displaySection(event, sectionName) {
  * Set all elements of given className name to style.display = none.
  * @param {name} arg The name of the class that I need to modify.
  */
-function setToNone(name) {
+setToNone = (name) => {
   const content = document.getElementsByClassName(name);
   for (let i = 0; i < content.length; i++) {
     content[i].style.display = "none";
   }
-  // Using forEach made the sections no longer display even when I clicked on a tab 
+  // Using forEach made the sections no longer display even when 
+  // I clicked on a tab 
 
   /* content.forEach((element) => {
     element.style.display = "none";
@@ -68,14 +71,16 @@ function setToNone(name) {
  * Sets className of all elements of a given 
  * className name from "active" to default "".
  * @param {name} arg The name of the class I need to modify.
- * @param {toRemove} arg The string that I need to remove from the class name I'm modifying.
+ * @param {toRemove} arg The string that I need to remove 
+ *  from the class name I'm modifying.
  */
-function replaceClassName(name, toRemove) {
+replaceClassName = (name, toRemove) => {
   const elements = document.getElementsByClassName(name);
   for (let i = 0; i < elements.length; i++) {
     elements[i].className = elements[i].className.replace(toRemove, "");
   }
-  // Using forEach made the sections no longer display even when I clicked on a tab
+  // Using forEach made the sections no longer display even when 
+  // I clicked on a tab
 
   /* elements.forEach((element) => {
     element.className = element.className.replace(toRemove, "");
@@ -87,12 +92,15 @@ function replaceClassName(name, toRemove) {
  * by incrementing by the given n. 
  * @param {n} arg The increment/decrement value for showing the next slide.
  */
-function showNextSlide(n) {
+showNextSlide = (n) => {
   showSlide(slideIndex += n);
 }
 
-/** Display the current nth slide. */
-function showCurrentSlide(n) {
+/** 
+ * Display the current nth slide. 
+ * @param {n} arg The current nth index representing the current slide
+ */
+showCurrentSlide = (n) => {
   showSlide(slideIndex = n);
 }
 
@@ -100,7 +108,7 @@ function showCurrentSlide(n) {
  * Event handler that takes care of which slide to display in the slideshow.
  * @param {n} arg The variable containing the index for the current nth slide.
  */
-function showSlide(n) {
+showSlide = (n) => {
   const slides = document.getElementsByClassName("slide");
   const slideDemos = document.getElementsByClassName("slide-demo");
   const caption = document.getElementById("caption");
