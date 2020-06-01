@@ -66,14 +66,20 @@ and the other is on the left.
   font: bold;
 }
 
-/* This 'row' will hold all of the 'columns' containing each image in the slideshow. */
+/* 
+This 'row' will hold all of the 'columns' containing 
+each image in the slideshow. 
+*/
 .slideshow-row:after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* There are six images within my specific slide show, how would I change this css to fit any size n slideshow? */
+/* 
+There are six images within my specific slide show, how
+would I change this css to fit any size n slideshow? 
+*/
 .slideshow-column {
   float: left;
   width: 16.66%;
