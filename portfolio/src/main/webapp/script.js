@@ -29,33 +29,36 @@ window.onload = () => {
  * which has id="default-tab.
  */
 displayDefaultSection = () => {
-  document.getElementById("default-tab").classList.add("active");
-  document.getElementById("background").classList.remove("default-none");
-  document.getElementById("background").classList.add("default-block");
+  const tab = document.getElementById("default-tab");
+  const background = document.getElementById("background");
+  tab.classList.add("active");
+  background.classList.remove("default-none");
+  background.classList.add("default-block");
 }
 
 /**  
  * Displays certain Sections will when a specific tab is 
  * selected at the top". 
- * @param {event} arg The event that triggers the website to display
+ * @param event - The event that triggers the website to display
  *  section-content element.
- * @param {sectionName} arg This is the sectionName that is used 
+ * @param {string} sectionName - This is the sectionName that is used 
  *  to determine which section to display. 
  */
 displaySection = (event, sectionName) => {
+  const section = document.getElementById(sectionName);
   setToNone("section-content");
   replaceClassName("section-tab", "active");
   // Displays the appropriate content for the sectionName 
   // associated with the tab the user just clicked on.
-  document.getElementById(sectionName).classList.remove("default-none"); 
-  document.getElementById(sectionName).classList.add("default-block");
+  section.classList.remove("default-none"); 
+  section.classList.add("default-block");
   // Changes the styling to active for the tab the user just clicked on.
   event.currentTarget.classList.add("active");
 }
 
 /** 
  * Set all elements of given className name to style.display = none.
- * @param {name} arg The name of the class that I need to modify.
+ * @param {string} name - The name of the class that I need to modify.
  */
 setToNone = (name) => {
   const content = document.getElementsByClassName(name);
@@ -63,57 +66,44 @@ setToNone = (name) => {
     content[i].classList.remove("default-block");
     content[i].classList.add("default-none");
   }
-  // Using forEach made the sections no longer display even when 
-  // I clicked on a tab 
-
-  /* content.forEach((element) => {
-    element.style.display = "none";
-  }) */
 }
 
 /**
  * Sets className of all elements of a given 
  * className name from "active" to default "".
- * @param {name} arg The name of the class I need to modify.
- * @param {toRemove} arg The string that I need to remove 
+ * @param {string} name - The name of the class I need to modify.
+ * @param {string} toRemove - The string that I need to remove 
  *  from the class name I'm modifying.
  */
 replaceClassName = (name, toRemove) => {
   const elements = document.getElementsByClassName(name);
   for (let i = 0; i < elements.length; i++) {
-    // elements[i].className = elements[i].className.replace(toRemove, "");
     elements[i].classList.remove(toRemove);
   }
-  // Using forEach made the sections no longer display even when 
-  // I clicked on a tab
-
-  /* elements.forEach((element) => {
-    element.className = element.className.replace(toRemove, "");
-  }) */
 }
 
 /** 
  * Changes the current slide in a slideshow 
  * by incrementing by the given n. 
- * @param {n} arg The increment/decrement value for showing the next slide.
+ * @param {number} slideIncrement - The increment/decrement value for showing the next slide.
  */
-showNextSlide = (n) => {
-  showSlide(slideIndex += n);
+showNextSlide = (slideIncrement) => {
+  showSlide(slideIndex += slideIncrement);
 }
 
 /** 
  * Display the current nth slide. 
- * @param {n} arg The current nth index representing the current slide
+ * @param {number} current - The current nth index representing the current slide
  */
-showCurrentSlide = (n) => {
-  showSlide(slideIndex = n);
+showCurrentSlide = (current) => {
+  showSlide(slideIndex = current);
 }
 
 /** 
  * Event handler that takes care of which slide to display in the slideshow.
- * @param {n} arg The variable containing the index for the current nth slide.
+ * @param {number} slideToShow - The variable containing the index for the current nth slide.
  */
-showSlide = (n) => {
+showSlide = (slideToShow) => {
   const slides = document.getElementsByClassName("slide");
   const slideDemos = document.getElementsByClassName("slide-demo");
   const caption = document.getElementById("caption");
@@ -121,13 +111,13 @@ showSlide = (n) => {
   // Handles n-overflow when n is not in the range of the number 
   // of slides or when n is <1.
 
-  if (n > slides.length) {
+  if (slideToShow > slides.length) {
     slideIndex = 1;
   }
-    
-  else if (n < 1) {
+  else if (slideToShow < 1) {
     slideIndex = slides.length;
   }
+
   setToNone("slide");
   replaceClassName("slide-demo", "slide-active");
 
