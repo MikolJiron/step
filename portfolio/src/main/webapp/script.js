@@ -42,12 +42,12 @@ displayDefaultSection = () => {
  */
 displaySection = (event, sectionName) => {
   setToNone("section-content");
-  replaceClassName("section-tab", " active");
+  replaceClassName("section-tab", "active");
   // Displays the appropriate content for the sectionName 
   // associated with the tab the user just clicked on. 
   document.getElementById(sectionName).style.display = "block";
   // Changes the styling to active for the tab the user just clicked on.
-  event.currentTarget.className += " active";
+  event.currentTarget.classList.add("active");
 }
 
 /** 
@@ -77,7 +77,8 @@ setToNone = (name) => {
 replaceClassName = (name, toRemove) => {
   const elements = document.getElementsByClassName(name);
   for (let i = 0; i < elements.length; i++) {
-    elements[i].className = elements[i].className.replace(toRemove, "");
+    // elements[i].className = elements[i].className.replace(toRemove, "");
+    elements[i].classList.remove(toRemove);
   }
   // Using forEach made the sections no longer display even when 
   // I clicked on a tab
@@ -124,10 +125,10 @@ showSlide = (n) => {
     slideIndex = slides.length;
   }
   setToNone("slide");
-  replaceClassName("slide-demo", " slide-active");
+  replaceClassName("slide-demo", "slide-active");
 
   slides[slideIndex - 1].style.display = "block";
-  slideDemos[slideIndex - 1].className += " slide-active";
+  slideDemos[slideIndex -1].classList.add("slide-active");
   caption.innerHTML = slideDemos[slideIndex - 1].alt;
 }
 
