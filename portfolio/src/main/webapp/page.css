@@ -96,6 +96,16 @@ Styling for an image container, meant to hold photographs
   margin: 50px 0px;
 }
 
+/* Default block class. */
+.default-block {
+  display: block;
+}
+
+/* Default none class. */
+.default-none {
+  display: none;
+}
+
 /* Styling for the entire page. */
 body {
   font: 100%/1.6 helvetica;

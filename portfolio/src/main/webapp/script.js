@@ -29,7 +29,9 @@ window.onload = () => {
  * which has id="default-tab.
  */
 displayDefaultSection = () => {
-  document.getElementById("default-tab").click();
+  document.getElementById("default-tab").classList.add("active");
+  document.getElementById("background").classList.remove("default-none");
+  document.getElementById("background").classList.add("default-block");
 }
 
 /**  
@@ -44,8 +46,9 @@ displaySection = (event, sectionName) => {
   setToNone("section-content");
   replaceClassName("section-tab", "active");
   // Displays the appropriate content for the sectionName 
-  // associated with the tab the user just clicked on. 
-  document.getElementById(sectionName).style.display = "block";
+  // associated with the tab the user just clicked on.
+  document.getElementById(sectionName).classList.remove("default-none"); 
+  document.getElementById(sectionName).classList.add("default-block");
   // Changes the styling to active for the tab the user just clicked on.
   event.currentTarget.classList.add("active");
 }
@@ -57,7 +60,8 @@ displaySection = (event, sectionName) => {
 setToNone = (name) => {
   const content = document.getElementsByClassName(name);
   for (let i = 0; i < content.length; i++) {
-    content[i].style.display = "none";
+    content[i].classList.remove("default-block");
+    content[i].classList.add("default-none");
   }
   // Using forEach made the sections no longer display even when 
   // I clicked on a tab 
@@ -127,8 +131,9 @@ showSlide = (n) => {
   setToNone("slide");
   replaceClassName("slide-demo", "slide-active");
 
-  slides[slideIndex - 1].style.display = "block";
-  slideDemos[slideIndex -1].classList.add("slide-active");
+  slides[slideIndex - 1].classList.remove("default-none");
+  slides[slideIndex - 1].classList.add("default-block");
+  slideDemos[slideIndex - 1].classList.add("slide-active");
   caption.innerHTML = slideDemos[slideIndex - 1].alt;
 }
 
