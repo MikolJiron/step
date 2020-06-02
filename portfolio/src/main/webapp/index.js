@@ -21,7 +21,7 @@ window.onload = () => {
   window.tab = new Tab();
   window.slideShow = new SlideShow();
   
-  // Set up default tab and slideshow
+  // Set up default tab and slideshow.
   tab.displayDefaultSection();
   setToNone("slide");
   slideShow.showSlide(slideShow.slideIndex);

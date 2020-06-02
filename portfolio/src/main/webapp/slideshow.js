@@ -22,6 +22,7 @@ class SlideShow {
   constructor () {
       /** @private @type {number} */
       this.slideIndex = 1;
+
       /** @private @type {number} */
       this.savedIndex = 0;
   }
@@ -38,7 +39,8 @@ class SlideShow {
 
   /** 
    * Display the current nth slide. 
-   * @param {number} current - The current nth index representing the current slide.
+   * @param {number} current - The current nth index representing the current
+   *   slide.
    */
   showCurrentSlide = (current) => {
     this.showSlide(this.slideIndex = current);
@@ -68,7 +70,8 @@ class SlideShow {
     // We only want to stop displaying a slide if the slide has already
     // been displayed or if the savedIndex is not the same as the new
     // slide index, i.e. if I click on the current slide again, I don't want
-    // it to stop displaying. We don't want to re-render something already on screen.
+    // it to stop displaying. We don't want to re-render something already on 
+    // screen.
   
     if (this.savedIndex > 0 && this.savedIndex != this.slideIndex){
       slides[this.savedIndex - 1].classList.remove("default-block");
