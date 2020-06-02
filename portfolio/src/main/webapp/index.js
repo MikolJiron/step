@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {setToNone, replaceClassName, displayDefaultSection, displaySection} from "./tab.js";
-import {showNextSlide, showSlide, showCurrentSlide, slideIndex} from "./slideshow.js";
+import * as tabJs from "./tab.js";
+import * as slideshowJs from "./slideshow.js";
 
 /** Performs necessary functions when page is first loaded. */
 window.onload = () => {
-  displayDefaultSection();
-  showSlide(slideIndex);
+  tabJs.displayDefaultSection();
+  slideshowJs.showSlide(slideshowJs.slideIndex);
 }

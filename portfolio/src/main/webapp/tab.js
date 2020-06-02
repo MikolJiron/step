@@ -12,23 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/** 
- * Global variable that gives me which 
- * slide I'm currently on in the SlideShow. 
- */
-let slideIndex = 1;
-
-/** Performs necessary functions when page is first loaded. */
-window.onload = () => {
-  displayDefaultSection();
-  // showSlide(slideIndex);
-}
-
 /**  
  * Sets the default-tab by "clicking" on the "Background" tab, 
  * which has id="default-tab.
  */
-const displayDefaultSection = () => {
+export const displayDefaultSection = () => {
   const tab = document.getElementById("default-tab");
   const background = document.getElementById("background");
   tab.classList.add("active");
@@ -44,7 +32,7 @@ const displayDefaultSection = () => {
  * @param {string} sectionName - This is the sectionName that is used 
  *  to determine which section to display. 
  */
-const displaySection = (event, sectionName) => {
+export const displaySection = (event, sectionName) => {
   const section = document.getElementById(sectionName);
   setToNone("section-content");
   replaceClassName("section-tab", "active");
@@ -60,7 +48,7 @@ const displaySection = (event, sectionName) => {
  * Set all elements of given className name to style.display = none.
  * @param {string} name - The name of the class that I need to modify.
  */
-const setToNone = (name) => {
+export const setToNone = (name) => {
   const content = document.getElementsByClassName(name);
   for (let i = 0; i < content.length; i++) {
     content[i].classList.remove("default-block");
@@ -75,13 +63,11 @@ const setToNone = (name) => {
  * @param {string} toRemove - The string that I need to remove 
  *  from the class name I'm modifying.
  */
-const replaceClassName = (name, toRemove) => {
+export const replaceClassName = (name, toRemove) => {
   const elements = document.getElementsByClassName(name);
   for (let i = 0; i < elements.length; i++) {
     elements[i].classList.remove(toRemove);
   }
 }
-
-export {setToNone, replaceClassName, displayDefaultSection, displaySection};
 
 
