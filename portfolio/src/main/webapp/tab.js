@@ -16,7 +16,7 @@
  * Sets the default-tab by "clicking" on the "Background" tab, 
  * which has id="default-tab.
  */
-export const displayDefaultSection = () => {
+const displayDefaultSection = () => {
   const tab = document.getElementById("default-tab");
   const background = document.getElementById("background");
   tab.classList.add("active");
@@ -32,7 +32,7 @@ export const displayDefaultSection = () => {
  * @param {string} sectionName - This is the sectionName that is used 
  *  to determine which section to display. 
  */
-export const displaySection = (event, sectionName) => {
+const displaySection = (event, sectionName) => {
   const section = document.getElementById(sectionName);
   setToNone("section-content");
   removeClassName("section-tab", "active");
@@ -48,7 +48,7 @@ export const displaySection = (event, sectionName) => {
  * Set all elements of given className name to style.display = none.
  * @param {string} name - The name of the class that I need to modify.
  */
-export const setToNone = (name) => {
+const setToNone = (name) => {
   const content = document.getElementsByClassName(name);
   for (let i = 0; i < content.length; i++) {
     content[i].classList.remove("default-block");
@@ -63,11 +63,11 @@ export const setToNone = (name) => {
  * @param {string} toRemove - The string that I need to remove 
  *  from the class name I'm modifying.
  */
-export const removeClassName = (name, toRemove) => {
+const removeClassName = (name, toRemove) => {
   const elements = document.getElementsByClassName(name);
   for (let i = 0; i < elements.length; i++) {
     elements[i].classList.remove(toRemove);
   }
 }
 
-
+export {displayDefaultSection, displaySection, setToNone, removeClassName};

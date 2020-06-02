@@ -12,18 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {setToNone, removeClassName} from "./tab.js";
+import {removeClassName} from "./tab.js";
+
 /** 
- * Global variable that gives me which 
- * slide I'm currently on in the SlideShow. 
+ * Global variables that gives me which 
+ * slide I'm currently on in the SlideShow and which one I was in previously.
  */
-export let slideIndex = 1;
+let slideIndex = 1;
 let savedIndex = 0;
 
 /** 
  * Changes the current slide in a slideshow 
  * by incrementing by the given n. 
- * @param {number} slideIncrement - The increment/decrement value for showing the next slide.
+ * @param {number} slideIncrement - The increment/decrement value for 
+ *   showing the next slide.
  */
 const showNextSlide = (slideIncrement) => {
   showSlide(slideIndex += slideIncrement);
@@ -31,7 +33,7 @@ const showNextSlide = (slideIncrement) => {
 
 /** 
  * Display the current nth slide. 
- * @param {number} current - The current nth index representing the current slide
+ * @param {number} current - The current nth index representing the current slide.
  */
 const showCurrentSlide = (current) => {
   showSlide(slideIndex = current);
@@ -39,7 +41,8 @@ const showCurrentSlide = (current) => {
 
 /** 
  * Event handler that takes care of which slide to display in the slideshow.
- * @param {number} slideToShow - The variable containing the index for the current nth slide.
+ * @param {number} slideToShow - The variable containing the index for 
+ *   the current nth slide.
  */
 const showSlide = (slideToShow) => {
   const slides = document.getElementsByClassName("slide");
@@ -66,6 +69,7 @@ const showSlide = (slideToShow) => {
     slides[savedIndex - 1].classList.remove("default-block");
     slides[savedIndex - 1].classList.add("default-none");
   }
+  
   removeClassName("slide-demo", "slide-active");
   slides[slideIndex - 1].classList.remove("default-none");
   slides[slideIndex - 1].classList.add("default-block");
@@ -74,4 +78,4 @@ const showSlide = (slideToShow) => {
   savedIndex = slideIndex;
 }
 
-export {showNextSlide, showSlide, showCurrentSlide};
+export {showNextSlide, showSlide, showCurrentSlide, slideIndex};
