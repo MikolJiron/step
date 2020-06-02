@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {replaceClassName, displayDefaultSection, displaySection, setToNone} from "./tab.js";
+import {removeClassName, displayDefaultSection, displaySection, setToNone} from "./tab.js";
 import {showNextSlide, showSlide, showCurrentSlide, slideIndex} from "./slideshow.js";
 
 /** Allow all imported functions to be in the scope of "window"*/
@@ -20,11 +20,12 @@ window.onload = () => {
   window.displaySection = displaySection;
   window.setToNone = setToNone;
   window.displayDefaultSection = displayDefaultSection;
-  window.replaceClassName = replaceClassName;
+  window.removeClassName = removeClassName;
   window.showNextSlide = showNextSlide;
   window.showSlide = showSlide;
   window.showCurrentSlide = showCurrentSlide;
   window.slideIndex = slideIndex;
   displayDefaultSection();
+  setToNone("slide");
   showSlide(slideIndex);
 }

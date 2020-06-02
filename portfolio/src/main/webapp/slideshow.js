@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {setToNone, replaceClassName} from "./tab.js";
+import {setToNone, removeClassName} from "./tab.js";
 /** 
  * Global variable that gives me which 
  * slide I'm currently on in the SlideShow. 
  */
 export let slideIndex = 1;
+let savedIndex = 0;
 
 /** 
  * Changes the current slide in a slideshow 
@@ -54,14 +55,23 @@ const showSlide = (slideToShow) => {
   else if (slideToShow < 1) {
     slideIndex = slides.length;
   }
-
-  setToNone("slide");
-  replaceClassName("slide-demo", "slide-active");
-
+  
+  // Stop displaying the previous slide from savedIndex
+  // We only want to stop displaying a slide if the slide has already
+  // been displayed or if the savedIndex is not the same as the new
+  // slide index, i.e. if I click on the current slide again, I don't want
+  // it to stop displaying. We don't want to re-render something already on screen.
+  
+  if (savedIndex > 0 && savedIndex != slideIndex){
+    slides[savedIndex - 1].classList.remove("default-block");
+    slides[savedIndex - 1].classList.add("default-none");
+  }
+  removeClassName("slide-demo", "slide-active");
   slides[slideIndex - 1].classList.remove("default-none");
   slides[slideIndex - 1].classList.add("default-block");
   slideDemos[slideIndex - 1].classList.add("slide-active");
   caption.innerHTML = slideDemos[slideIndex - 1].alt;
+  savedIndex = slideIndex;
 }
 
 export {showNextSlide, showSlide, showCurrentSlide};

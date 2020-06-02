@@ -35,7 +35,7 @@ export const displayDefaultSection = () => {
 export const displaySection = (event, sectionName) => {
   const section = document.getElementById(sectionName);
   setToNone("section-content");
-  replaceClassName("section-tab", "active");
+  removeClassName("section-tab", "active");
   // Displays the appropriate content for the sectionName 
   // associated with the tab the user just clicked on.
   section.classList.remove("default-none"); 
@@ -63,7 +63,7 @@ export const setToNone = (name) => {
  * @param {string} toRemove - The string that I need to remove 
  *  from the class name I'm modifying.
  */
-export const replaceClassName = (name, toRemove) => {
+export const removeClassName = (name, toRemove) => {
   const elements = document.getElementsByClassName(name);
   for (let i = 0; i < elements.length; i++) {
     elements[i].classList.remove(toRemove);
