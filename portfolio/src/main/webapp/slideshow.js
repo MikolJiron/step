@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {removeClassName} from "./tab.js";
+import {removeClassName} from "./utils.js";
 
 /** 
  * Global variables that gives me which 
@@ -78,4 +78,4 @@ const showSlide = (slideToShow) => {
   savedIndex = slideIndex;
 }
 
-export {showNextSlide, showSlide, showCurrentSlide, slideIndex};
+export {showCurrentSlide, showNextSlide, showSlide, slideIndex};
