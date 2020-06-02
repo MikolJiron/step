@@ -49,4 +49,4 @@ class Tab {
   }
 }
 
-export default Tab;
+export {Tab};

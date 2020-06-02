@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+"use strict";
 import {setToNone} from "./utils.js";
-import Tab from "./tab.js";
-import SlideShow from "./slideshow.js";
+import {Tab} from "./tab.js";
+import {SlideShow} from "./slideshow.js";
 
 window.onload = () => {
   // Allow all imported functions to be in the scope of "window".

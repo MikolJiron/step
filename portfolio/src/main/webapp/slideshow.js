@@ -87,4 +87,4 @@ class SlideShow {
   }
 }
 
-export default SlideShow;
+export {SlideShow};
