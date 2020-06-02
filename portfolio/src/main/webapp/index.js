@@ -16,17 +16,12 @@ import {setToNone} from "./utils.js";
 import Tab from "./tab.js";
 import SlideShow from "./slideshow.js";
 
-/** Allow all imported functions to be in the scope of "window". */
 window.onload = () => {
-//   window.displaySection = displaySection;
-//   window.displayDefaultSection = displayDefaultSection;
-//   window.showNextSlide = showNextSlide;
-//   window.showSlide = showSlide;
-//   window.showCurrentSlide = showCurrentSlide;
-//   window.slideIndex = slideIndex;
-  //set up the default section and correct slide to show.
-  window.tab = Tab;
-  window.slideShow = SlideShow;
+  // Allow all imported functions to be in the scope of "window".
+  window.tab = new Tab();
+  window.slideShow = new SlideShow();
+  
+  // Set up default tab and slideshow
   tab.displayDefaultSection();
   setToNone("slide");
   slideShow.showSlide(slideShow.slideIndex);

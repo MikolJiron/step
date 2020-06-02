@@ -21,12 +21,12 @@
 .tab-bar button {
   background-color: inherit;
   border: none;
-  float: left;
-  outline: none;
   cursor: pointer;
+  float: left;
+  font-size: 17px;
+  outline: none;
   padding: 14px 16px;
   transition: 0.3s;
-  font-size: 17px;
 }
 
 .tab-bar button.active {
@@ -40,11 +40,11 @@
 
 /* Styling for content within each section. */
 .section-content {
-  display: none;
-  padding: 6px 12px;
-  border-top: none;
   animation: fade-in ease 3s;
   -webkit-animation: fade-in ease 3s;
+  border-top: none;
+  display: none;
+  padding: 6px 12px;
 }
 
 /* 
@@ -53,9 +53,9 @@
 */
 .image-container {
   display: block;
+  margin: 50px 0px;
   max-height: 250px;
   max-width: 300px;
-  margin: 50px 0px;
 }
 
 /* Default block class. */
@@ -108,9 +108,9 @@
 
 /* Styling for the entire page. */
 body {
-  font: 100%/1.6 helvetica;
-  color: var(--text-color);
   background-color: var(--blue-default);
+  color: var(--text-color);
+  font: 100%/1.6 helvetica;
 }
 
 * {

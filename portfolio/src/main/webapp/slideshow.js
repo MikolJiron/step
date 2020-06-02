@@ -18,11 +18,11 @@ import {removeClassName} from "./utils.js";
  * Global variables that gives me which 
  * slide I'm currently on in the SlideShow and which one I was in previously.
  */
-
 class SlideShow {
-  
   constructor () {
+      /** @private @type {number} */
       this.slideIndex = 1;
+      /** @private @type {number} */
       this.savedIndex = 0;
   }
 
@@ -32,16 +32,16 @@ class SlideShow {
    * @param {number} slideIncrement - The increment/decrement value for 
    *   showing the next slide.
    */
-  static showNextSlide = (slideIncrement) => {
-    showSlide(slideIndex += slideIncrement);
+  showNextSlide = (slideIncrement) => {
+    this.showSlide(this.slideIndex += slideIncrement);
   }
 
   /** 
    * Display the current nth slide. 
    * @param {number} current - The current nth index representing the current slide.
    */
-  static showCurrentSlide = (current) => {
-    showSlide(slideIndex = current);
+  showCurrentSlide = (current) => {
+    this.showSlide(this.slideIndex = current);
   }
 
   /** 
@@ -49,7 +49,7 @@ class SlideShow {
    * @param {number} slideToShow - The variable containing the index for 
    *   the current nth slide.
    */
-  static showSlide = (slideToShow) => {
+  showSlide = (slideToShow) => {
     const slides = document.getElementsByClassName("slide");
     const slideDemos = document.getElementsByClassName("slide-demo");
     const caption = document.getElementById("caption");
@@ -58,10 +58,10 @@ class SlideShow {
     // of slides or when n is <1.
 
     if (slideToShow > slides.length) {
-      slideIndex = 1;
+      this.slideIndex = 1;
     }
     else if (slideToShow < 1) {
-      slideIndex = slides.length;
+      this.slideIndex = slides.length;
     }
   
     // Stop displaying the previous slide from savedIndex
@@ -70,17 +70,17 @@ class SlideShow {
     // slide index, i.e. if I click on the current slide again, I don't want
     // it to stop displaying. We don't want to re-render something already on screen.
   
-    if (savedIndex > 0 && savedIndex != slideIndex){
-      slides[savedIndex - 1].classList.remove("default-block");
-      slides[savedIndex - 1].classList.add("default-none");
+    if (this.savedIndex > 0 && this.savedIndex != this.slideIndex){
+      slides[this.savedIndex - 1].classList.remove("default-block");
+      slides[this.savedIndex - 1].classList.add("default-none");
     }
   
     removeClassName("slide-demo", "slide-active");
-    slides[slideIndex - 1].classList.remove("default-none");
-    slides[slideIndex - 1].classList.add("default-block");
-    slideDemos[slideIndex - 1].classList.add("slide-active");
-    caption.innerHTML = slideDemos[slideIndex - 1].alt;
-    savedIndex = slideIndex;
+    slides[this.slideIndex - 1].classList.remove("default-none");
+    slides[this.slideIndex - 1].classList.add("default-block");
+    slideDemos[this.slideIndex - 1].classList.add("slide-active");
+    caption.innerHTML = slideDemos[this.slideIndex - 1].alt;
+    this.savedIndex = this.slideIndex;
   }
 }
 
