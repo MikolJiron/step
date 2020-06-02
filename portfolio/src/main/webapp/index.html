@@ -8,14 +8,15 @@
   </head>
   <body> 
     <!-- 
-    This is the container for the top of 
-    the web page that contains my name. 
+      This is the container for the top of 
+      the web page that contains my name. 
     -->
-    <div id="top-header-container">
+    <div id="top-header-c`ontainer">
 	  <h1>Michael Jiron - Portfolio</h1>
-	  <!-- This section includes contact information 
+	  <!-- 
+      This section includes contact information 
       links like LinkedIn and GitHub. 
-      -->
+    -->
 	  <div id="contact-info">
 	    <h2>Contact Information</h2>
         <div id="link-bar">
@@ -26,32 +27,32 @@
 	  </div>
     </div>
     <!-- 
-    This is the container for the top tabs, which includes tabs for each 
-    "section-content" element in the div with id="content".
+      This is the container for the top tabs, which includes tabs for each 
+      "section-content" element in the div with id="content".
     -->
     <div class="tab-bar">
       <button class="section-tab" 
           id="default-tab" 
-          onClick="displaySection(event, 'background')">Background
+          onClick="tab.displaySection(event, 'background')">Background
       </button>
       <button class="section-tab" 
-          onClick="displaySection(event, 'projects')">Projects
+          onClick="tab.displaySection(event, 'projects')">Projects
       </button>
       <button class="section-tab" 
-          onClick="displaySection(event, 'places')">Places
+          onClick="tab.displaySection(event, 'places')">Places
       </button>
       <button class="section-tab" 
-          onClick="displaySection(event, 'photographing')">Photographing
+          onClick="tab.displaySection(event, 'photographing')">Photographing
       </button>
       <button class="section-tab" 
-          onClick="displaySection(event, 'blog-posts')">Blog Posts
+          onClick="tab.displaySection(event, 'blog-posts')">Blog Posts
       </button>
     </div>
-    <div id = "content">
+    <div id = "content"> 
       <!-- 
-      Background Section, basically telling what my "life-story" is. 
-      I'll have a paragraph talking about my high-school life, and one
-      talking about my college life.
+        Background Section, basically telling what my "life-story" is. 
+        I'll have a paragraph talking about my high-school life, and one
+        talking about my college life.
       -->
       <div id="background" class="section-content">
         <h2>My Background</h2>
@@ -108,8 +109,8 @@
           class="image-container"/>
       </div>
       <!-- 
-      This contains my projects, I will list about 2-3 projects I've worked on 
-      and a description of each.
+        This contains my projects, I will list about 2-3 projects 
+        I've worked on and a description of each.
       -->
       <div id="projects" class="section-content">
         <h2>Projects</h2>
@@ -194,8 +195,8 @@
           home away from home.</p>
       </div>
       <!-- 
-      This section includes paragraphs about things I like photographing, 
-      along with associated photographs.
+        This section includes paragraphs about things I like photographing, 
+        along with associated photographs.
       -->
       <div id="photographing" class="section-content">
         <h2>Photographing</h2>
@@ -210,8 +211,8 @@
           <h3 style:"text-align: center">Cars in Forza Horizon 4</h3>
           <div class="slide-container">
             <!-- 
-            These are the slides in the slide show, 
-            only one will be shown at a time. 
+              These are the slides in the slide show, 
+              only one will be shown at a time. 
             -->  
             <div class="slide">
               <img src="/images/forza/chiron.png" 
@@ -243,14 +244,14 @@
                 alt="Porsche Cayman GT4 in Edinburgh" 
                 style="width: 100%">
             </div>
-            <a class="previous-button" onClick="showNextSlide(-1)">❮</a>
-            <a class="next-button" onClick="showNextSlide(+1)">❯</a>
+            <a class="previous-button" onClick="slideShow.showNextSlide(-1)">❮</a>
+            <a class="next-button" onClick="slideShow.showNextSlide(+1)">❯</a>
             <div class="slide-caption">
               <p id="caption"></p>
             </div>
             <!-- 
-            This consists of six pictures that make up the selection 
-            pane for my slideshow. 
+              This consists of six pictures that make up the selection 
+              pane for my slideshow. 
             -->
             <div class="slideshow-row">
               <div class="slideshow-column">
@@ -258,42 +259,42 @@
                   src="/images/forza/chiron.png" 
                   alt="Bugatti Chiron racing down the highway" 
                   style="width: 100%"
-                  onclick="showCurrentSlide(1)">
+                  onclick="slideShow.showCurrentSlide(1)">
               </div>
               <div class="slideshow-column">
                 <img class="slide-demo" 
                   src="/images/forza/ford-gt-night.png" 
                   alt="Ford GT at Night" 
                   style="width: 100%"
-                  onclick="showCurrentSlide(2)">
+                  onclick="slideShow.showCurrentSlide(2)">
               </div>
               <div class="slideshow-column">
                 <img class="slide-demo" 
                   src="/images/forza/jeep.png" 
                   alt="Jeep driving along the shoreline" 
                   style="width: 100%"
-                  onclick="showCurrentSlide(3)">
+                  onclick="slideShow.showCurrentSlide(3)">
               </div>
               <div class="slideshow-column">
                 <img class="slide-demo" 
                   src="/images/forza/lambo-night.jpg" 
                   alt="Lamborghini at Night" 
                   style="width: 100%"
-                  onclick="showCurrentSlide(4)">
+                  onclick="slideShow.showCurrentSlide(4)">
               </div>
               <div class="slideshow-column">
                 <img class="slide-demo" 
                   src="/images/forza/rx7-winter.jpg" 
                   alt="Custom RX-7 racing in Winter" 
                   style="width: 100%"
-                  onclick="showCurrentSlide(5)">
+                  onclick="slideShow.showCurrentSlide(5)">
               </div>
               <div class="slideshow-column">
                 <img class=" slide-demo" 
                   src="/images/forza/porsche-town.jpg" 
                   alt="Porsche Cayman GT4 in Edinburgh" 
                   style="width: 100%"
-                  onclick="showCurrentSlide(6)">
+                  onclick="slideShow.showCurrentSlide(6)">
               </div>
             </div>
           </div>
