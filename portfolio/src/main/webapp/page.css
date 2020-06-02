@@ -6,13 +6,76 @@
 }
 
 /* 
-Styling for the top header container 
-containing the portfolio writer's name. 
+  Styling for tab-bar, this is the container for section-tab
+  class elements. 
+*/
+.tab-bar {
+  background-color: var(--blue-secondary);
+  overflow: hidden;
+}
+
+/* 
+  Styling for .section-tab, this is a container for the buttons that
+  represent each tab in the tab-bar. 
+*/
+.tab-bar button {
+  background-color: inherit;
+  border: none;
+  float: left;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab-bar button.active {
+  background-color: var(--blue-active);
+}
+
+/* Hover behavior for .section-tab. */
+.tab-bar button:hover {
+  background-color: var(--blue-active);
+}
+
+/* Styling for content within each section. */
+.section-content {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+  animation: fade-in ease 3s;
+  -webkit-animation: fade-in ease 3s;
+}
+
+/* 
+  Styling for an image container, meant to hold photographs 
+  (.jpg's or .png's typically). 
+*/
+.image-container {
+  display: block;
+  max-height: 250px;
+  max-width: 300px;
+  margin: 50px 0px;
+}
+
+/* Default block class. */
+.default-block {
+  display: block;
+}
+
+/* Default none class. */
+.default-none {
+  display: none;
+}
+
+/* 
+  Styling for the top header container 
+  containing the portfolio writer's name. 
 */
 #top-header-container {
-  overflow: hidden;
   background-color: var(--blue-secondary);
   color: var(--text-color);
+  overflow: hidden;
   text-align: center;
 }
 
@@ -41,69 +104,6 @@ containing the portfolio writer's name.
 
 #link-bar a:hover { 
   color: var(--text-color);
-}
-
-/* Styling for tab-bar, this is the container for section-tab
-class elements. 
-*/
-.tab-bar {
-  background-color: var(--blue-secondary);
-  overflow: hidden;
-}
-
-/* 
-Styling for .section-tab, this is a container for the buttons that
-represent each tab in the tab-bar. 
-*/
-.tab-bar button {
-  background-color: inherit;
-  border: none;
-  float: left;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
-
-/* Active behavior for .section-tab. */
-.tab-bar button.active {
-  background-color: var(--blue-active);
-}
-
-/* Hover behavior for .section-tab. */
-.tab-bar button:hover {
-  background-color: var(--blue-active);
-}
-
-/* Styling for content within each section. */
-.section-content {
-  display: none;
-  padding: 6px 12px;
-  border-top: none;
-  animation: fade-in ease 3s;
-  -webkit-animation: fade-in ease 3s;
-}
-
-/* 
-Styling for an image container, meant to hold photographs 
-(.jpg's or .png's typically). 
-*/
-.image-container {
-  display: block;
-  max-height: 250px;
-  max-width: 300px;
-  margin: 50px 0px;
-}
-
-/* Default block class. */
-.default-block {
-  display: block;
-}
-
-/* Default none class. */
-.default-none {
-  display: none;
 }
 
 /* Styling for the entire page. */

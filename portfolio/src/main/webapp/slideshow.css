@@ -6,16 +6,16 @@
 }
 
 /* 
-Position the slide container so that
-we can use the left-right arrows. 
+  Position the slide container so that
+  we can use the left-right arrows. 
 */
 .slide-container {
   position: relative;
 }
 
 /* 
-By default, we don't want to display any slides, 
-since we only want one at a time. 
+  By default, we don't want to display any slides, 
+  since we only want one at a time. 
 */
 .slide {
   display: none;
@@ -25,10 +25,10 @@ since we only want one at a time.
 }
 
 /* 
-We want to style the previous and 
-next buttons identically except for the 
-fact that one is on the :right
-and the other is on the left. 
+  We want to style the previous and 
+  next buttons identically except for the 
+  fact that one is on the :right
+  and the other is on the left. 
 */
 .previous-button, .next-button {
   cursor: pointer;
@@ -46,8 +46,8 @@ and the other is on the left.
 
 /* Next button goes on the right. */
 .next-button {
-  right: 0;
   border-radius: 3px 0 0 3px;
+  right: 0;
 }
 
 /* Hover behaviour for previous and next buttons. */
@@ -58,27 +58,28 @@ and the other is on the left.
 
 /* Styling for image captions. */
 .slide-caption {
-  margin-top: none;
-  text-align: center;
   background-color: var(--blue-default);
-  padding: 2px 16px;
   color: var(--text-color);
   font: bold;
+  margin-top: none;
+  padding: 2px 16px;
+  text-align: center;
 }
 
 /* 
-This 'row' will hold all of the 'columns' containing 
-each image in the slideshow. 
+  This 'row' will hold all of the 'columns' containing 
+  each image in the slideshow. 
 */
 .slideshow-row:after {
+  clear: both;
   content: "";
   display: table;
-  clear: both;
 }
 
 /* 
-There are six images within my specific slide show, how
-would I change this css to fit any size n slideshow? 
+  There are six images within my specific slide show, how
+  would I change this css to fit any size n slideshow? 
+  TODO(#02): figure out to to make this not depend on the number of images.
 */
 .slideshow-column {
   float: left;

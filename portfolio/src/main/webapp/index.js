@@ -15,7 +15,7 @@
 import {removeClassName, displayDefaultSection, displaySection, setToNone} from "./tab.js";
 import {showNextSlide, showSlide, showCurrentSlide, slideIndex} from "./slideshow.js";
 
-/** Allow all imported functions to be in the scope of "window" */
+/** Allow all imported functions to be in the scope of "window". */
 window.onload = () => {
   window.displaySection = displaySection;
   window.setToNone = setToNone;
@@ -25,7 +25,8 @@ window.onload = () => {
   window.showSlide = showSlide;
   window.showCurrentSlide = showCurrentSlide;
   window.slideIndex = slideIndex;
-  //set up the default section and correct slide to show
+  
+  //set up the default section and correct slide to show.
   displayDefaultSection();
   setToNone("slide");
   showSlide(slideIndex);
