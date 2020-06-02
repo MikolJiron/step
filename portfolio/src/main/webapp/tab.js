@@ -13,36 +13,40 @@
 // limitations under the License.
 import {removeClassName, setToNone} from "./utils.js";
 
-/**  
- * Sets the default-tab by "clicking" on the "Background" tab, 
- * which has id="default-tab.
- */
-const displayDefaultSection = () => {
-  const tab = document.getElementById("default-tab");
-  const background = document.getElementById("background");
-  tab.classList.add("active");
-  background.classList.remove("default-none");
-  background.classList.add("default-block");
+class Tab {
+  constructor (){};
+
+  /**  
+   * Sets the default-tab by "clicking" on the "Background" tab, 
+   * which has id="default-tab.
+   */
+  static displayDefaultSection = () => {
+    const tab = document.getElementById("default-tab");
+    const background = document.getElementById("background");
+    tab.classList.add("active");
+    background.classList.remove("default-none");
+    background.classList.add("default-block");
+  }
+
+  /**  
+   * Displays certain Sections will when a specific tab is 
+   * selected at the top". 
+   * @param event - The event that triggers the website to display
+   *  section-content element.
+   * @param {string} sectionName - This is the sectionName that is used 
+   *  to determine which section to display. 
+   */
+  static displaySection = (event, sectionName) => {
+    const section = document.getElementById(sectionName);
+    setToNone("section-content");
+    removeClassName("section-tab", "active");
+    // Displays the appropriate content for the sectionName 
+    // associated with the tab the user just clicked on.
+    section.classList.remove("default-none"); 
+    section.classList.add("default-block");
+    // Changes the styling to active for the tab the user just clicked on.
+    event.currentTarget.classList.add("active");
+  }
 }
 
-/**  
- * Displays certain Sections will when a specific tab is 
- * selected at the top". 
- * @param event - The event that triggers the website to display
- *  section-content element.
- * @param {string} sectionName - This is the sectionName that is used 
- *  to determine which section to display. 
- */
-const displaySection = (event, sectionName) => {
-  const section = document.getElementById(sectionName);
-  setToNone("section-content");
-  removeClassName("section-tab", "active");
-  // Displays the appropriate content for the sectionName 
-  // associated with the tab the user just clicked on.
-  section.classList.remove("default-none"); 
-  section.classList.add("default-block");
-  // Changes the styling to active for the tab the user just clicked on.
-  event.currentTarget.classList.add("active");
-}
-
-export {displayDefaultSection, displaySection};
+export default Tab;

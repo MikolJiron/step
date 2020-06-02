@@ -13,20 +13,21 @@
 // limitations under the License.
 
 import {setToNone} from "./utils.js";
-import {displayDefaultSection, displaySection} from "./tab.js";
-import {showCurrentSlide, showNextSlide, showSlide, slideIndex} from "./slideshow.js";
+import Tab from "./tab.js";
+import SlideShow from "./slideshow.js";
 
 /** Allow all imported functions to be in the scope of "window". */
 window.onload = () => {
-  window.displaySection = displaySection;
-  window.displayDefaultSection = displayDefaultSection;
-  window.showNextSlide = showNextSlide;
-  window.showSlide = showSlide;
-  window.showCurrentSlide = showCurrentSlide;
-  window.slideIndex = slideIndex;
-  
+//   window.displaySection = displaySection;
+//   window.displayDefaultSection = displayDefaultSection;
+//   window.showNextSlide = showNextSlide;
+//   window.showSlide = showSlide;
+//   window.showCurrentSlide = showCurrentSlide;
+//   window.slideIndex = slideIndex;
   //set up the default section and correct slide to show.
-  displayDefaultSection();
+  window.tab = Tab;
+  window.slideShow = SlideShow;
+  tab.displayDefaultSection();
   setToNone("slide");
-  showSlide(slideIndex);
+  slideShow.showSlide(slideShow.slideIndex);
 }
