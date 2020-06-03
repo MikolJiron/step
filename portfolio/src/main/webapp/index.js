@@ -17,13 +17,15 @@ import {setToNone} from "./utils.js";
 import {SlideShow} from "./slideshow.js";
 import {Tab} from "./tab.js";
 
+// Allow all imported functions to be in the scope of "window".
+const tab = new Tab();
+const slideShow = new SlideShow();
+
 window.onload = function() {
-  // Allow all imported functions to be in the scope of "window".
-  window.tab = new Tab();
-  window.slideShow = new SlideShow();
-  
+  window.tab = tab;
+  window.slideShow = slideShow;
   // Set up default tab and slideshow.
-  tab.displayDefaultSection();
+  window.tab.displayDefaultSection();
   setToNone("slide");
-  slideShow.showSlide(slideShow.slideIndex);
+  window.slideShow.showSlide(slideShow.slideIndex);
 }

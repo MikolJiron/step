@@ -33,19 +33,19 @@
     <div class="tab-bar">
       <button class="section-tab" 
           id="default-tab" 
-          onClick="tab.displaySection(event, 'background')">Background
+          onClick="window.tab.displaySection(event, 'background')">Background
       </button>
       <button class="section-tab" 
-          onClick="tab.displaySection(event, 'projects')">Projects
+          onClick="window.tab.displaySection(event, 'projects')">Projects
       </button>
       <button class="section-tab" 
-          onClick="tab.displaySection(event, 'places')">Places
+          onClick="window.tab.displaySection(event, 'places')">Places
       </button>
       <button class="section-tab" 
-          onClick="tab.displaySection(event, 'photographing')">Photographing
+          onClick="window.tab.displaySection(event, 'photographing')">Photographing
       </button>
       <button class="section-tab" 
-          onClick="tab.displaySection(event, 'blog-posts')">Blog Posts
+          onClick="window.tab.displaySection(event, 'blog-posts')">Blog Posts
       </button>
     </div>
     <div id = "content"> 
@@ -244,8 +244,8 @@
                 alt="Porsche Cayman GT4 in Edinburgh" 
                 style="width: 100%">
             </div>
-            <a class="previous-button" onClick="slideShow.showNextSlide(-1)">❮</a>
-            <a class="next-button" onClick="slideShow.showNextSlide(+1)">❯</a>
+            <a class="previous-button" onClick="window.slideShow.showNextSlide(-1)">❮</a>
+            <a class="next-button" onClick="window.slideShow.showNextSlide(+1)">❯</a>
             <div class="slide-caption">
               <p id="caption"></p>
             </div>
@@ -259,42 +259,42 @@
                   src="/images/forza/chiron.png" 
                   alt="Bugatti Chiron racing down the highway" 
                   style="width: 100%"
-                  onclick="slideShow.showCurrentSlide(0)">
+                  onclick="window.slideShow.showCurrentSlide(0)">
               </div>
               <div class="slideshow-column">
                 <img class="slide-demo" 
                   src="/images/forza/ford-gt-night.png" 
                   alt="Ford GT at Night" 
                   style="width: 100%"
-                  onclick="slideShow.showCurrentSlide(1)">
+                  onclick="window.slideShow.showCurrentSlide(1)">
               </div>
               <div class="slideshow-column">
                 <img class="slide-demo" 
                   src="/images/forza/jeep.png" 
                   alt="Jeep driving along the shoreline" 
                   style="width: 100%"
-                  onclick="slideShow.showCurrentSlide(2)">
+                  onclick="window.slideShow.showCurrentSlide(2)">
               </div>
               <div class="slideshow-column">
                 <img class="slide-demo" 
                   src="/images/forza/lambo-night.jpg" 
                   alt="Lamborghini at Night" 
                   style="width: 100%"
-                  onclick="slideShow.showCurrentSlide(3)">
+                  onclick="window.slideShow.showCurrentSlide(3)">
               </div>
               <div class="slideshow-column">
                 <img class="slide-demo" 
                   src="/images/forza/rx7-winter.jpg" 
                   alt="Custom RX-7 racing in Winter" 
                   style="width: 100%"
-                  onclick="slideShow.showCurrentSlide(4)">
+                  onclick="window.slideShow.showCurrentSlide(4)">
               </div>
               <div class="slideshow-column">
                 <img class=" slide-demo" 
                   src="/images/forza/porsche-town.jpg" 
                   alt="Porsche Cayman GT4 in Edinburgh" 
                   style="width: 100%"
-                  onclick="slideShow.showCurrentSlide(5)">
+                  onclick="window.slideShow.showCurrentSlide(5)">
               </div>
             </div>
           </div>

@@ -21,7 +21,7 @@ import {removeClassName} from "./utils.js";
 class SlideShow {
   constructor () {
       /** @private @type {number} */
-      this.slideIndex = 0;
+      this.slideIndex_ = 0;
 
       /** @private @type {number} */
       this.savedIndex = -1;
@@ -34,7 +34,7 @@ class SlideShow {
    *   showing the next slide.
    */
   showNextSlide(slideIncrement) {
-    this.showSlide(this.slideIndex += slideIncrement);
+    this.showSlide(this.slideIndex_ += slideIncrement);
   }
 
   /** 
@@ -43,7 +43,7 @@ class SlideShow {
    *   slide.
    */
   showCurrentSlide(current) {
-    this.showSlide(this.slideIndex = current);
+    this.showSlide(this.slideIndex_ = current);
   }
 
   /** 
@@ -60,10 +60,10 @@ class SlideShow {
     // of slides or when n is <1.
 
     if (slideToShow > slides.length - 1) {
-      this.slideIndex = 0;
+      this.slideIndex_ = 0;
     }
     else if (slideToShow < 0) {
-      this.slideIndex = slides.length - 1;
+      this.slideIndex_ = slides.length - 1;
     }
   
     // Stop displaying the previous slide from savedIndex.
@@ -72,17 +72,17 @@ class SlideShow {
     // slide index, i.e. if I click on the current slide again, I don't want
     // it to stop displaying. We don't want to re-render something already on 
     // screen.
-    if (this.savedIndex > -1 && this.savedIndex != this.slideIndex){
+    if (this.savedIndex > -1 && this.savedIndex != this.slideIndex_){
       slides[this.savedIndex].classList.remove("default-block");
       slides[this.savedIndex].classList.add("default-none");
     }
   
     removeClassName("slide-demo", "slide-active");
-    slides[this.slideIndex].classList.remove("default-none");
-    slides[this.slideIndex].classList.add("default-block");
-    slideDemos[this.slideIndex].classList.add("slide-active");
-    caption.innerHTML = slideDemos[this.slideIndex].alt;
-    this.savedIndex = this.slideIndex;
+    slides[this.slideIndex_].classList.remove("default-none");
+    slides[this.slideIndex_].classList.add("default-block");
+    slideDemos[this.slideIndex_].classList.add("slide-active");
+    caption.innerHTML = slideDemos[this.slideIndex_].alt;
+    this.savedIndex = this.slideIndex_;
   }
 }
 
