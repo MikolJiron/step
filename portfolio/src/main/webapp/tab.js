@@ -11,14 +11,14 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import {removeClassName, setToNone} from "./utils.js";
+
+import {Utils} from "./utils.js";
 
 class Tab {
-  constructor (){};
+  constructor() {};
 
   /**  
-   * Sets the default-tab by "clicking" on the "Background" tab, 
-   * which has id="default-tab.
+   * Displays the default Section for my page: "background".
    */
   displayDefaultSection() {
     const tab = document.getElementById("default-tab");
@@ -29,21 +29,23 @@ class Tab {
   }
 
   /**  
-   * Displays certain Sections will when a specific tab is 
-   * selected at the top". 
+   * Displays certain Sections when a specific tab is 
+   * selected.
    * @param event - The event that triggers the website to display
-   *  section-content element.
+   *   section-content element.
    * @param {string} sectionName - This is the sectionName that is used 
-   *  to determine which section to display. 
+   *   to determine which section to display. 
    */
   displaySection(event, sectionName) {
     const section = document.getElementById(sectionName);
-    setToNone("section-content");
-    removeClassName("section-tab", "active");
+    Utils.setToNone("section-content");
+    Utils.removeClassName("section-tab", "active");
+
     // Displays the appropriate content for the sectionName 
     // associated with the tab the user just clicked on.
     section.classList.remove("default-none"); 
     section.classList.add("default-block");
+
     // Changes the styling to active for the tab the user just clicked on.
     event.currentTarget.classList.add("active");
   }

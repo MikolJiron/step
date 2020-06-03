@@ -44,7 +44,6 @@ body {
   background-color: var(--blue-active);
 }
 
-/* Hover behavior for .section-tab. */
 .tab-bar button:hover {
   background-color: var(--blue-active);
 }

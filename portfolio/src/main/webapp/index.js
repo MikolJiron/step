@@ -13,19 +13,21 @@
 // limitations under the License.
 
 "use strict";
-import {setToNone} from "./utils.js";
 import {SlideShow} from "./slideshow.js";
 import {Tab} from "./tab.js";
+import {Utils} from "./utils.js";
 
-// Allow all imported functions to be in the scope of "window" in window.onload.
 const tab = new Tab();
 const slideShow = new SlideShow();
 
 window.onload = function() {
+  // Allow all imported functions to be in the scope of "window" in 
+  // window.onload.
   window.tab = tab;
   window.slideShow = slideShow;
+
   // Set up default tab and slideshow.
   window.tab.displayDefaultSection();
-  setToNone("slide");
+  Utils.setToNone("slide");
   window.slideShow.showSlide(window.slideShow.currentSlideIndex_);
 }

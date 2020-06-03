@@ -12,15 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {removeClassName} from "./utils.js";
+import {Utils} from "./utils.js";
 
 class SlideShow {
-  constructor () {
-      /**
-       * This private variable stores the index of the currently rendered slide.
-       * @private @type {number}
-       */
-      this.currentSlideIndex_ = 0;
+  constructor() {
+    /**
+      * @private @type {number} - This private variable stores the index of 
+      *   the currently rendered slide.
+      */
+    this.currentSlideIndex_ = 0;
   }
 
   /** 
@@ -30,7 +30,7 @@ class SlideShow {
    *   showing the next slide.
    */
   showNextSlide(incrementDirection) {
-    let newIndex = -1;
+    let newIndex = 0;
     if (incrementDirection) {
       newIndex = this.currentSlideIndex_ + 1;
     } else {
@@ -42,7 +42,7 @@ class SlideShow {
   /** 
    * Event handler that takes care of which slide to display in the slideshow.
    * @param {number} slideToShow - The variable containing the index for 
-   *   the current nth slide.
+   *   the current nth slide I need to show.
    */
   showSlide(slideToShow) {
     const slides = document.getElementsByClassName("slide");
@@ -67,7 +67,7 @@ class SlideShow {
     }
 
     // Display the new slide.
-    removeClassName("slide-demo", "slide-active");
+    Utils.removeClassName("slide-demo", "slide-active");
     slides[this.currentSlideIndex_].classList.remove("default-none");
     slides[this.currentSlideIndex_].classList.add("default-block");
     slideDemos[this.currentSlideIndex_].classList.add("slide-active");
