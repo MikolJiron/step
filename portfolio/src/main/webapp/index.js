@@ -17,7 +17,7 @@ import {setToNone} from "./utils.js";
 import {Tab} from "./tab.js";
 import {SlideShow} from "./slideshow.js";
 
-window.onload = () => {
+window.onload = function() {
   // Allow all imported functions to be in the scope of "window".
   window.tab = new Tab();
   window.slideShow = new SlideShow();
