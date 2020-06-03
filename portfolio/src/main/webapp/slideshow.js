@@ -33,7 +33,7 @@ class SlideShow {
    * @param {number} slideIncrement - The increment/decrement value for 
    *   showing the next slide.
    */
-  showNextSlide = (slideIncrement) => {
+  showNextSlide(slideIncrement) {
     this.showSlide(this.slideIndex += slideIncrement);
   }
 
@@ -42,7 +42,7 @@ class SlideShow {
    * @param {number} current - The current nth index representing the current
    *   slide.
    */
-  showCurrentSlide = (current) => {
+  showCurrentSlide(current) {
     this.showSlide(this.slideIndex = current);
   }
 
@@ -51,7 +51,7 @@ class SlideShow {
    * @param {number} slideToShow - The variable containing the index for 
    *   the current nth slide.
    */
-  showSlide = (slideToShow) => {
+  showSlide(slideToShow) {
     const slides = document.getElementsByClassName("slide");
     const slideDemos = document.getElementsByClassName("slide-demo");
     const caption = document.getElementById("caption");
@@ -87,4 +87,4 @@ class SlideShow {
   }
 }
 
-export default SlideShow;
+export {SlideShow};

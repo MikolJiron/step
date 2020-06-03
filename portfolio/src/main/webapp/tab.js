@@ -20,7 +20,7 @@ class Tab {
    * Sets the default-tab by "clicking" on the "Background" tab, 
    * which has id="default-tab.
    */
-  displayDefaultSection = () => {
+  displayDefaultSection() {
     const tab = document.getElementById("default-tab");
     const background = document.getElementById("background");
     tab.classList.add("active");
@@ -36,7 +36,7 @@ class Tab {
    * @param {string} sectionName - This is the sectionName that is used 
    *  to determine which section to display. 
    */
-  displaySection = (event, sectionName) => {
+  displaySection(event, sectionName) {
     const section = document.getElementById(sectionName);
     setToNone("section-content");
     removeClassName("section-tab", "active");
@@ -49,4 +49,4 @@ class Tab {
   }
 }
 
-export default Tab;
+export {Tab};
