@@ -21,10 +21,10 @@ import {removeClassName} from "./utils.js";
 class SlideShow {
   constructor () {
       /** @private @type {number} */
-      this.slideIndex = 1;
+      this.slideIndex = 0;
 
       /** @private @type {number} */
-      this.savedIndex = 0;
+      this.savedIndex = -1;
   }
 
   /** 
@@ -59,30 +59,29 @@ class SlideShow {
     // Handles n-overflow when n is not in the range of the number 
     // of slides or when n is <1.
 
-    if (slideToShow > slides.length) {
-      this.slideIndex = 1;
+    if (slideToShow > slides.length - 1) {
+      this.slideIndex = 0;
     }
-    else if (slideToShow < 1) {
-      this.slideIndex = slides.length;
+    else if (slideToShow < 0) {
+      this.slideIndex = slides.length - 1;
     }
   
-    // Stop displaying the previous slide from savedIndex
+    // Stop displaying the previous slide from savedIndex.
     // We only want to stop displaying a slide if the slide has already
     // been displayed or if the savedIndex is not the same as the new
     // slide index, i.e. if I click on the current slide again, I don't want
     // it to stop displaying. We don't want to re-render something already on 
     // screen.
-  
-    if (this.savedIndex > 0 && this.savedIndex != this.slideIndex){
-      slides[this.savedIndex - 1].classList.remove("default-block");
-      slides[this.savedIndex - 1].classList.add("default-none");
+    if (this.savedIndex > -1 && this.savedIndex != this.slideIndex){
+      slides[this.savedIndex].classList.remove("default-block");
+      slides[this.savedIndex].classList.add("default-none");
     }
   
     removeClassName("slide-demo", "slide-active");
-    slides[this.slideIndex - 1].classList.remove("default-none");
-    slides[this.slideIndex - 1].classList.add("default-block");
-    slideDemos[this.slideIndex - 1].classList.add("slide-active");
-    caption.innerHTML = slideDemos[this.slideIndex - 1].alt;
+    slides[this.slideIndex].classList.remove("default-none");
+    slides[this.slideIndex].classList.add("default-block");
+    slideDemos[this.slideIndex].classList.add("slide-active");
+    caption.innerHTML = slideDemos[this.slideIndex].alt;
     this.savedIndex = this.slideIndex;
   }
 }

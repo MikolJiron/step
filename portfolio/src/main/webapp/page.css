@@ -1,8 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --blue-default: #25274d;
   --blue-secondary: #29648a;
   --blue-active: #2E9cca;
   --text-color: #fff;
+}
+
+/* Styling for the entire page. */
+body {
+  background-color: var(--blue-default);
+  color: var(--text-color);
+  font: 100%/1.6 helvetica;
 }
 
 /* 
@@ -104,17 +115,6 @@
 
 #link-bar a:hover { 
   color: var(--text-color);
-}
-
-/* Styling for the entire page. */
-body {
-  background-color: var(--blue-default);
-  color: var(--text-color);
-  font: 100%/1.6 helvetica;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 @keyframes fade-in { 

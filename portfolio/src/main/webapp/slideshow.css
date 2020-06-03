@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --blue-default: #25274d;
   --blue-secondary: #29648a;
@@ -99,10 +103,6 @@
 /* When I hover over a slide, display the pointer cursor. */
 .slide-demo:hover, .slide-active:hover {
   cursor: pointer;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 @keyframes fade-in {
