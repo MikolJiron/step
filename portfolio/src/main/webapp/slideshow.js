@@ -40,15 +40,6 @@ class SlideShow {
   }
 
   /** 
-   * Display the newIndex-th slide. 
-   * @param {number} newIndex - The current new nth index representing the  
-   *   current slide.
-   */
-  showNewSlide(newIndex) {
-    this.showSlide(newIndex);
-  }
-
-  /** 
    * Event handler that takes care of which slide to display in the slideshow.
    * @param {number} slideToShow - The variable containing the index for 
    *   the current nth slide.
