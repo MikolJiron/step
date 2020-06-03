@@ -17,7 +17,7 @@ import {setToNone} from "./utils.js";
 import {SlideShow} from "./slideshow.js";
 import {Tab} from "./tab.js";
 
-// Allow all imported functions to be in the scope of "window".
+// Allow all imported functions to be in the scope of "window" in window.onload.
 const tab = new Tab();
 const slideShow = new SlideShow();
 
@@ -27,5 +27,5 @@ window.onload = function() {
   // Set up default tab and slideshow.
   window.tab.displayDefaultSection();
   setToNone("slide");
-  window.slideShow.showSlide(slideShow.slideIndex);
+  window.slideShow.showSlide(window.slideShow.currentSlideIndex_);
 }

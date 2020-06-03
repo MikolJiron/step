@@ -14,36 +14,38 @@
 
 import {removeClassName} from "./utils.js";
 
-/** 
- * Global variables that gives me which 
- * slide I'm currently on in the SlideShow and which one I was in previously.
- */
 class SlideShow {
   constructor () {
-      /** @private @type {number} */
-      this.slideIndex_ = 0;
-
-      /** @private @type {number} */
-      this.savedIndex = -1;
+      /**
+       * This private variable stores the index of the currently rendered slide.
+       * @private @type {number}
+       */
+      this.currentSlideIndex_ = 0;
   }
 
   /** 
-   * Changes the current slide in a slideshow 
-   * by incrementing by the given n. 
-   * @param {number} slideIncrement - The increment/decrement value for 
+   * If slideIncrement = True, move slideIndex to the right.
+   * Else move slideIndex to the left and call showSlide().
+   * @param {boolean} incrementDirection - The increment/decrement value for 
    *   showing the next slide.
    */
-  showNextSlide(slideIncrement) {
-    this.showSlide(this.slideIndex_ += slideIncrement);
+  showNextSlide(incrementDirection) {
+    let newIndex = -1;
+    if (incrementDirection) {
+      newIndex = this.currentSlideIndex_ + 1;
+    } else {
+      newIndex = this.currentSlideIndex_ - 1;
+    }
+    this.showSlide(newIndex);
   }
 
   /** 
-   * Display the current nth slide. 
-   * @param {number} current - The current nth index representing the current
-   *   slide.
+   * Display the newIndex-th slide. 
+   * @param {number} newIndex - The current new nth index representing the  
+   *   current slide.
    */
-  showCurrentSlide(current) {
-    this.showSlide(this.slideIndex_ = current);
+  showNewSlide(newIndex) {
+    this.showSlide(newIndex);
   }
 
   /** 
@@ -55,34 +57,30 @@ class SlideShow {
     const slides = document.getElementsByClassName("slide");
     const slideDemos = document.getElementsByClassName("slide-demo");
     const caption = document.getElementById("caption");
-
-    // Handles n-overflow when n is not in the range of the number 
-    // of slides or when n is <1.
-
-    if (slideToShow > slides.length - 1) {
-      this.slideIndex_ = 0;
-    }
-    else if (slideToShow < 0) {
-      this.slideIndex_ = slides.length - 1;
+    let newSlideIndex = slideToShow;
+  
+    // Handles index-out-of-bounds when newSlideIndex is not in the range of 
+    // the number of slides or when newSlideIndex is < 1.
+    if (newSlideIndex > slides.length - 1) {
+      newSlideIndex = 0;
+    } else if (newSlideIndex < 0) {
+      newSlideIndex = slides.length - 1;
     }
   
-    // Stop displaying the previous slide from savedIndex.
-    // We only want to stop displaying a slide if the slide has already
-    // been displayed or if the savedIndex is not the same as the new
-    // slide index, i.e. if I click on the current slide again, I don't want
-    // it to stop displaying. We don't want to re-render something already on 
-    // screen.
-    if (this.savedIndex > -1 && this.savedIndex != this.slideIndex_){
-      slides[this.savedIndex].classList.remove("default-block");
-      slides[this.savedIndex].classList.add("default-none");
+    // Stop displaying the current slide only if the newSlideIndex is different
+    // from currentSlideIndex_.
+    if (newSlideIndex != this.currentSlideIndex_){
+      slides[this.currentSlideIndex_].classList.remove("default-block");
+      slides[this.currentSlideIndex_].classList.add("default-none");
+      this.currentSlideIndex_ = newSlideIndex;
     }
-  
+
+    // Display the new slide.
     removeClassName("slide-demo", "slide-active");
-    slides[this.slideIndex_].classList.remove("default-none");
-    slides[this.slideIndex_].classList.add("default-block");
-    slideDemos[this.slideIndex_].classList.add("slide-active");
-    caption.innerHTML = slideDemos[this.slideIndex_].alt;
-    this.savedIndex = this.slideIndex_;
+    slides[this.currentSlideIndex_].classList.remove("default-none");
+    slides[this.currentSlideIndex_].classList.add("default-block");
+    slideDemos[this.currentSlideIndex_].classList.add("slide-active");
+    caption.innerHTML = slideDemos[this.currentSlideIndex_].alt;
   }
 }
 

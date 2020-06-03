@@ -13,11 +13,11 @@
 // limitations under the License.
 
 /** 
- * Set all elements of given className name to style.display = none.
- * @param {string} name - The name of the class that I need to modify.
+ * Set all elements of given classToModify to style.display = none.
+ * @param {string} classToModify - The name of the class that I need to modify.
  */
-const setToNone = (name) => {
-  const content = document.getElementsByClassName(name);
+const setToNone = (classToModify) => {
+  const content = document.getElementsByClassName(classToModify);
   for (let i = 0; i < content.length; i++) {
     content[i].classList.remove("default-block");
     content[i].classList.add("default-none");
@@ -25,16 +25,16 @@ const setToNone = (name) => {
 }
 
 /**
- * Sets className of all elements of a given 
- * className name from "active" to default "".
- * @param {string} name - The name of the class I need to modify.
- * @param {string} toRemove - The string that I need to remove 
- *  from the class name I'm modifying.
+ * Remove class B (toRemove) from elements of class A (classToModify)
+ * @param {string} classToModify - The name of the class of elements I need to 
+ *   modify.
+ * @param {string} classToRemove - The name of the class I'm removing from 
+ *   elements with class = classToModify
  */
-const removeClassName = (name, toRemove) => {
-  const elements = document.getElementsByClassName(name);
+const removeClassName = (classToModify, classToRemove) => {
+  const elements = document.getElementsByClassName(classToModify);
   for (let i = 0; i < elements.length; i++) {
-    elements[i].classList.remove(toRemove);
+    elements[i].classList.remove(classToRemove);
   }
 }
 
