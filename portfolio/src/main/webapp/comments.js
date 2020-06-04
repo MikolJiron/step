@@ -14,12 +14,14 @@
 
 class Comments {
   constructor() {};
+
   /**
-   * Fetches a message from the /data URL via the Java servlet, uses a promise  
-   * to add the message to the "hello-msg-container" in index.html
+   * Fetches a message from a URL via the Java servlet, uses a promise  
+   * to add the message to the "hello-msg-container" in index.html.
+   * @param {string} URLToRetrieveFrom - The URL to fetch the message from.
    */
-  static getMessageRequest() {
-    fetch('/data').then(response => response.text()).then((message) => {
+  static getMessageRequest(URLToRetrieveFrom) {
+    fetch(URLToRetrieveFrom).then(response => response.text()).then((message) => {
       document.getElementById('hello-msg-container').innerText = "Received Message: " + message;
     });
   }

@@ -27,8 +27,8 @@ window.onload = function() {
   window.tab = tab;
   window.slideShow = slideShow;
 
-  //Fetch my "hello" message from /data servlet after my window loads
-  Comments.getMessageRequest();
+  //Fetch my "hello" message from /data servlet after my window loads.
+  Comments.getMessageRequest("/data");
 
   // Set up default tab and slideshow.
   window.tab.displayDefaultSection();
