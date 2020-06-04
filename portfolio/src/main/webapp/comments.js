@@ -18,11 +18,13 @@ class Comments {
   /**
    * Fetches a message from a URL via the Java servlet, uses a promise  
    * to add the message to the "hello-msg-container" in index.html.
+   * @param {string} elementToPopulate - The id of th element I want to fill 
+   *   with the message I received. 
    * @param {string} URLToRetrieveFrom - The URL to fetch the message from.
    */
-  static getMessageRequest(URLToRetrieveFrom) {
+  static getMessageRequest(elementToPopulate, URLToRetrieveFrom) {
     fetch(URLToRetrieveFrom).then(response => response.text()).then((message) => {
-      document.getElementById('hello-msg-container').innerText = "Received Message: " + message;
+      document.getElementById(elementToPopulate).innerText = `Received Message:  ${message}`;
     });
   }
 }
