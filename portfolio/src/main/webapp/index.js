@@ -35,12 +35,3 @@ window.onload = function() {
   Utils.setToNone("slide");
   window.slideShow.showSlide(window.slideShow.currentSlideIndex_);
 }
-
-// /**
-//  * Fetches a message from the /data URL via the Java servlet, uses a promise to * add the message to the "hello-msg-container" in index.html
-//  */
-// function getMessageRequest() {
-//   fetch('/data').then(response => response.text()).then((message) => {
-//     document.getElementById('hello-msg-container').innerText = message;
-//   });
-// }
