@@ -30,12 +30,7 @@ class SlideShow {
    *   showing the next slide.
    */
   showNextSlide(incrementDirection) {
-    let newIndex = 0;
-    if (incrementDirection) {
-      newIndex = this.currentSlideIndex_ + 1;
-    } else {
-      newIndex = this.currentSlideIndex_ - 1;
-    }
+    const newIndex = incrementDirection ? this.currentSlideIndex_ + 1 : this.currentSlideIndex_ - 1;
     this.showSlide(newIndex);
   }
 
