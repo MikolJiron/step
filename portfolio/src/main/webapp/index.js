@@ -13,6 +13,7 @@
 // limitations under the License.
 
 "use strict";
+import {Comments} from "./comments.js";
 import {SlideShow} from "./slideshow.js";
 import {Tab} from "./tab.js";
 import {Utils} from "./utils.js";
