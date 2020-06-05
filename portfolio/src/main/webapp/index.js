@@ -12,17 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+"use strict";
+import {SlideShow} from "./slideshow.js";
+import {Tab} from "./tab.js";
+import {Utils} from "./utils.js";
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+const tab = new Tab();
+const slideShow = new SlideShow();
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+window.onload = function() {
+  // Allow all imported functions to be in the scope of "window" in 
+  // window.onload.
+  window.tab = tab;
+  window.slideShow = slideShow;
+
+  // Set up default tab and slideshow.
+  tab.displayDefaultSection();
+  Utils.setToNone("slide");
+  slideShow.showSlide(0);
 }
