@@ -13,7 +13,6 @@
 // limitations under the License.
 
 "use strict";
-import {Comments} from "./comments.js";
 import {SlideShow} from "./slideshow.js";
 import {Tab} from "./tab.js";
 import {Utils} from "./utils.js";
@@ -35,5 +34,5 @@ window.onload = function() {
   // Set up default tab and slideshow.
   tab.displayDefaultSection();
   Utils.setToNone("slide");
-  slideShow.showSlide(slideShow.currentSlideIndex_);
+  slideShow.showSlide(0);
 }

@@ -17,8 +17,7 @@ import {Utils} from "./utils.js";
 class SlideShow {
   constructor() {
     /**
-      * @private @type {number} - This private variable stores the index of 
-      *   the currently rendered slide.
+      * @private @type {number} 
       */
     this.currentSlideIndex_ = 0;
   }
@@ -30,12 +29,7 @@ class SlideShow {
    *   showing the next slide.
    */
   showNextSlide(incrementDirection) {
-    let newIndex = 0;
-    if (incrementDirection) {
-      newIndex = this.currentSlideIndex_ + 1;
-    } else {
-      newIndex = this.currentSlideIndex_ - 1;
-    }
+    const newIndex = incrementDirection ? this.currentSlideIndex_ + 1 : this.currentSlideIndex_ - 1;
     this.showSlide(newIndex);
   }
 
