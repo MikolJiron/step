@@ -22,7 +22,7 @@ class Comments {
    *   with the message I received. 
    * @param {string} URLToRetrieveFrom - The URL to fetch the message from.
    */
-  static getMessageRequest(elementToPopulate, URLToRetrieveFrom) {
+  getMessageRequest(elementToPopulate, URLToRetrieveFrom) {
     fetch(URLToRetrieveFrom).then(response => response.text()).then((message) => {
       document.getElementById(elementToPopulate).innerText = `Received Message:  ${message}`;
     });
@@ -35,7 +35,7 @@ class Comments {
    *   with the messages I received. 
    * @param {String} URLToRetrieveFrom - The URL to fetch the message from.
    */
-  static getMessageListRequest(elementToPopulate, URLToRetrieveFrom ) {
+  getMessageListRequest(elementToPopulate, URLToRetrieveFrom ) {
     fetch('/data').then(response => response.json()).then((messages) => {
       // messages is an object, not a string, so we have to
       // reference its fields to create HTML content.
@@ -56,7 +56,7 @@ class Comments {
    * @param {string} text - Text to put into a list element.
    * @returns {*} liElement - Newly created <li> element.
    */
-  static createListElement(text) {
+  createListElement(text) {
     const liElement = document.createElement('li');
     liElement.innerText = text;
     return liElement;

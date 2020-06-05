@@ -63,9 +63,6 @@
         <img src="/images/michael.jpg" 
           alt="Michael Jiron"
           class="image-container"/>
-        <p>Messages pulled in using JSON:</p>
-        <!-- Container for messages fetched from /data servlet. -->  
-        <ul id="message-container"></ul>
         <p>I grew up in South Carolina but I also lived in Costa Rica for 
           five years. I am second-generation immigrant; 
           I was born in the United States but my biological parents are from 
@@ -109,6 +106,22 @@
         <img src="/images/2022.JPG" 
           alt="Duke Class of 2022 Class Photo" 
           class="image-container"/>
+        <!-- 
+          The div that contains all of the elements associated with the 
+          comments feature. 
+        -->  
+        <div id="comments-section">
+          <h3>Comments</h3>
+          <!-- This container will be populated with comments from the server. -->
+          <div id="comments-container"></div>
+          <!-- Allows user to make a new comment and submit it -->
+          <form action="/data" method="POST">
+            <textarea name="new-comment" 
+              placeholder="Please type in a comment."></textarea>
+            <br/><br/>
+            <input type="submit"/>  
+          </form>
+        </div>
       </div>
       <!-- 
         This contains my projects, I will list about 2-3 projects 
@@ -391,7 +404,7 @@
           the 5x5x5. Special parity issues occur with 
           even-numbered cubes as a result.</p>
       </div>
-  </div>
+    </div>
     <!-- This is the end of the div with id="content". -->
   </body>
   <script type="module" src="index.js"></script>

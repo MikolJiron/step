@@ -20,18 +20,20 @@ import {Utils} from "./utils.js";
 
 const tab = new Tab();
 const slideShow = new SlideShow();
+const comments = new Comments();
 
 window.onload = function() {
   // Allow all imported functions to be in the scope of "window" in 
   // window.onload.
   window.tab = tab;
   window.slideShow = slideShow;
-  
-  // Get the list of messages and add them to message-container.
-  Comments.getMessageListRequest("message-container", "/data");
+  window.comments = comments;
+
+  // Get the list of messages and add them to comments-container.
+  comments.getMessageListRequest("comments-container", "/data");
 
   // Set up default tab and slideshow.
-  window.tab.displayDefaultSection();
+  tab.displayDefaultSection();
   Utils.setToNone("slide");
-  window.slideShow.showSlide(window.slideShow.currentSlideIndex_);
+  slideShow.showSlide(slideShow.currentSlideIndex_);
 }
