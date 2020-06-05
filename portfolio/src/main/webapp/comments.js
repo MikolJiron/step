@@ -41,11 +41,21 @@ class Comments {
       // reference its fields to create HTML content.
       const messagesListElement = document.getElementById(elementToPopulate);
       messagesListElement.innerHTML = '';
-      console.log(messages);
+
+      // Add each message in the JSON messages to the DOM.
+      messages.forEach((message) => {
+        messagesListElement.appendChild(
+          this.createListElement(message)
+        );
+      });
     });
   }
 
-  /** Creates an <li> element containing text. */
+  /** 
+   * Creates an <li> element containing text. 
+   * @param {string} text - Text to put into a list element.
+   * @returns {*} liElement - Newly created <li> element.
+   */
   static createListElement(text) {
     const liElement = document.createElement('li');
     liElement.innerText = text;
