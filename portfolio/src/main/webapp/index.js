@@ -13,7 +13,6 @@
 // limitations under the License.
 
 "use strict";
-import {Comments} from "./comments.js";
 import {SlideShow} from "./slideshow.js";
 import {Tab} from "./tab.js";
 import {Utils} from "./utils.js";
@@ -27,11 +26,8 @@ window.onload = function() {
   window.tab = tab;
   window.slideShow = slideShow;
 
-  //Fetch my "hello" message from /data servlet after my window loads.
-  Comments.getMessageRequest("hello-msg-container", "/data");
-
   // Set up default tab and slideshow.
   window.tab.displayDefaultSection();
   Utils.setToNone("slide");
-  window.slideShow.showSlide(window.slideShow.currentSlideIndex_);
+  slideShow.showSlide(0);
 }

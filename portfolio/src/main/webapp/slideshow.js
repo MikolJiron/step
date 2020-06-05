@@ -17,8 +17,7 @@ import {Utils} from "./utils.js";
 class SlideShow {
   constructor() {
     /**
-      * @private @type {number} - This private variable stores the index of 
-      *   the currently rendered slide.
+      * @private @type {number} 
       */
     this.currentSlideIndex_ = 0;
   }
