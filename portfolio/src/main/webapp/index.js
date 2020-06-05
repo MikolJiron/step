@@ -31,7 +31,6 @@ window.onload = function() {
   Comments.getMessageRequest("hello-msg-container", "/data");
 
   // Set up default tab and slideshow.
-  window.tab.displayDefaultSection();
+  tab.displayDefaultSection();
   Utils.setToNone("slide");
-  window.slideShow.showSlide(window.slideShow.currentSlideIndex_);
-}
+  slideShow.showSlide(0);
