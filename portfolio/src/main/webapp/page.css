@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --blue-default: #25274d;
+  --blue-secondary: #29648a;
+  --blue-active: #2E9cca;
+  --text-color: #fff;
+}
+
+/* Styling for the entire page. */
+body {
+  background-color: var(--blue-default);
+  color: var(--text-color);
+  font: 100%/1.6 helvetica;
+}
+
+/* 
+  Styling for tab-bar, this is the container for section-tab
+  class elements. 
+*/
+.tab-bar {
+  background-color: var(--blue-secondary);
+  overflow: hidden;
+}
+
+/* 
+  Styling for .section-tab, this is a container for the buttons that
+  represent each tab in the tab-bar. 
+*/
+.tab-bar button {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  float: left;
+  font-size: 17px;
+  outline: none;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+.tab-bar button.active {
+  background-color: var(--blue-active);
+}
+
+.tab-bar button:hover {
+  background-color: var(--blue-active);
+}
+
+/* Styling for content within each section. */
+.section-content {
+  animation: fade-in ease 3s;
+  -webkit-animation: fade-in ease 3s;
+  border-top: none;
+  display: none;
+  padding: 6px 12px;
+}
+
+/* 
+  Styling for an image container, meant to hold photographs 
+  (.jpg's or .png's typically). 
+*/
+.image-container {
+  display: block;
+  margin: 50px 0px;
+  max-height: 250px;
+  max-width: 300px;
+}
+
+/* Default block class. */
+.default-block {
+  display: block;
+}
+
+/* Default none class. */
+.default-none {
+  display: none;
+}
+
+/* 
+  Styling for the top header container 
+  containing the portfolio writer's name. 
+*/
+#top-header-container {
+  background-color: var(--blue-secondary);
+  color: var(--text-color);
+  overflow: hidden;
+  text-align: center;
+}
+
+#content  {
+  margin-left: auto;
+  margin-right: auto;
+  width: 55%;
+}
+
+#link-bar {
+  text-align: center;
+}
+
+#link-bar a { 
+  padding: 15px; 
+  font-weight: bold;
+}
+
+#link-bar a:link { 
+  color: var(--blue-default);  
+}
+
+#link-bar a:visited { 
+  color: var(--blue-active); 
+}
+
+#link-bar a:hover { 
+  color: var(--text-color);
+}
+
+@keyframes fade-in { 
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

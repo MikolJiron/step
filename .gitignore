@@ -1,2 +1,5 @@
 target/
 .idea
+
+#ignore nodemodules
+/node_modules
