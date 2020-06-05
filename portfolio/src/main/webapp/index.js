@@ -26,9 +26,9 @@ window.onload = function() {
   // window.onload.
   window.tab = tab;
   window.slideShow = slideShow;
-
-  //Fetch my "hello" message from /data servlet after my window loads.
-  Comments.getMessageRequest("hello-msg-container", "/data");
+  
+  // Get the list of messages and add them to message-container.
+  Comments.getMessageListRequest("message-container", "/data");
 
   // Set up default tab and slideshow.
   window.tab.displayDefaultSection();

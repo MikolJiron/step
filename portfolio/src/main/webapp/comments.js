@@ -17,8 +17,8 @@ class Comments {
 
   /**
    * Fetches a message from a URL via the Java servlet, uses a promise  
-   * to add the message to the specified element in index.html.
-   * @param {string} elementToPopulate - The id of th element I want to fill 
+   * to add the message to the specified element in the DOM.
+   * @param {string} elementToPopulate - The id of the element I want to fill 
    *   with the message I received. 
    * @param {string} URLToRetrieveFrom - The URL to fetch the message from.
    */
@@ -26,6 +26,30 @@ class Comments {
     fetch(URLToRetrieveFrom).then(response => response.text()).then((message) => {
       document.getElementById(elementToPopulate).innerText = `Received Message:  ${message}`;
     });
+  }
+
+  /**
+   * Fetches a list of messages from a URL via the Java servlet, uses a promise 
+   * to add them to the DOM once the message has been received.
+   * @param {String} elementToPopulate - The id of the element I want to fill
+   *   with the messages I received. 
+   * @param {String} URLToRetrieveFrom - The URL to fetch the message from.
+   */
+  static getMessageListRequest(elementToPopulate, URLToRetrieveFrom ) {
+    fetch('/data').then(response => response.json()).then((messages) => {
+      // messages is an object, not a string, so we have to
+      // reference its fields to create HTML content.
+      const messagesListElement = document.getElementById(elementToPopulate);
+      messagesListElement.innerHTML = '';
+      console.log(messages);
+    });
+  }
+
+  /** Creates an <li> element containing text. */
+  static createListElement(text) {
+    const liElement = document.createElement('li');
+    liElement.innerText = text;
+    return liElement;
   }
 }
 
