@@ -34,3 +34,4 @@ window.onload = function() {
   tab.displayDefaultSection();
   Utils.setToNone("slide");
   slideShow.showSlide(0);
+}
