@@ -34,13 +34,15 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get comment text.
+    // Get comment text and a timestamp for when that comment was received.
     String newComment = request.getParameter(COMMENT_PARAM);
-    
+    long timestamp = System.currentTimeMillis();
+
     // Create an Entity to store the comment.
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("commentText", newComment);
-
+    commentEntity.setProperty("timestamp", timestamp);
+    
     // Store the Entity containing the comment.
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
