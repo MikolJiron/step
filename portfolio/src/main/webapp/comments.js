@@ -19,14 +19,17 @@
 class Comments {
   constructor() {
     this.commentsListContainer = document.getElementById("comments-container");
-    this.endpointToRetrieveDataFrom = "/comments-data";
+    this.endpointToRetrieveDataFrom = "";
   }
 
   /**
    * Fetches a list of comments from a URL via the Java servlet, uses a promise 
    * to add them to the DOM once the comments have been received.
+   * @param {number} commentsLimit - The number of comments I'm limiting the GET to.
    */
-  getComments() {
+  getComments(commentsLimit) {
+    // Set the endpoint URL and then add the comments limit to the endpoint.
+    this.endpointToRetrieveDataFrom = `/comments-data?commentNumber=${commentsLimit}`;
     fetch(this.endpointToRetrieveDataFrom)
       .then(response => response.json())
       .then((commentsList) => {

@@ -31,7 +31,7 @@ window.onload = function() {
 
   // Get the comments from the server and populate them into the 
   // comments-container.
-  comments.getComments();
+  comments.getComments(10);
 
   // Set up default tab and slideshow.
   tab.displayDefaultSection();
