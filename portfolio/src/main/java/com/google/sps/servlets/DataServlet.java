@@ -135,7 +135,7 @@ public class DataServlet extends HttpServlet {
 
     // Check that the input is between 1 and 20.
     if (commentNumber < 1 || commentNumber > 20) {
-      System.err.println("Player choice is out of range: " + commentNumberString);
+      System.err.println("Comment number is out of range: " + commentNumberString);
       return -1;
     }
 
