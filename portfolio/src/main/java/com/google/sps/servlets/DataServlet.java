@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/comments-data")
 public class DataServlet extends HttpServlet {
 
-  // TODO: Persist comments using DataStore and noSQL. Issue: DataStore.
+  // TODO: Persist comments using DataStore and noSQL.
   private final ArrayList<String> comments = new ArrayList<String>();
   private final String COMMENT_PARAM = "commentText";
 
