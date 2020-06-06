@@ -106,6 +106,22 @@
         <img src="/images/2022.JPG" 
           alt="Duke Class of 2022 Class Photo" 
           class="image-container"/>
+        <!-- 
+          The div that contains all of the elements associated with the 
+          comments feature. 
+        -->  
+        <div id="comments-section">
+          <h3>Comments</h3>
+          <!-- This container will be populated with comments from the server. -->
+          <div id="comments-container"></div>
+          <!-- Allows user to make a new comment and submit it -->
+          <form action="/data" method="POST">
+            <textarea name="new-comment" 
+              placeholder="Please type in a comment."></textarea>
+            <br/><br/>
+            <input type="submit"/>  
+          </form>
+        </div>
       </div>
       <!-- 
         This contains my projects, I will list about 2-3 projects 
