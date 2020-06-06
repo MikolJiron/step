@@ -34,17 +34,18 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/comments-data")
 public class DataServlet extends HttpServlet {
 
-  private final String COMMENT_PARAM = "commentText";
+  private final String COMMENT_TEXT_PARAM = "commentText";
+  private final String COMMENT_NUMBER_PARAM = "commentNumber";
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get comment text and a timestamp for when that comment was received.
-    String newComment = request.getParameter(COMMENT_PARAM);
+    String newComment = request.getParameter(COMMENT_TEXT_PARAM);
     long timestamp = System.currentTimeMillis();
 
     // Create an Entity to store the comment.
     Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty(COMMENT_PARAM, newComment);
+    commentEntity.setProperty(COMMENT_TEXT_PARAM, newComment);
     commentEntity.setProperty("timestamp", timestamp);
 
     // Store the Entity containing the comment.
@@ -68,15 +69,35 @@ public class DataServlet extends HttpServlet {
     // Add each comment into the commentsList.
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
-      String commentText = (String) entity.getProperty(COMMENT_PARAM);
+      String commentText = (String) entity.getProperty(COMMENT_TEXT_PARAM);
       long timestamp = (long) entity.getProperty("timestamp");
 
       Comment comment = new Comment(id, commentText, timestamp);
       commentsList.add(comment);
     }
 
-    // Convert the commentsList to JSON.
-    String json = convertToJson(commentsList);
+    // Limit the number of comments.
+    // Will be hard-coded to 5 until the frontend actually 
+    // sends the number of comments via the GET function in comments.js.
+    int commentLimit = 5; // = getNumberComments(request);
+
+    // An invalid input will result in an error, so we let the user know.
+    if (commentLimit == -1) {
+      response.setContentType("text/html");
+      response.getWriter().println("Please enter an integer between 1 and 20.");
+      return;
+    }
+
+    // We send the entire commentsList by default if commentLimit >= commentsList.size().
+    List<Comment> commentsListToSend = commentsList;
+
+    // Otherwise, we apply the commentLimit and only send a subList of comments.
+    if (commentLimit < commentsList.size()) {
+        commentsListToSend = commentsList.subList(0, commentLimit);
+    }
+
+    // Convert the commentsListToSend to JSON.
+    String json = convertToJson(commentsListToSend);
 
     // Send the list of comments as the response.
     response.setContentType("application/json;");
@@ -92,5 +113,32 @@ public class DataServlet extends HttpServlet {
     Gson gson = new Gson();
     String json = gson.toJson(listOfComments);
     return json;
+  }
+
+  /** 
+   * Returns the number of comments to display, we want 20 max.
+   * @param request - the HTTPServletRequest we received from the client.
+   * @return - the number of comment to send back to the client. 
+   */
+  private int getNumberComments(HttpServletRequest request) {
+    // Get the input from the form.
+    String commentNumberString = request.getParameter(COMMENT_NUMBER_PARAM);
+
+    // Convert the input to an int.
+    int commentNumber = -1;
+    try {
+      commentNumber = Integer.parseInt(commentNumberString);
+    } catch (NumberFormatException e) {
+      System.err.println("Could not convert to int: " + commentNumberString);
+      return -1;
+    }
+
+    // Check that the input is between 1 and 20.
+    if (commentNumber < 1 || commentNumber > 20) {
+      System.err.println("Player choice is out of range: " + commentNumberString);
+      return -1;
+    }
+
+    return commentNumber;
   }
 }
