@@ -14,6 +14,9 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,15 +29,21 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/comments-data")
 public class DataServlet extends HttpServlet {
 
-  // TODO: Persist comments using DataStore and noSQL. Issue: DataStore.
   private final ArrayList<String> comments = new ArrayList<String>();
   private final String COMMENT_PARAM = "commentText";
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Add new comment to my ArrayList of comments.
+    // Get comment text.
     String newComment = request.getParameter(COMMENT_PARAM);
-    comments.add(newComment);
+    
+    // Create an Entity to store the comment.
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("commentText", newComment);
+
+    // Store the Entity containing the comment.
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
 
     // Redirect back to the HTML page.
     response.sendRedirect("/index.html");
