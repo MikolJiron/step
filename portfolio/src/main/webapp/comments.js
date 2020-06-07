@@ -36,6 +36,11 @@ class Comments {
         // Reset the commentsListContainer to reload it with the new list of comments.
         this.commentsListContainer.innerHTML = '';
 
+        // If commentsList is empty, don't do anything.
+        if (commentsList.length == 0) {
+          return;
+        }
+        
         // Add each comment in the JSON to the DOM.
         commentsList.forEach((comment) => {
           this.commentsListContainer.appendChild(
@@ -58,6 +63,20 @@ class Comments {
     commentElement.innerText = text;
     return commentElement;
   }
+
+  /**
+   * Deletes all comments in DataStore by doing a POST to /delete-comments-data.
+   * Then, the comments are reloaded to confirm the database has been cleared.
+   */
+  deleteComments() {
+    const request = new Request('/delete-comments-data', {method:'POST'})
+    fetch(request)
+    .catch(() => {
+      console.error("Failed to delete comments.");
+    })
+    .then(this.getComments(10));
+  }
+
 }
 
 export {Comments};
