@@ -20,7 +20,7 @@ public final class UserStatus {
   private final Boolean isLoggedIn;
   private final String loginLogoutURL;
 
-  public Comment(Boolean isLoggedIn, String loginLogoutURL) {
+  public UserStatus(Boolean isLoggedIn, String loginLogoutURL) {
     this.isLoggedIn = isLoggedIn;
     this.loginLogoutURL = loginLogoutURL;
   }
