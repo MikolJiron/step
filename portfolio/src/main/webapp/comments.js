@@ -40,7 +40,7 @@ class Comments {
         if (commentsList.length == 0) {
           return;
         }
-
+        
         // Add each comment in the JSON to the DOM.
         commentsList.forEach((comment) => {
           this.commentsListContainer.appendChild(
