@@ -36,11 +36,11 @@ class Comments {
         // Reset the commentsListContainer to reload it with the new list of comments.
         this.commentsListContainer.innerHTML = '';
 
-        // If commentslist is empty, don't do anything.
+        // If commentsList is empty, don't do anything.
         if (commentsList.length == 0) {
           return;
         }
-        
+
         // Add each comment in the JSON to the DOM.
         commentsList.forEach((comment) => {
           this.commentsListContainer.appendChild(
