@@ -36,11 +36,6 @@ class Comments {
         // Reset the commentsListContainer to reload it with the new list of comments.
         this.commentsListContainer.innerHTML = '';
 
-        // If commentsList is empty, don't do anything.
-        if (commentsList.length == 0) {
-          return;
-        }
-        
         // Add each comment in the JSON to the DOM.
         commentsList.forEach((comment) => {
           this.commentsListContainer.appendChild(
@@ -71,10 +66,10 @@ class Comments {
   deleteComments() {
     const request = new Request('/delete-comments-data', {method:'POST'})
     fetch(request)
+    .then(this.getComments(10))
     .catch(() => {
       console.error("Failed to delete comments.");
-    })
-    .then(this.getComments(10));
+    });
   }
 
 }
