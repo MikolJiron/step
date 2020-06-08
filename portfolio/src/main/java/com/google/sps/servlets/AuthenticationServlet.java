@@ -67,13 +67,13 @@ public class AuthenticationServlet extends HttpServlet {
   }
 
   /**
-   * Converts an List<Comment> to a json string.
-   * @param listOfComments - List<Comment> that needs to be converted.
+   * Converts an UserStatus to a json string.
+   * @param status - UserStatus that needs to be converted.
    * @return - Newly converted JSON string.
    */
-  private String convertToJson(List<Comment> listOfComments) {
+  private String convertToJson(UserStatus status) {
     Gson gson = new Gson();
-    String json = gson.toJson(listOfComments);
+    String json = gson.toJson(status);
     return json;
   }
 
