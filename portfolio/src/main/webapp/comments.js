@@ -37,7 +37,7 @@ class Comments {
         this.commentsListContainer.innerHTML = '';
 
         // If commentsList is empty, don't do anything.
-        if (comments.length == 0) {
+        if (commentsList.length == 0) {
           return;
         }
         
