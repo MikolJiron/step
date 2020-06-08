@@ -33,29 +33,25 @@ public class AuthenticationServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
-
     UserService userService = UserServiceFactory.getUserService();
     UserStatus status;
-
+    
+    // Create UserStatus based on whether the user is logged in or not.
     if (userService.isUserLoggedIn()) {
       // The user IS logged in.
-      // Create UserStatus object.
       String urlToRedirectToAfterUserLogsOut = "/";
       String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
       status = new UserStatus(true, logoutUrl);
 
     } else {
       // The user IS NOT logged in.
-      // Create UserStatus object.
       String urlToRedirectToAfterUserLogsIn = "/";
       String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
       status = new UserStatus(false, loginUrl);
     }
 
-    // Convert the status object to JSON.
+    // Convert the status object to JSON and send the response.
     String json = convertToJson(status);
-
-    // Send the login status as the JSON response.
     response.getWriter().println(json);
   }
 
@@ -69,5 +65,4 @@ public class AuthenticationServlet extends HttpServlet {
     String json = gson.toJson(status);
     return json;
   }
-
 }
