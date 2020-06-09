@@ -18,8 +18,8 @@
  */
 class Comments {
   constructor() {
-    this.commentsListContainer = document.getElementById("comments-container");
-    this.endpointToRetrieveDataFrom = "/comments-data";
+    this.commentsListContainer = document.getElementById('comments-container');
+    this.endpointToRetrieveDataFrom = '/comments-data';
   }
 
   /**
@@ -41,7 +41,7 @@ class Comments {
         });
       })
       .catch(() => {
-        console.error("Failed to load comments.");
+        console.error('Failed to load comments.');
       });
   }
 

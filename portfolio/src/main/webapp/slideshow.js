@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {Utils} from "./utils.js";
+import {Utils} from './utils.js';
 
 class SlideShow {
   constructor() {
@@ -39,9 +39,9 @@ class SlideShow {
    *   the current nth slide I need to show.
    */
   showSlide(slideToShow) {
-    const slides = document.getElementsByClassName("slide");
-    const slideDemos = document.getElementsByClassName("slide-demo");
-    const caption = document.getElementById("caption");
+    const slides = document.getElementsByClassName('slide');
+    const slideDemos = document.getElementsByClassName('slide-demo');
+    const caption = document.getElementById('caption');
     let newSlideIndex = slideToShow;
   
     // Handles index-out-of-bounds when newSlideIndex is not in the range of 
@@ -55,16 +55,16 @@ class SlideShow {
     // Stop displaying the current slide only if the newSlideIndex is different
     // from currentSlideIndex_.
     if (newSlideIndex != this.currentSlideIndex_){
-      slides[this.currentSlideIndex_].classList.remove("default-block");
-      slides[this.currentSlideIndex_].classList.add("default-none");
+      slides[this.currentSlideIndex_].classList.remove('default-block');
+      slides[this.currentSlideIndex_].classList.add('default-none');
       this.currentSlideIndex_ = newSlideIndex;
     }
 
     // Display the new slide.
-    Utils.removeClassName("slide-demo", "slide-active");
-    slides[this.currentSlideIndex_].classList.remove("default-none");
-    slides[this.currentSlideIndex_].classList.add("default-block");
-    slideDemos[this.currentSlideIndex_].classList.add("slide-active");
+    Utils.removeClassName('slide-demo', 'slide-active');
+    slides[this.currentSlideIndex_].classList.remove('default-none');
+    slides[this.currentSlideIndex_].classList.add('default-block');
+    slideDemos[this.currentSlideIndex_].classList.add('slide-active');
     caption.innerHTML = slideDemos[this.currentSlideIndex_].alt;
   }
 }
