@@ -19,7 +19,7 @@
 class Comments {
   constructor() {
     this.commentsListContainer = document.getElementById("comments-container");
-    this.endpointToRetrieveDataFrom = "";
+    this.endpointToRetrieveDataFrom = "/comments-data";
   }
 
   /**
@@ -29,8 +29,8 @@ class Comments {
    */
   getComments(commentsLimit) {
     // Set the endpoint URL and then add the comments limit to the endpoint.
-    this.endpointToRetrieveDataFrom = `/comments-data?commentNumber=${commentsLimit}`;
-    fetch(this.endpointToRetrieveDataFrom)
+    const endpoint = this.buildCommentsLimitURL(commentsLimit);
+    fetch(endpoint)
       .then(response => response.json())
       .then((commentsList) => {
         // Reset the commentsListContainer to reload it with the new list of comments.
@@ -57,6 +57,15 @@ class Comments {
     const commentElement = document.createElement('li');
     commentElement.innerText = text;
     return commentElement;
+  }
+
+  /**
+   * Builds the URL with a comments-limit.
+   * @param {number} commentsLimit - The max number of comments to be retrieved/displayed.
+   * @return {string} - The completely built URL.
+   */
+  buildCommentsLimitURL(commentsLimit){
+    return `${this.endpointToRetrieveDataFrom}?commentNumber=${commentsLimit}`;
   }
 }
 
