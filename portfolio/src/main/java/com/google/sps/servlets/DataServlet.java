@@ -14,19 +14,52 @@
 
 package com.google.sps.servlets;
 
+import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
+/** Servlet that returns comments and their associated data. */
+@WebServlet("/comments-data")
 public class DataServlet extends HttpServlet {
+
+  // TODO: Persist comments using DataStore and noSQL. Issue: DataStore.
+  private final ArrayList<String> comments = new ArrayList<String>();
+  private final String COMMENT_PARAM = "commentText";
+  private final String INDEX_PATH = "/index.html";
+  private final String JSON_CONTENT_TYPE = "application/json;";
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Add new comment to my ArrayList of comments.
+    String newComment = request.getParameter(COMMENT_PARAM);
+    comments.add(newComment);
+
+    // Redirect back to the HTML page.
+    response.sendRedirect(INDEX_PATH);
+  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello world!</h1>");
+    // Convert the ArrayList<String> comments to JSON.
+    String json = convertToJson(comments);
+
+    // Send the list of comments as the response.
+    response.setContentType(JSON_CONTENT_TYPE);
+    response.getWriter().println(json);
+  }
+
+  /**
+   * Converts an ArrayList<String> to a json string.
+   * @param message - ArrayList<String> that needs to be converted.
+   * @return - Newly converted JSON string.
+   */
+  private String convertToJson(ArrayList<String> message) {
+    Gson gson = new Gson();
+    String json = gson.toJson(message);
+    return json;
   }
 }
