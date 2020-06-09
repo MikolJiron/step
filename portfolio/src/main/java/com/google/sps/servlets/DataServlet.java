@@ -36,10 +36,9 @@ public class DataServlet extends HttpServlet {
 
   private final String COMMENT_PARAM = "commentText";
   private final String ENTITY_TYPE = "Comment";
-  private final String HTML_PAGE_TO_REDIRECT_TO = "/index.html";
+  private final String INDEX_PATH = "/index.html";
   private final String JSON_CONTENT_TYPE = "application/json;";
   private final String TIMESTAMP_PARAM = "timestamp";
-  
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -57,7 +56,7 @@ public class DataServlet extends HttpServlet {
     datastore.put(commentEntity);
 
     // Redirect back to the HTML page.
-    response.sendRedirect(HTML_PAGE_TO_REDIRECT_TO);
+    response.sendRedirect(INDEX_PATH);
   }
 
   @Override
