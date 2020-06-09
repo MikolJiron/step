@@ -62,7 +62,7 @@ class Comments {
    * @return {*} - If an error is not thrown, returns the json response.
    */
   checkFetchError(response) {
-    if (response.status >= 200 && response.status <= 299) {
+    if (response.ok()) {
       return response.json();
     } else {
       throw Error(`${response.statusText}. Status: ${response.status}`);
