@@ -30,24 +30,24 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/authenticate-user")
 public class AuthenticationServlet extends HttpServlet {
 
+  private final String BASE_URL_PATH = "/";
+  private final String JSON_CONTENT_TYPE = "application/json;";
+  
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json;");
+    response.setContentType();
     UserService userService = UserServiceFactory.getUserService();
     UserStatus status;
-    
+
     // Create UserStatus based on whether the user is logged in or not.
     if (userService.isUserLoggedIn()) {
       // The user IS logged in.
-      String urlToRedirectToAfterUserLogsOut = "/";
-      String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
-      status = new UserStatus(true, logoutUrl);
-
+      String logoutUrl = userService.createLogoutURL(BASE_URL_PATH);
+      status = new UserStatus(/** isLoggedIn= */ true, logoutUrl);
     } else {
       // The user IS NOT logged in.
-      String urlToRedirectToAfterUserLogsIn = "/";
-      String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
-      status = new UserStatus(false, loginUrl);
+      String loginUrl = userService.createLoginURL(BASE_URL_PATH);
+      status = new UserStatus(/** isLoggedIn= */ false, loginUrl);
     }
 
     // Convert the status object to JSON and send the response.
