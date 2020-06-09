@@ -32,10 +32,10 @@ public class AuthenticationServlet extends HttpServlet {
 
   private final String BASE_URL_PATH = "/";
   private final String JSON_CONTENT_TYPE = "application/json;";
-  
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType();
+    response.setContentType(JSON_CONTENT_TYPE);
     UserService userService = UserServiceFactory.getUserService();
     UserStatus status;
 

@@ -19,6 +19,7 @@
 class Comments {
   constructor() {
     this.commentsListContainer = document.getElementById("comments-container");
+    this.loginLogoutButton = document.getElementById("login-logout-button");
     this.endpointToRetrieveDataFrom = "";
   }
 
@@ -35,11 +36,6 @@ class Comments {
       .then((commentsList) => {
         // Reset the commentsListContainer to reload it with the new list of comments.
         this.commentsListContainer.innerHTML = '';
-
-        // If commentsList is empty, don't do anything.
-        if (commentsList.length == 0) {
-          return;
-        }
         
         // Add each comment in the JSON to the DOM.
         commentsList.forEach((comment) => {
@@ -77,6 +73,45 @@ class Comments {
     .then(this.getComments(10));
   }
 
+  /**
+   * Retrieves login status and associated URL.
+   */
+  getLoginStatus() {
+    fetch('/authenticate-user')
+    .then(this.checkFetchError)
+    .then((loginStatus) => {
+      // Show comments if you're logged in.
+      if (loginStatus.isLoggedIn) {
+        this.getComments(10);
+      } 
+      // Always create a login-logout-button regardless of loginStatus.
+      this.createLoginLogoutButton(loginStatus.isLoggedIn, loginStatus.loginLogoutURL);
+    });
+  }
+
+  /**
+   * Create login-logout button depending on 
+   */
+  createLoginLogoutButton(isLoggedIn, loginLogoutURL) {
+    this.loginLogoutButton.setAttribute('href', loginLogoutURL);
+    if (isLoggedIn) {
+      this.loginLogoutButton.innerText = 'Welcome! You are logged in!';
+    } else {
+      this.loginLogoutButton.innerText = 'Access Denied. Please log in!';
+    }
+  }
+  /**
+   * Returns an error if the response status is not between 200 and 299, i.e not OK.
+   * @param {*} response - The HTTP response received from the servlet.
+   * @return {*} - If an error is not thrown, returns the json response.
+   */
+  checkFetchError(response) {
+    if (response.ok()) {
+      return response.json();
+    } else {
+      throw Error(`${response.statusText}. Status: ${response.status}`);
+    }
+  }
 }
 
 export {Comments};
