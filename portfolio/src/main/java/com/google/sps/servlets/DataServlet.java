@@ -29,6 +29,8 @@ public class DataServlet extends HttpServlet {
   // TODO: Persist comments using DataStore and noSQL. Issue: DataStore.
   private final ArrayList<String> comments = new ArrayList<String>();
   private final String COMMENT_PARAM = "commentText";
+  private final String HTML_PAGE_TO_REDIRECT_TO = "/index.html";
+  private final String JSON_CONTENT_TYPE = "application/json;";
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -37,7 +39,7 @@ public class DataServlet extends HttpServlet {
     comments.add(newComment);
 
     // Redirect back to the HTML page.
-    response.sendRedirect("/index.html");
+    response.sendRedirect(HTML_PAGE_TO_REDIRECT_TO);
   }
 
   @Override
@@ -46,7 +48,7 @@ public class DataServlet extends HttpServlet {
     String json = convertToJson(comments);
 
     // Send the list of comments as the response.
-    response.setContentType("application/json;");
+    response.setContentType(JSON_CONTENT_TYPE);
     response.getWriter().println(json);
   }
 
