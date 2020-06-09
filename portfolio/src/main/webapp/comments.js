@@ -36,7 +36,7 @@ class Comments {
         // Add each comment in the JSON to the DOM.
         commentsList.forEach((comment) => {
           this.commentsListContainer.appendChild(
-            this.createCommentElement(comment)
+            this.createCommentElement(comment.commentText)
           );
         });
       })

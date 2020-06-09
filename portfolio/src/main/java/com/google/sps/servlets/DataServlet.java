@@ -14,9 +14,17 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
+import com.google.sps.data.Comment;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,17 +34,26 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/comments-data")
 public class DataServlet extends HttpServlet {
 
-  // TODO: Persist comments using DataStore and noSQL. Issue: DataStore.
-  private final ArrayList<String> comments = new ArrayList<String>();
   private final String COMMENT_PARAM = "commentText";
+  private final String ENTITY_TYPE = "Comment";
   private final String INDEX_PATH = "/index.html";
   private final String JSON_CONTENT_TYPE = "application/json;";
+  private final String TIMESTAMP_PARAM = "timestamp";
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Add new comment to my ArrayList of comments.
+    // Get comment text and a timestamp for when that comment was received.
     String newComment = request.getParameter(COMMENT_PARAM);
-    comments.add(newComment);
+    long timestamp = System.currentTimeMillis();
+
+    // Create an Entity to store the comment.
+    Entity commentEntity = new Entity(ENTITY_TYPE);
+    commentEntity.setProperty(COMMENT_PARAM, newComment);
+    commentEntity.setProperty(TIMESTAMP_PARAM, timestamp);
+
+    // Store the Entity containing the comment.
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
 
     // Redirect back to the HTML page.
     response.sendRedirect(INDEX_PATH);
@@ -44,8 +61,26 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Convert the ArrayList<String> comments to JSON.
-    String json = convertToJson(comments);
+    // Create a new query that sorts the comments by giving the most recent Comment at the top.
+    Query query = new Query(ENTITY_TYPE).addSort(TIMESTAMP_PARAM, SortDirection.DESCENDING);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    // Create the list of comments.
+    List<Comment> commentsList = new ArrayList<>();
+
+    // Add each comment into the commentsList.
+    for (Entity entity : results.asIterable()) {
+      long id = entity.getKey().getId();
+      String commentText = (String) entity.getProperty(COMMENT_PARAM);
+      long timestamp = (long) entity.getProperty(TIMESTAMP_PARAM);
+
+      Comment comment = new Comment(id, commentText, timestamp);
+      commentsList.add(comment);
+    }
+
+    // Convert the commentsList to JSON.
+    String json = convertToJson(commentsList);
 
     // Send the list of comments as the response.
     response.setContentType(JSON_CONTENT_TYPE);
@@ -53,13 +88,13 @@ public class DataServlet extends HttpServlet {
   }
 
   /**
-   * Converts an ArrayList<String> to a json string.
-   * @param message - ArrayList<String> that needs to be converted.
+   * Converts an List<Comment> to a json string.
+   * @param listOfComments - List<Comment> that needs to be converted.
    * @return - Newly converted JSON string.
    */
-  private String convertToJson(ArrayList<String> message) {
+  private String convertToJson(List<Comment> listOfComments) {
     Gson gson = new Gson();
-    String json = gson.toJson(message);
+    String json = gson.toJson(listOfComments);
     return json;
   }
 }
