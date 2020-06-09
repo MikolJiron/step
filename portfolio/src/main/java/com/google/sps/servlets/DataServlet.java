@@ -31,6 +31,8 @@ public class DataServlet extends HttpServlet {
 
   private final ArrayList<String> comments = new ArrayList<String>();
   private final String COMMENT_PARAM = "commentText";
+  private final String ENTITY_TYPE = "Comment";
+  private final String TIMESTAMP_PARAM = "timestamp";
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -39,9 +41,9 @@ public class DataServlet extends HttpServlet {
     long timestamp = System.currentTimeMillis();
 
     // Create an Entity to store the comment.
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("commentText", newComment);
-    commentEntity.setProperty("timestamp", timestamp);
+    Entity commentEntity = new Entity(ENTITY_TYPE);
+    commentEntity.setProperty(COMMENT_PARAM, newComment);
+    commentEntity.setProperty(TIMESTAMP_PARAM, timestamp);
     
     // Store the Entity containing the comment.
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
