@@ -18,6 +18,7 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 import com.google.sps.data.UserStatus;
+import com.google.sps.data.Params;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,23 +31,20 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/authenticate-user")
 public class AuthenticationServlet extends HttpServlet {
 
-  private final String BASE_URL_PATH = "/";
-  private final String JSON_CONTENT_TYPE = "application/json;";
-
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType(JSON_CONTENT_TYPE);
+    response.setContentType(Params.JSON_CONTENT_TYPE);
     UserService userService = UserServiceFactory.getUserService();
     UserStatus status;
 
     // Create UserStatus based on whether the user is logged in or not.
     if (userService.isUserLoggedIn()) {
       // The user IS logged in.
-      String logoutUrl = userService.createLogoutURL(BASE_URL_PATH);
+      String logoutUrl = userService.createLogoutURL(Params.BASE_URL_PATH);
       status = new UserStatus(/** isLoggedIn= */ true, logoutUrl);
     } else {
       // The user IS NOT logged in.
-      String loginUrl = userService.createLoginURL(BASE_URL_PATH);
+      String loginUrl = userService.createLoginURL(Params.BASE_URL_PATH);
       status = new UserStatus(/** isLoggedIn= */ false, loginUrl);
     }
 
