@@ -91,7 +91,10 @@ class Comments {
   }
 
   /**
-   * Create login-logout button depending on 
+   * Create login-logout button depending on whether the user is logged in or not.
+   * @param {boolean} isLoggedIn - Is the user logged in? Yes or No?
+   * @param {string} loginLogoutURL - The URL the user will be
+   *   redirected once they click on the button.
    */
   createLoginLogoutButton(isLoggedIn, loginLogoutURL) {
     if (isLoggedIn) {
