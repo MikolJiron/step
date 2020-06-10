@@ -18,8 +18,8 @@
  */
 class Comments {
   constructor() {
-    this.commentsListContainer = document.getElementById("comments-container");
-    this.endpointToRetrieveDataFrom = "/comments-data";
+    this.commentsListContainer = document.getElementById('comments-container');
+    this.endpointToRetrieveDataFrom = '/comments-data';
   }
 
   /**
@@ -28,7 +28,7 @@ class Comments {
    */
   getComments() {
     fetch(this.endpointToRetrieveDataFrom)
-      .then(response => response.json())
+      .then(this.checkFetchError)
       .then((commentsList) => {
         // Reset the commentsListContainer to reload it with the new list of comments.
         this.commentsListContainer.innerHTML = '';
@@ -40,8 +40,8 @@ class Comments {
           );
         });
       })
-      .catch(() => {
-        console.error("Failed to load comments.");
+      .catch((error) => {
+        console.log(error);
       });
   }
 
@@ -54,6 +54,19 @@ class Comments {
     const commentElement = document.createElement('li');
     commentElement.innerText = text;
     return commentElement;
+  }
+    
+  /**
+   * Returns an error if the response status is not between 200 and 299, i.e not OK.
+   * @param {*} response - The HTTP response received from the servlet.
+   * @return {*} - If an error is not thrown, returns the json response.
+   */
+  checkFetchError(response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw Error(`${response.statusText}. Status: ${response.status}`);
+    }
   }
 }
 
