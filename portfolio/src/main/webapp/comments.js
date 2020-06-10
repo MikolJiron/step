@@ -66,6 +66,7 @@ class Comments {
   deleteComments() {
     const request = new Request('/delete-comments-data', {method:'POST'})
     fetch(request)
+    .then(this.checkFetchError)
     .then(this.checkDeleteError)
     .catch((error) => {
       console.log(error);
@@ -76,13 +77,12 @@ class Comments {
    * Returns an error if the number of comments is not 0, i.e. not all comments were deleted.
    * @return {*} - If an error is not thrown, returns nothing.
    */
-  checkDeleteError() {
-    this.getComments(10);
-    if (this.commentsListContainer.innerHTML == '') {
+  checkDeleteError(response) {
+    if (response.deleteComplete) {
       return;
     } else {
       throw Error('There are still comments in the commentsListContainer \
-        after my request to delete all of them was sent.');
+        after my request to delete all of them was sent and processed.');
     }
   }
 

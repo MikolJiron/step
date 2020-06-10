@@ -49,6 +49,10 @@ public class DeleteDataServlet extends HttpServlet {
       datastore.delete(commentEntityKey);
     }
 
+    // Send back a response that the deletion is complete.
+    response.setContentType(Params.JSON_CONTENT_TYPE);
+    response.getWriter().println("{ deleteComplete : true }");
+
     // Redirect back to the HTML page.
     response.sendRedirect(Params.INDEX_PATH);
   }
