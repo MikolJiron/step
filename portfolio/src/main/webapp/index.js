@@ -31,10 +31,10 @@ window.onload = function() {
 
   // Get the comments from the server and populate them into the 
   // comments-container.
-  comments.getComments();
+  comments.getComments(/** commentsLimit= */ 10);
 
   // Set up default tab and slideshow.
   tab.displayDefaultSection();
-  Utils.setToNone('slide');
-  slideShow.showSlide(0);
+  Utils.setToNone(/** classToModify= */ "slide");
+  slideShow.showSlide(/** slideToShow= */ 0);
 }

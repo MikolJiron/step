@@ -25,9 +25,12 @@ class Comments {
   /**
    * Fetches a list of comments from a URL via the Java servlet, uses a promise 
    * to add them to the DOM once the comments have been received.
+   * @param {number} commentsLimit - The number of comments I'm limiting the GET to.
    */
-  getComments() {
-    fetch(this.endpointToRetrieveDataFrom)
+  getComments(commentsLimit) {
+    // Set the endpoint URL and then add the comments limit to the endpoint.
+    const endpoint = this.buildCommentsLimitURL(commentsLimit);
+    fetch(endpoint)
       .then(this.checkFetchError)
       .then((commentsList) => {
         // Reset the commentsListContainer to reload it with the new list of comments.
@@ -54,6 +57,15 @@ class Comments {
     const commentElement = document.createElement('li');
     commentElement.innerText = text;
     return commentElement;
+  }
+
+  /**
+   * Builds the URL with a comments-limit.
+   * @param {number} commentsLimit - The max number of comments to be retrieved/displayed.
+   * @return {string} - The completely built URL.
+   */
+  buildCommentsLimitURL(commentsLimit){
+    return `${this.endpointToRetrieveDataFrom}?commentNumber=${commentsLimit}`;
   }
     
   /**

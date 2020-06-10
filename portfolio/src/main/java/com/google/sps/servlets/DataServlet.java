@@ -82,9 +82,7 @@ public class DataServlet extends HttpServlet {
     }
 
     // Limit the number of comments.
-    // Will be hard-coded to 5 until the frontend actually 
-    // sends the number of comments via the GET function in comments.js.
-    int commentLimit = 5; // = getNumberComments(request);
+    int commentLimit = getNumberComments(request);
 
     // An invalid input will result in an error, so we let the user know.
     if (commentLimit == -1) {
