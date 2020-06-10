@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-"use strict";
-import {Comments} from "./comments.js";
-import {SlideShow} from "./slideshow.js";
-import {Tab} from "./tab.js";
-import {Utils} from "./utils.js";
+'use strict';
+import {Comments} from './comments.js';
+import {SlideShow} from './slideshow.js';
+import {Tab} from './tab.js';
+import {Utils} from './utils.js';
 
 const tab = new Tab();
 const slideShow = new SlideShow();
@@ -31,10 +31,14 @@ window.onload = function() {
 
   // Get the comments from the server and populate them into the 
   // comments-container.
+<<<<<<< HEAD
   comments.getLoginStatus();
+=======
+  comments.getComments(/** commentsLimit= */ 10);
+>>>>>>> verify-login-status
 
   // Set up default tab and slideshow.
   tab.displayDefaultSection();
-  Utils.setToNone("slide");
-  slideShow.showSlide(0);
+  Utils.setToNone(/** classToModify= */ "slide");
+  slideShow.showSlide(/** slideToShow= */ 0);
 }
