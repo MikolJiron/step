@@ -79,7 +79,7 @@ class Comments {
     if(comments.innerHTML === '') {
       return;
     } else {
-      throw Error("All comments were not deleted successfully");
+      throw Error('All comments were not deleted successfully');
     }
   }
 
