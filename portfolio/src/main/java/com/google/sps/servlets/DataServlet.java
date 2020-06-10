@@ -22,6 +22,7 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
+import com.google.sps.data.Params;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,37 +35,48 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/comments-data")
 public class DataServlet extends HttpServlet {
 
-  private final String COMMENT_NUMBER_PARAM = "commentNumber";
-  private final String COMMENT_TEXT_PARAM = "commentText";
-  private final String ENTITY_TYPE = "Comment";
-  private final String HTML_CONTENT_TYPE = "text/html";
-  private final String INDEX_PATH = "/index.html";
-  private final String JSON_CONTENT_TYPE = "application/json;";
-  private final String TIMESTAMP_PARAM = "timestamp";
-
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get comment text and a timestamp for when that comment was received.
-    String newComment = request.getParameter(COMMENT_TEXT_PARAM);
+    String newComment = request.getParameter(Params.COMMENT_TEXT_PARAM);
     long timestamp = System.currentTimeMillis();
 
     // Create an Entity to store the comment.
-    Entity commentEntity = new Entity(ENTITY_TYPE);
-    commentEntity.setProperty(COMMENT_TEXT_PARAM, newComment);
-    commentEntity.setProperty(TIMESTAMP_PARAM, timestamp);
+    Entity commentEntity = new Entity(Params.ENTITY_TYPE);
+    commentEntity.setProperty(Params.COMMENT_TEXT_PARAM, newComment);
+    commentEntity.setProperty(Params.TIMESTAMP_PARAM, timestamp);
 
     // Store the Entity containing the comment.
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
     // Redirect back to the HTML page.
-    response.sendRedirect(INDEX_PATH);
+    response.sendRedirect(Params.INDEX_PATH);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get comment text and a timestamp for when that comment was received.
+    String newComment = request.getParameter(Params.COMMENT_TEXT_PARAM);
+    long timestamp = System.currentTimeMillis();
+
+    // Create an Entity to store the comment.
+    Entity commentEntity = new Entity(Params.ENTITY_TYPE);
+    commentEntity.setProperty(Params.COMMENT_TEXT_PARAM, newComment);
+    commentEntity.setProperty(Params.TIMESTAMP_PARAM, timestamp);
+
+    // Store the Entity containing the comment.
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
+
+    // Redirect back to the HTML page.
+    response.sendRedirect(Params.INDEX_PATH);
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Create a new query that sorts the comments by giving the most recent Comment at the top.
-    Query query = new Query(ENTITY_TYPE).addSort(TIMESTAMP_PARAM, SortDirection.DESCENDING);
+    Query query = new Query(Params.ENTITY_TYPE).addSort(Params.TIMESTAMP_PARAM, SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
@@ -74,8 +86,8 @@ public class DataServlet extends HttpServlet {
     // Add each comment into the commentsList.
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
-      String commentText = (String) entity.getProperty(COMMENT_TEXT_PARAM);
-      long timestamp = (long) entity.getProperty(TIMESTAMP_PARAM);
+      String commentText = (String) entity.getProperty(Params.COMMENT_TEXT_PARAM);
+      long timestamp = (long) entity.getProperty(Params.TIMESTAMP_PARAM);
 
       Comment comment = new Comment(id, commentText, timestamp);
       commentsList.add(comment);
@@ -86,9 +98,10 @@ public class DataServlet extends HttpServlet {
 
     // An invalid input will result in an error, so we let the user know.
     if (commentLimit == -1) {
-      response.setContentType(HTML_CONTENT_TYPE);
+      response.setContentType(Params.HTML_CONTENT_TYPE);
       response.sendError(400);
       response.getWriter().println("Please enter an integer between 1 and 20.");
+      return;
     }
 
     // We send the entire commentsList by default if commentLimit >= commentsList.size().
@@ -103,7 +116,7 @@ public class DataServlet extends HttpServlet {
     String json = convertToJson(commentsListToSend);
 
     // Send the list of comments as the response.
-    response.setContentType(JSON_CONTENT_TYPE);
+    response.setContentType(Params.JSON_CONTENT_TYPE);
     response.getWriter().println(json);
   }
 
@@ -125,7 +138,8 @@ public class DataServlet extends HttpServlet {
    */
   private int getNumberComments(HttpServletRequest request) {
     // Get the input from the form.
-    String commentNumberString = request.getParameter(COMMENT_NUMBER_PARAM);
+    String commentNumberString = request.getParameter(Params.COMMENT_NUMBER_PARAM);
+
 
     // Convert the input to an int.
     int commentNumber = -1;
