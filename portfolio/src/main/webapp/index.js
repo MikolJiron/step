@@ -31,11 +31,7 @@ window.onload = function() {
 
   // Get the comments from the server and populate them into the 
   // comments-container.
-<<<<<<< HEAD
   comments.getLoginStatus();
-=======
-  comments.getComments(/** commentsLimit= */ 10);
->>>>>>> verify-login-status
 
   // Set up default tab and slideshow.
   tab.displayDefaultSection();

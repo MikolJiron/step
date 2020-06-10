@@ -18,15 +18,10 @@
  */
 class Comments {
   constructor() {
-<<<<<<< HEAD
     this.commentsListContainer = document.getElementById("comments-container");
     this.loginLogoutButton = document.getElementById("login-logout-button");
     this.loginLogoutStatusMessage = document.getElementById("status-message");
-    this.endpointToRetrieveDataFrom = "";
-=======
-    this.commentsListContainer = document.getElementById('comments-container');
     this.endpointToRetrieveDataFrom = '/comments-data';
->>>>>>> verify-login-status
   }
 
   /**
