@@ -71,10 +71,10 @@ class Comments {
   deleteComments() {
     const request = new Request('/delete-comments-data', {method:'POST'})
     fetch(request)
+    .then(this.getComments(10))
     .catch(() => {
       console.error("Failed to delete comments.");
-    })
-    .then(this.getComments(10));
+    });
   }
 
 }
