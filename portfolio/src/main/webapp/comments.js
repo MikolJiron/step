@@ -74,6 +74,10 @@ class Comments {
     });
   }
 
+  /**
+   * Checks if all comments were deleted.
+   * Returns nothing if successful, else we throw an error.
+   */
   checkDeleteError() {
     const comments = document.getElementById('comments-container');
     if(comments.innerHTML === '') {
