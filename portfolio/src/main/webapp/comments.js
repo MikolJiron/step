@@ -20,6 +20,7 @@ class Comments {
   constructor() {
     this.commentsListContainer = document.getElementById("comments-container");
     this.loginLogoutButton = document.getElementById("login-logout-button");
+    this.loginLogoutStatusMessage = document.getElementById("status-message");
     this.endpointToRetrieveDataFrom = "";
   }
 
@@ -93,11 +94,12 @@ class Comments {
    * Create login-logout button depending on 
    */
   createLoginLogoutButton(isLoggedIn, loginLogoutURL) {
-    this.loginLogoutButton.setAttribute('href', loginLogoutURL);
     if (isLoggedIn) {
-      this.loginLogoutButton.innerText = 'Welcome! You are logged in!';
+      this.loginLogoutButton.innerHTML = `<a href=${loginLogoutURL}>Log Out</a>`;
+      this.loginLogoutStatusMessage.innerText = 'Welcome! You are logged in!';
     } else {
-      this.loginLogoutButton.innerText = 'Access Denied. Please log in!';
+      this.loginLogoutButton.innerHTML = `<a href=${loginLogoutURL}>Log In</a>`;
+      this.loginLogoutStatusMessage.innerText = 'Access Denied. Please log in!';
     }
   }
   /**
@@ -106,7 +108,7 @@ class Comments {
    * @return {*} - If an error is not thrown, returns the json response.
    */
   checkFetchError(response) {
-    if (response.ok()) {
+    if (response.ok) {
       return response.json();
     } else {
       throw Error(`${response.statusText}. Status: ${response.status}`);
