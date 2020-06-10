@@ -66,9 +66,6 @@ class Comments {
   deleteComments() {
     const request = new Request('/delete-comments-data', {method:'POST'})
     fetch(request)
-    .catch(() => {
-      console.error("Failed to delete comments.");
-    })
     .then(this.checkFetchError)
     .then(this.checkDeleteError)
     .catch((error) => {
