@@ -64,25 +64,22 @@ class Comments {
    * Then, the comments are reloaded to confirm the database has been cleared.
    */
   deleteComments() {
-    const request = new Request('/delete-comments-data', {method:'POST'})
+    const request = new Request('/delete-comments-data', {method:'POST'});
     fetch(request)
-    .then(this.checkFetchError)
+    .then(this.checkPostError)
+    .then(this.getComments(1))
     .then(this.checkDeleteError)
     .catch((error) => {
       console.log(error);
     });
   }
 
-   /**
-   * Returns an error if the number of comments is not 0, i.e. not all comments were deleted.
-   * @return {*} - If an error is not thrown, returns nothing.
-   */
-  checkDeleteError(response) {
-    if (response.deleteComplete) {
+  checkDeleteError() {
+    const comments = document.getElementById('comments-container');
+    if(comments.innerHTML === '') {
       return;
     } else {
-      throw Error('There are still comments in the commentsListContainer \
-        after my request to delete all of them was sent and processed.');
+      throw Error('All comments were not deleted successfully');
     }
   }
 
@@ -103,6 +100,19 @@ class Comments {
   checkFetchError(response) {
     if (response.ok) {
       return response.json();
+    } else {
+      throw Error(`${response.statusText}. Status: ${response.status}`);
+    }
+  }
+
+  /**
+   * Returns an error if the response status is not between 200 and 299, i.e not OK.
+   * @param {*} response - The HTTP response received from the servlet.
+   * @return {*} - If an error is not thrown, returns the response (not JSON).
+   */
+  checkPostError(response) {
+    if (response.ok) {
+      return;
     } else {
       throw Error(`${response.statusText}. Status: ${response.status}`);
     }
