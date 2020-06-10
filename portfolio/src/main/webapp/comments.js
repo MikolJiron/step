@@ -87,6 +87,9 @@ class Comments {
       } 
       // Always create a login-logout-button regardless of loginStatus.
       this.createLoginLogoutButton(loginStatus.isLoggedIn, loginStatus.loginLogoutURL);
+    })
+    .catch((error) => {
+      console.log(`${error}. Failed to fetch login status of the user.`);
     });
   }
 
