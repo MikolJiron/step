@@ -50,8 +50,8 @@ public class DeleteDataServlet extends HttpServlet {
     }
 
     // Send back a response that the deletion is complete.
-    response.setContentType(Params.JSON_CONTENT_TYPE);
-    response.getWriter().println("{ deleteComplete : true }");
+    response.setContentType(Params.HTML_CONTENT_TYPE);
+    response.getWriter().println("<p>Comments successfully deleted!</p>");
 
     // Redirect back to the HTML page.
     response.sendRedirect(Params.INDEX_PATH);
