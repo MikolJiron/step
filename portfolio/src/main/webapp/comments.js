@@ -18,8 +18,8 @@
  */
 class Comments {
   constructor() {
-    this.commentsListContainer = document.getElementById("comments-container");
-    this.endpointToRetrieveDataFrom = "";
+    this.commentsListContainer = document.getElementById('comments-container');
+    this.endpointToRetrieveDataFrom = '/comments-data';
   }
 
   /**
@@ -29,9 +29,9 @@ class Comments {
    */
   getComments(commentsLimit) {
     // Set the endpoint URL and then add the comments limit to the endpoint.
-    this.endpointToRetrieveDataFrom = `/comments-data?commentNumber=${commentsLimit}`;
-    fetch(this.endpointToRetrieveDataFrom)
-      .then(response => response.json())
+    const endpoint = this.buildCommentsLimitURL(commentsLimit);
+    fetch(endpoint)
+      .then(this.checkFetchError)
       .then((commentsList) => {
         // Reset the commentsListContainer to reload it with the new list of comments.
         this.commentsListContainer.innerHTML = '';
@@ -48,8 +48,8 @@ class Comments {
           );
         });
       })
-      .catch(() => {
-        console.error("Failed to load comments.");
+      .catch((error) => {
+        console.log(error);
       });
   }
 
@@ -74,9 +74,47 @@ class Comments {
     .catch(() => {
       console.error("Failed to delete comments.");
     })
-    .then(this.getComments(10));
+    .then(this.checkFetchError)
+    .then(this.checkDeleteError)
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
+   /**
+   * Returns an error if the number of comments is not 0, i.e. not all comments were deleted.
+   * @return {*} - If an error is not thrown, returns nothing.
+   */
+  checkDeleteError(response) {
+    if (response.deleteComplete) {
+      return;
+    } else {
+      throw Error('There are still comments in the commentsListContainer \
+        after my request to delete all of them was sent and processed.');
+    }
+  }
+
+  /**
+   * Builds the URL with a comments-limit.
+   * @param {number} commentsLimit - The max number of comments to be retrieved/displayed.
+   * @return {string} - The completely built URL.
+   */
+  buildCommentsLimitURL(commentsLimit){
+    return `${this.endpointToRetrieveDataFrom}?commentNumber=${commentsLimit}`;
+  }
+    
+  /**
+   * Returns an error if the response status is not between 200 and 299, i.e not OK.
+   * @param {*} response - The HTTP response received from the servlet.
+   * @return {*} - If an error is not thrown, returns the json response.
+   */
+  checkFetchError(response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw Error(`${response.statusText}. Status: ${response.status}`);
+    }
+  }
 }
 
 export {Comments};
