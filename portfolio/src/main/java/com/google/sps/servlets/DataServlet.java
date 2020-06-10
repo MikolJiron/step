@@ -34,8 +34,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/comments-data")
 public class DataServlet extends HttpServlet {
 
-  private final String COMMENT_TEXT_PARAM = "commentText";
   private final String COMMENT_NUMBER_PARAM = "commentNumber";
+  private final String COMMENT_TEXT_PARAM = "commentText";
+  private final String ENTITY_TYPE = "Comment";
+  private final String HTML_CONTENT_TYPE = "text/html";
+  private final String INDEX_PATH = "/index.html";
+  private final String JSON_CONTENT_TYPE = "application/json;";
+  private final String TIMESTAMP_PARAM = "timestamp";
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -44,22 +49,22 @@ public class DataServlet extends HttpServlet {
     long timestamp = System.currentTimeMillis();
 
     // Create an Entity to store the comment.
-    Entity commentEntity = new Entity("Comment");
+    Entity commentEntity = new Entity(ENTITY_TYPE);
     commentEntity.setProperty(COMMENT_TEXT_PARAM, newComment);
-    commentEntity.setProperty("timestamp", timestamp);
+    commentEntity.setProperty(TIMESTAMP_PARAM, timestamp);
 
     // Store the Entity containing the comment.
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
     // Redirect back to the HTML page.
-    response.sendRedirect("/index.html");
+    response.sendRedirect(INDEX_PATH);
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Create a new query that sorts the comments by giving the most recent Comment at the top.
-    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    Query query = new Query(ENTITY_TYPE).addSort(TIMESTAMP_PARAM, SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
@@ -70,7 +75,7 @@ public class DataServlet extends HttpServlet {
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
       String commentText = (String) entity.getProperty(COMMENT_TEXT_PARAM);
-      long timestamp = (long) entity.getProperty("timestamp");
+      long timestamp = (long) entity.getProperty(TIMESTAMP_PARAM);
 
       Comment comment = new Comment(id, commentText, timestamp);
       commentsList.add(comment);
@@ -81,9 +86,9 @@ public class DataServlet extends HttpServlet {
 
     // An invalid input will result in an error, so we let the user know.
     if (commentLimit == -1) {
-      response.setContentType("text/html");
+      response.setContentType(HTML_CONTENT_TYPE);
+      response.sendError(400);
       response.getWriter().println("Please enter an integer between 1 and 20.");
-      return;
     }
 
     // We send the entire commentsList by default if commentLimit >= commentsList.size().
@@ -98,7 +103,7 @@ public class DataServlet extends HttpServlet {
     String json = convertToJson(commentsListToSend);
 
     // Send the list of comments as the response.
-    response.setContentType("application/json;");
+    response.setContentType(JSON_CONTENT_TYPE);
     response.getWriter().println(json);
   }
 

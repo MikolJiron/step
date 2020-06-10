@@ -21,8 +21,8 @@ class Utils {
   static setToNone(classToModify) {
     const content = document.getElementsByClassName(classToModify);
     for (let i = 0; i < content.length; i++) {
-      content[i].classList.remove("default-block");
-      content[i].classList.add("default-none");
+      content[i].classList.remove('default-block');
+      content[i].classList.add('default-none');
     }
   }
 
