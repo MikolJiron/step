@@ -18,9 +18,9 @@
  */
 class Comments {
   constructor() {
-    this.commentsListContainer = document.getElementById("comments-container");
-    this.loginLogoutButton = document.getElementById("login-logout-button");
-    this.loginLogoutStatusMessage = document.getElementById("status-message");
+    this.commentsListContainer = document.getElementById('comments-container');
+    this.loginLogoutButton = document.getElementById('login-logout-button');
+    this.loginLogoutStatusMessage = document.getElementById('status-message');
     this.endpointToRetrieveDataFrom = '/comments-data';
   }
 
