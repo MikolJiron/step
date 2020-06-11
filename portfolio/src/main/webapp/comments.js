@@ -19,8 +19,6 @@
 class Comments {
   constructor() {
     this.commentsListContainer = document.getElementById('comments-container');
-    this.loginLogoutButton = document.getElementById('login-logout-button');
-    this.loginLogoutStatusMessage = document.getElementById('status-message');
     this.endpointToRetrieveDataFrom = '/comments-data';
   }
 
@@ -68,60 +66,10 @@ class Comments {
   deleteComments() {
     const request = new Request('/delete-comments-data', {method:'POST'});
     fetch(request)
-    .then(this.checkPostError)
-    .then(this.getComments(1))
-    .then(this.checkDeleteError)
-    .catch((error) => {
-      console.log(`${error}. Error occurred after attempting to delete comments.`);
-    });
-  }
-
-  /**
-   * Retrieves login status and associated URL.
-   */
-  getLoginStatus() {
-    fetch('/authenticate-user')
-    .then(this.checkFetchError)
-    .then((loginStatus) => {
-      // Show comments if you're logged in.
-      if (loginStatus.isLoggedIn) {
-        this.getComments(10);
-      } 
-      // Always create a login-logout-button regardless of loginStatus.
-      this.createLoginLogoutButton(loginStatus.isLoggedIn, loginStatus.loginLogoutURL);
-    })
-    .catch((error) => {
-      console.log(`${error}. Failed to fetch login status of the user.`);
-    });
-  }
-
-  /**
-   * Create login-logout button depending on whether the user is logged in or not.
-   * @param {boolean} isLoggedIn - Is the user logged in? Yes or No?
-   * @param {string} loginLogoutURL - The URL the user will be
-   *   redirected once they click on the button.
-   */
-  createLoginLogoutButton(isLoggedIn, loginLogoutURL) {
-    if (isLoggedIn) {
-      this.loginLogoutButton.innerHTML = `<a href=${loginLogoutURL}>Log Out</a>`;
-      this.loginLogoutStatusMessage.innerText = 'Welcome! You are logged in!';
-    } else {
-      this.loginLogoutButton.innerHTML = `<a href=${loginLogoutURL}>Log In</a>`;
-      this.loginLogoutStatusMessage.innerText = 'Access Denied. Please log in!';
-    }
-  }
-
-  /** 
-   * Checks if all comments were deleted.
-   * Returns nothing if successful, else we throw an error.
-   */
-  checkDeleteError() {
-    const comments = document.getElementById('comments-container');
-    if(comments.innerHTML === '') {
-      return;
-    } else {
-      throw Error('All comments were not deleted successfully');
-    }
+      .then(this.checkPostError)
+      .catch((error) => {
+        console.log(`${error}. Error occurred after attempting to delete comments.`);
+      });
   }
 
   /**

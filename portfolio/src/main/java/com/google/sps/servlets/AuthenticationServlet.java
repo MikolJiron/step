@@ -17,8 +17,9 @@ package com.google.sps.servlets;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
-import com.google.sps.data.UserStatus;
+import com.google.sps.data.AuthState;
 import com.google.sps.data.Params;
+import com.google.sps.data.UserStatus;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,18 +38,17 @@ public class AuthenticationServlet extends HttpServlet {
     response.setContentType(Params.JSON_CONTENT_TYPE);
     UserService userService = UserServiceFactory.getUserService();
     UserStatus status;
-
     // Create UserStatus based on whether the user is logged in or not.
     if (userService.isUserLoggedIn()) {
       // Get the user email.
       String userEmail = userService.getCurrentUser().getEmail();
       // The user IS logged in.
       String logoutUrl = userService.createLogoutURL(Params.BASE_URL_PATH);
-      status = new UserStatus(/** isLoggedIn= */ true, logoutUrl, userEmail);
+      status = new UserStatus(/** isLoggedIn= */ AuthState.isLoggedIn.LOGGED_IN.getState(), logoutUrl);
     } else {
       // The user IS NOT logged in.
       String loginUrl = userService.createLoginURL(Params.BASE_URL_PATH);
-      status = new UserStatus(/** isLoggedIn= */ false, loginUrl, /** userEmail= */ "");
+      status = new UserStatus(/** isLoggedIn= */ AuthState.isLoggedIn.LOGGED_OUT.getState(), loginUrl);
     }
 
     // Convert the status object to JSON and send the response.
