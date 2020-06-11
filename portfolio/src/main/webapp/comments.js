@@ -97,7 +97,7 @@ class Comments {
 
   /**
    * Create login-logout button depending on whether the user is logged in or not.
-   * @param {*} loginStatus - JSON object representing the user login status
+   * @param {*} loginStatus - JSON object representing the user login status.
    */
   createLoginLogoutButton(loginStatus) {
     if (loginStatus.isLoggedIn) {
