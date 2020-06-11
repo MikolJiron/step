@@ -44,11 +44,11 @@ public class AuthenticationServlet extends HttpServlet {
       String userEmail = userService.getCurrentUser().getEmail();
       // The user IS logged in.
       String logoutUrl = userService.createLogoutURL(Params.BASE_URL_PATH);
-      status = new UserStatus(/** isLoggedIn= */ AuthState.isLoggedIn.LOGGED_IN.getState(), logoutUrl);
+      status = new UserStatus(/** isLoggedIn= */ AuthState.isLoggedIn.LOGGED_IN.getState(), logoutUrl, userEmail);
     } else {
       // The user IS NOT logged in.
       String loginUrl = userService.createLoginURL(Params.BASE_URL_PATH);
-      status = new UserStatus(/** isLoggedIn= */ AuthState.isLoggedIn.LOGGED_OUT.getState(), loginUrl);
+      status = new UserStatus(/** isLoggedIn= */ AuthState.isLoggedIn.LOGGED_OUT.getState(), loginUrl, /** userEmail = */ "");
     }
 
     // Convert the status object to JSON and send the response.
