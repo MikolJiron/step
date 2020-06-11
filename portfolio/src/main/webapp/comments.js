@@ -66,25 +66,10 @@ class Comments {
   deleteComments() {
     const request = new Request('/delete-comments-data', {method:'POST'});
     fetch(request)
-    .then(this.checkPostError)
-    .then(this.getComments(1))
-    .then(this.checkDeleteError)
-    .catch((error) => {
-      console.log(error);
-    });
-  }
-
-  /**
-   * Checks if all comments were deleted.
-   * Returns nothing if successful, else we throw an error.
-   */
-  checkDeleteError() {
-    const comments = document.getElementById('comments-container');
-    if(comments.innerHTML === '') {
-      return;
-    } else {
-      throw Error('All comments were not deleted successfully');
-    }
+      .then(this.checkPostError)
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   /**
