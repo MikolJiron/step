@@ -38,18 +38,17 @@ public class AuthenticationServlet extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
     UserStatus status;
 
-    // Get the user email.
-    String userEmail = userService.getCurrentUser().getEmail();
-
     // Create UserStatus based on whether the user is logged in or not.
     if (userService.isUserLoggedIn()) {
+      // Get the user email.
+      String userEmail = userService.getCurrentUser().getEmail();
       // The user IS logged in.
       String logoutUrl = userService.createLogoutURL(Params.BASE_URL_PATH);
       status = new UserStatus(/** isLoggedIn= */ true, logoutUrl, userEmail);
     } else {
       // The user IS NOT logged in.
       String loginUrl = userService.createLoginURL(Params.BASE_URL_PATH);
-      status = new UserStatus(/** isLoggedIn= */ false, loginUrl, userEmail);
+      status = new UserStatus(/** isLoggedIn= */ false, loginUrl, /** userEmail= */ "");
     }
 
     // Convert the status object to JSON and send the response.
