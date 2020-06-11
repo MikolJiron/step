@@ -68,10 +68,10 @@ class Comments {
   deleteComments() {
     const request = new Request('/delete-comments-data', {method:'POST'});
     fetch(request)
-    .then(this.checkPostError)
-    .catch((error) => {
-       console.log(`${error}. Error occurred after attempting to delete comments.`);
-    });
+      .then(this.checkPostError)
+      .catch((error) => {
+        console.log(`${error}. Error occurred after attempting to delete comments.`);
+      });
   }
 
   /**
@@ -79,18 +79,18 @@ class Comments {
    */
   getLoginStatus() {
     fetch('/authenticate-user')
-    .then(this.checkFetchError)
-    .then((loginStatus) => {
-      // Show comments if you're logged in.
-      if (loginStatus.isLoggedIn) {
-        this.getComments(10);
-      } 
-      // Always create a login-logout-button regardless of loginStatus.
-      this.createLoginLogoutButton(loginStatus.isLoggedIn, loginStatus.loginLogoutURL);
-    })
-    .catch((error) => {
-      console.log(`${error}. Failed to fetch login status of the user.`);
-    });
+      .then(this.checkFetchError)
+      .then((loginStatus) => {
+        // Show comments if you're logged in.
+        if (loginStatus.isLoggedIn) {
+          this.getComments(10);
+        } 
+        // Always create a login-logout-button regardless of loginStatus.
+        this.createLoginLogoutButton(loginStatus.isLoggedIn, loginStatus.loginLogoutURL);
+      })
+      .catch((error) => {
+        console.log(`${error}. Failed to fetch login status of the user.`);
+      });
   }
 
   /**
