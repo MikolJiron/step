@@ -21,7 +21,7 @@ public final class UserStatus {
   private final String loginLogoutURL;
   private final String userEmail;
 
-  public UserStatus(Boolean isLoggedIn, String loginLogoutURL, String userEmail) {
+  public UserStatus(int isLoggedIn, String loginLogoutURL, String userEmail) {
     this.isLoggedIn = isLoggedIn;
     this.loginLogoutURL = loginLogoutURL;
     this.userEmail = userEmail;
