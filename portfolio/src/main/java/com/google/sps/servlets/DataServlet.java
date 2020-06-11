@@ -20,6 +20,8 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
 import com.google.sps.data.Params;
@@ -37,6 +39,10 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get User email.
+    UserService userService = UserServiceFactory.getUserService();
+    String userEmail = userService.getCurrentUser().getEmail();
+
     // Get comment text and a timestamp for when that comment was received.
     String newComment = request.getParameter(Params.COMMENT_TEXT_PARAM);
     long timestamp = System.currentTimeMillis();
@@ -45,6 +51,7 @@ public class DataServlet extends HttpServlet {
     Entity commentEntity = new Entity(Params.ENTITY_TYPE);
     commentEntity.setProperty(Params.COMMENT_TEXT_PARAM, newComment);
     commentEntity.setProperty(Params.TIMESTAMP_PARAM, timestamp);
+    commentEntity.setProperty(Params.USER_EMAIL_PARAM, userEmail);
 
     // Store the Entity containing the comment.
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -69,8 +76,9 @@ public class DataServlet extends HttpServlet {
       long id = entity.getKey().getId();
       String commentText = (String) entity.getProperty(Params.COMMENT_TEXT_PARAM);
       long timestamp = (long) entity.getProperty(Params.TIMESTAMP_PARAM);
-
-      Comment comment = new Comment(id, commentText, timestamp);
+      String userEmail = (String) entity.getProperty(Params.USER_EMAIL_PARAM);
+      
+      Comment comment = new Comment(id, commentText, timestamp, userEmail);
       commentsList.add(comment);
     }
 
