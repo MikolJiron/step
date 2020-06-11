@@ -46,7 +46,7 @@ class Comments {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.log(`${error}. Failed to fetch comments.`);
       });
   }
 
@@ -72,7 +72,7 @@ class Comments {
     .then(this.getComments(1))
     .then(this.checkDeleteError)
     .catch((error) => {
-      console.log(error);
+      console.log(`${error}. Error occurred after attempting to delete comments.`);
     });
   }
 
