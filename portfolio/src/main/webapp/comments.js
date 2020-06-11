@@ -69,10 +69,8 @@ class Comments {
     const request = new Request('/delete-comments-data', {method:'POST'});
     fetch(request)
     .then(this.checkPostError)
-    .then(this.getComments(1))
-    .then(this.checkDeleteError)
     .catch((error) => {
-      console.log(`${error}. Error occurred after attempting to delete comments.`);
+       console.log(`${error}. Error occurred after attempting to delete comments.`);
     });
   }
 
@@ -111,18 +109,6 @@ class Comments {
     }
   }
 
-  /** 
-   * Checks if all comments were deleted.
-   * Returns nothing if successful, else we throw an error.
-   */
-  checkDeleteError() {
-    const comments = document.getElementById('comments-container');
-    if(comments.innerHTML === '') {
-      return;
-    } else {
-      throw Error('All comments were not deleted successfully');
-    }
-  }
 
   /**
    * Builds the URL with a comments-limit.
