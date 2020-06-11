@@ -33,19 +33,23 @@ public class AuthenticationServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the userService.
     response.setContentType(Params.JSON_CONTENT_TYPE);
     UserService userService = UserServiceFactory.getUserService();
     UserStatus status;
+
+    // Get the user email.
+    String userEmail = userService.getCurrentUser().getEmail();
 
     // Create UserStatus based on whether the user is logged in or not.
     if (userService.isUserLoggedIn()) {
       // The user IS logged in.
       String logoutUrl = userService.createLogoutURL(Params.BASE_URL_PATH);
-      status = new UserStatus(/** isLoggedIn= */ true, logoutUrl);
+      status = new UserStatus(/** isLoggedIn= */ true, logoutUrl, userEmail);
     } else {
       // The user IS NOT logged in.
       String loginUrl = userService.createLoginURL(Params.BASE_URL_PATH);
-      status = new UserStatus(/** isLoggedIn= */ false, loginUrl);
+      status = new UserStatus(/** isLoggedIn= */ false, loginUrl, userEmail);
     }
 
     // Convert the status object to JSON and send the response.
