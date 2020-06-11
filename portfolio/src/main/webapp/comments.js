@@ -41,7 +41,7 @@ class Comments {
         // Add each comment in the JSON to the DOM.
         commentsList.forEach((comment) => {
           this.commentsListContainer.appendChild(
-            this.createCommentElement(comment.commentText)
+            this.createCommentElement(`${comment.userEmail} says: \t ${comment.commentText}`)
           );
         });
       })
@@ -88,7 +88,7 @@ class Comments {
         this.getComments(10);
       } 
       // Always create a login-logout-button regardless of loginStatus.
-      this.createLoginLogoutButton(loginStatus.isLoggedIn, loginStatus.loginLogoutURL);
+      this.createLoginLogoutButton(loginStatus);
     })
     .catch((error) => {
       console.log(`${error}. Failed to fetch login status of the user.`);
@@ -97,17 +97,15 @@ class Comments {
 
   /**
    * Create login-logout button depending on whether the user is logged in or not.
-   * @param {boolean} isLoggedIn - Is the user logged in? Yes or No?
-   * @param {string} loginLogoutURL - The URL the user will be
-   *   redirected once they click on the button.
+   * @param {*} loginStatus - JSON object representing the user login status
    */
-  createLoginLogoutButton(isLoggedIn, loginLogoutURL) {
-    if (isLoggedIn) {
-      this.loginLogoutButton.innerHTML = `<a href=${loginLogoutURL}>Log Out</a>`;
-      this.loginLogoutStatusMessage.innerText = 'Welcome! You are logged in!';
+  createLoginLogoutButton(loginStatus) {
+    if (loginStatus.isLoggedIn) {
+      this.loginLogoutButton.innerHTML = `<a href=${loginStatus.loginLogoutURL}>Log Out</a>`;
+      this.loginLogoutStatusMessage.innerText = `Welcome ${loginStatus.userEmail}! You are logged in.`;
     } else {
-      this.loginLogoutButton.innerHTML = `<a href=${loginLogoutURL}>Log In</a>`;
-      this.loginLogoutStatusMessage.innerText = 'Access Denied. Please log in!';
+      this.loginLogoutButton.innerHTML = `<a href=${loginStatus.loginLogoutURL}>Log In</a>`;
+      this.loginLogoutStatusMessage.innerText = `Access Denied. Please log in!`;
     }
   }
 
