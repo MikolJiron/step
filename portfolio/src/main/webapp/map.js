@@ -13,14 +13,36 @@
 // limitations under the License.
 
 class Map {
-  constructor() {}
-
+  constructor() {
+    this.dukeLocation = {lat: 36.001111, lng: -78.938889};
+    this.wilsonLocation = {lat: 35.9974, lng: -78.9414};
+    this.chapelLocation = {lat: 36.0019, lng:78.9403};
+  }
+  
   /** Creates a map and adds it to the page. */
   createMap() {
     const map = new google.maps.Map(
       document.getElementById('map'),
-      {center: {lat: 37.422, lng: -122.084}, zoom: 16}
+      {center: this.dukeLocation, zoom: 16}
     );
+
+    const dukeMarker = new google.maps.Marker({
+      position: this.dukeLocation,
+      map: map,
+     title: 'Duke University'
+    });
+
+    const wilsonMarker = new google.maps.Marker({
+      position: this.wilsonLocation,
+      map: map,
+     title: 'Wilson Recreation Center'
+    });
+
+    const chapelMarker = new google.maps.Marker({
+      position: this.chapelLocation,
+      map: map,
+     title: 'Duke Chapel'
+    });
   }
 }
 
