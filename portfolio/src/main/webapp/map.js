@@ -26,22 +26,25 @@ class Map {
       {center: this.dukeLocation, zoom: 16}
     );
 
-    const dukeMarker = new google.maps.Marker({
-      position: this.dukeLocation,
-      map: map,
-     title: 'Duke University'
-    });
+    const dukeMarker = createMarker(this.dukeLocation, map, 'Duke University');
 
-    const wilsonMarker = new google.maps.Marker({
-      position: this.wilsonLocation,
-      map: map,
-     title: 'Wilson Recreation Center'
-    });
+    const wilsonMarker = createMarker(this.wilsonLocation, map, 'Wilson \
+      Recreation Center');
 
-    const chapelMarker = new google.maps.Marker({
-      position: this.chapelLocation,
+    const chapelMarker = createMarker(this.chapelLocation, map, 'Duke Chapel');
+  }
+
+  /** Adds a marker to the map.
+   * @param {*} position - Lat,Lng object indicating global coordinates.
+   * @param {*} map - Instance of a Google Map 
+   * @param {String} title - Title of the marker.
+   * @return {*} - Returns the map marker.
+   */
+  createMarker(position, map, title) {
+    return marker = new google.maps.Marker({
+      position: position,
       map: map,
-     title: 'Duke Chapel'
+      title: title
     });
   }
 }
