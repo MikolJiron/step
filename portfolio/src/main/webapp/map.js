@@ -36,7 +36,7 @@ class Map {
 
   /** Adds a marker to the map.
    * @param {*} position - Lat,Lng object indicating global coordinates.
-   * @param {*} map - Instance of a Google Map 
+   * @param {*} map - Instance of a Google Map. 
    * @param {String} title - Title of the marker.
    * @return {*} - Returns the map marker.
    */
