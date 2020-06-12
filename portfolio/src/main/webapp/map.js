@@ -16,7 +16,7 @@ class Map {
   constructor() {
     this.dukeLocation = {lat: 36.001111, lng: -78.938889};
     this.wilsonLocation = {lat: 35.9974, lng: -78.9414};
-    this.chapelLocation = {lat: 36.0019, lng:78.9403};
+    this.chapelLocation = {lat: 36.0019, lng: -78.9403};
   }
   
   /** Creates a map and adds it to the page. */
@@ -26,12 +26,10 @@ class Map {
       {center: this.dukeLocation, zoom: 16}
     );
 
-    const dukeMarker = createMarker(this.dukeLocation, map, 'Duke University');
-
-    const wilsonMarker = createMarker(this.wilsonLocation, map, 'Wilson \
-      Recreation Center');
-
-    const chapelMarker = createMarker(this.chapelLocation, map, 'Duke Chapel');
+    const dukeMarker = this.createMarker(this.dukeLocation, map, 'Duke University');
+    const wilsonMarker = this.createMarker(this.wilsonLocation, map,
+     'Wilson Recreation Center');
+    const chapelMarker = this.createMarker(this.chapelLocation, map, 'Duke Chapel');
   }
 
   /** Adds a marker to the map.
@@ -41,7 +39,7 @@ class Map {
    * @return {*} - Returns the map marker.
    */
   createMarker(position, map, title) {
-    return marker = new google.maps.Marker({
+    return new google.maps.Marker({
       position: position,
       map: map,
       title: title
