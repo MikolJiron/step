@@ -16,7 +16,7 @@ body {
   font: 100%/1.6 helvetica;
 }
 
-/* Styling for Google Maps info window description */
+/* Styling for Google Maps info window description. */
 .info-window-description {
   color: var(--blue-default)
 }
