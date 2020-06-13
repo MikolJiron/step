@@ -16,6 +16,11 @@ body {
   font: 100%/1.6 helvetica;
 }
 
+/* Styling for Google Maps info window description */
+.info-window-description {
+  color: var(--blue-default)
+}
+
 /* 
   Styling for tab-bar, this is the container for section-tab
   class elements. 
