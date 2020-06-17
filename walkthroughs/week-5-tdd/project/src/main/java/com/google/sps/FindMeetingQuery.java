@@ -63,7 +63,6 @@ public final class FindMeetingQuery {
     // I want to sort by START time in ascending order.
     Collections.sort(scheduledTimeRanges, TimeRange.ORDER_BY_START);
 
-
     // Combine any overlapping TimeRanges into one larger TimeRange. 
     // Not sure what to do here yet. The plan might be to use something similar to mergesort, 
     // Combining overlapping TimeRanges until there are none left to combine.
