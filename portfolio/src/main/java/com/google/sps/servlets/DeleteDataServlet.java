@@ -22,6 +22,7 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
+import com.google.sps.data.Comment;
 import com.google.sps.data.Params;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,8 +49,11 @@ public class DeleteDataServlet extends HttpServlet {
       datastore.delete(commentEntityKey);
     }
 
+    // Send back a response that the deletion is complete.
+    response.setContentType(Params.HTML_CONTENT_TYPE);
+    response.getWriter().println("<p>Comments successfully deleted!</p>");
+
     // Redirect back to the HTML page.
     response.sendRedirect(Params.INDEX_PATH);
   }
-
 }

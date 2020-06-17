@@ -44,7 +44,7 @@ class Comments {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.log(`${error}. Failed to fetch comments.`);
       });
   }
 
@@ -57,6 +57,19 @@ class Comments {
     const commentElement = document.createElement('li');
     commentElement.innerText = text;
     return commentElement;
+  }
+
+  /**
+   * Deletes all comments in DataStore by doing a POST to /delete-comments-data.
+   * Then, the comments are reloaded to confirm the database has been cleared.
+   */
+  deleteComments() {
+    const request = new Request('/delete-comments-data', {method:'POST'});
+    fetch(request)
+      .then(this.checkPostError)
+      .catch((error) => {
+        console.log(`${error}. Error occurred after attempting to delete comments.`);
+      });
   }
 
   /**
@@ -77,6 +90,17 @@ class Comments {
     if (response.ok) {
       return response.json();
     } else {
+      throw Error(`${response.statusText}. Status: ${response.status}`);
+    }
+  }
+
+  /**
+   * Returns an error if the response status is not between 200 and 299, i.e not OK.
+   * @param {*} response - The HTTP response received from the servlet.
+   * @return {*} - If an error is not thrown, returns the response (not JSON).
+   */
+  checkPostError(response) {
+    if (!response.ok) {
       throw Error(`${response.statusText}. Status: ${response.status}`);
     }
   }

@@ -55,25 +55,6 @@ public class DataServlet extends HttpServlet {
   }
 
   @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get comment text and a timestamp for when that comment was received.
-    String newComment = request.getParameter(Params.COMMENT_TEXT_PARAM);
-    long timestamp = System.currentTimeMillis();
-
-    // Create an Entity to store the comment.
-    Entity commentEntity = new Entity(Params.ENTITY_TYPE);
-    commentEntity.setProperty(Params.COMMENT_TEXT_PARAM, newComment);
-    commentEntity.setProperty(Params.TIMESTAMP_PARAM, timestamp);
-
-    // Store the Entity containing the comment.
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(commentEntity);
-
-    // Redirect back to the HTML page.
-    response.sendRedirect(Params.INDEX_PATH);
-  }
-
-  @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Create a new query that sorts the comments by giving the most recent Comment at the top.
     Query query = new Query(Params.ENTITY_TYPE).addSort(Params.TIMESTAMP_PARAM, SortDirection.DESCENDING);
@@ -139,7 +120,6 @@ public class DataServlet extends HttpServlet {
   private int getNumberComments(HttpServletRequest request) {
     // Get the input from the form.
     String commentNumberString = request.getParameter(Params.COMMENT_NUMBER_PARAM);
-
 
     // Convert the input to an int.
     int commentNumber = -1;
