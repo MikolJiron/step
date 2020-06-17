@@ -59,6 +59,11 @@ public final class FindMeetingQuery {
       }
     }
 
+    // Sort my current list of TimeRanges before beginning to merge overlapping ones.
+    // I want to sort by START time in ascending order.
+    Collections.sort(scheduledTimeRanges, TimeRange.ORDER_BY_START);
+
+
     // Combine any overlapping TimeRanges into one larger TimeRange. 
     // Not sure what to do here yet. The plan might be to use something similar to mergesort, 
     // Combining overlapping TimeRanges until there are none left to combine.
@@ -73,6 +78,6 @@ public final class FindMeetingQuery {
     // The result will be a list of TimeRanges in which every attendee in the MeetingRequest is free/ able to
     // attend. All of these TimeRanges will satisfy the duration requirement so we can finally return.
 
-    return new List<>();
+    return new ArrayList<>();
   }
 }
