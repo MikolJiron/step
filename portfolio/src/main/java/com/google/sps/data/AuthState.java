@@ -2,16 +2,16 @@ package com.google.sps.data;
 
 public class AuthState {
   public enum isLoggedIn {
-    LOGGED_IN (1),
-    LOGGED_OUT (0);
+    LOGGED_IN (true),
+    LOGGED_OUT (false);
 
-    private int state;
+    private Boolean state;
 
-    public int getState() {
+    public Boolean getState() {
       return this.state;
     }
 
-    private isLoggedIn(int state) {
+    private isLoggedIn(Boolean state) {
       this.state = state;
     }
   }
