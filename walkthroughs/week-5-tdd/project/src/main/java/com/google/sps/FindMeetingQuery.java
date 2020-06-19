@@ -33,6 +33,25 @@ public final class FindMeetingQuery {
    *   available TimeRanges that meet the MeetingRequest criteria. 
    * All desired attendees must be able to attend, and the TimeRanges must be long enough for the 
    *   request to be met.
+   * Overview of algorithm:
+   *   First I need to create a set for all of the people that I want to attend my requested event.
+   *     and get the duration of that event.
+   *   Next, I handle edge cases for when there are no attendees for my request and when the duration
+   *     is out of bounds.
+   *   Now, I make a BitSet that represents all of the minutes in a day. 
+   *   I iterate through each event that has already been scheduled and compare that event's attendee set
+   *     to the set of attendees for my requested event. 
+   *   If there is any intersection between the two sets, that means one of my requested attendees is booked for
+   *     that event.
+   *   I then add that event's TimeRange to my BitSet by setting all of the bits from the TimeRange.start() to
+   *     TimeRange.end() to 1.
+   *   As I add new TimeRanges, it doesn't matter if events overlap since a bit (minute) will already be set to 1
+   *     if at LEAST one attendee is booked during that event.
+   *   Once I'm done, I will have all of the TimeRanges in which a person is booked represented in my BitSet.
+   *   To know all of the TimeRanges in which a person IS NOT booked, I simply flip all of the bits in my BitSet.
+   *   Now I convert the inverted BitSet back to TimeRanges and only add them to my list of TimeRanges to return,
+   *     if they are at least as long as the requested event's duration.git s
+   *   Once I'm done, I will have all of the TimeRanges I need.
    * @param scheduledEvents - The events that have already been scheduled for the day.
    * @param request - The MeetingRequest that contains all of the desired mandatory attendees 
    *   and desired event length for that request.
