@@ -14,6 +14,9 @@
 
 import {Comments} from './comments.js';
 
+/**
+ * This class handles User Authentication.
+ */
 class Authentication {  
   constructor() {
     this.loginLogoutButton = document.getElementById('login-logout-button');
@@ -27,11 +30,6 @@ class Authentication {
     fetch('/authenticate-user')
       .then(this.checkFetchError)
       .then((loginStatus) => {
-        // Show comments if you're logged in.
-        if (loginStatus.isLoggedIn) {
-          const comments = new Comments();
-          comments.getComments(10);
-        } 
         // Always create a login-logout-button regardless of loginStatus.
         this.createLoginLogoutButton(loginStatus.isLoggedIn, loginStatus.loginLogoutURL);
       })
@@ -41,19 +39,26 @@ class Authentication {
   }
 
   /**
-   * Create login-logout button depending on whether the user is logged in or not.
+   * Create login-logout button inside the commentsListContainer depending 
+   *   on whether the user is logged in or not.
    * @param {boolean} isLoggedIn - Is the user logged in? Yes or No?
    * @param {string} loginLogoutURL - The URL the user will be
    *   redirected once they click on the button.
    */
   createLoginLogoutButton(isLoggedIn, loginLogoutURL) {
+    const commentsListContainer = document.getElementById('comments-container');
+    const link = document.createElement("a");
+    link.href = loginLogoutURL;
     if (isLoggedIn) {
-      this.loginLogoutButton.innerHTML = `<a href=${loginLogoutURL}>Log Out</a>`;
+      link.innerText = 'Log out';
       this.loginLogoutStatusMessage.innerText = 'Welcome! You are logged in!';
+      commentsListContainer.classList.toggle('default-none', /** addClass= */ false);
     } else {
-      this.loginLogoutButton.innerHTML = `<a href=${loginLogoutURL}>Log In</a>`;
+      link.innerText = 'Log in';
       this.loginLogoutStatusMessage.innerText = 'Access Denied. Please log in!';
+      commentsListContainer.classList.toggle('default-none', /** addClass= */ true);
     }
+    this.loginLogoutButton.appendChild(link);
   }
 
   /**
