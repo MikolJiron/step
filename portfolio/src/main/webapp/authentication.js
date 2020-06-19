@@ -39,7 +39,8 @@ class Authentication {
   }
 
   /**
-   * Create login-logout button depending on whether the user is logged in or not.
+   * Create login-logout button inside the commentsListContainer depending 
+   *   on whether the user is logged in or not.
    * @param {boolean} isLoggedIn - Is the user logged in? Yes or No?
    * @param {string} loginLogoutURL - The URL the user will be
    *   redirected once they click on the button.
