@@ -12,13 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/**
+ * This class represents a location object for a marker on a map.
+ */
 class Location {
+  /**
+   * @param {object} coords - Object map containing lat and long coordinates.
+   * @param {string} title - The title of the marker.
+   * @param {string} description - The description of the marker's location.
+   */
   constructor(coords, title, description){
     this._coords = coords;
     this._title = title;
     this._description = description;
   }
-
+  
   get coords() {
     return this._coords;
   }
