@@ -14,6 +14,9 @@
 
 import {Comments} from './comments.js';
 
+/**
+ * This class handles User Authentication.
+ */
 class Authentication {  
   constructor() {
     this.loginLogoutButton = document.getElementById('login-logout-button');
@@ -28,10 +31,10 @@ class Authentication {
       .then(this.checkFetchError)
       .then((loginStatus) => {
         // Show comments if you're logged in.
-        if (loginStatus.isLoggedIn) {
-          const comments = new Comments();
-          comments.getComments(10);
-        } 
+        // if (loginStatus.isLoggedIn) {
+        //   const comments = new Comments();
+        //   comments.getComments(10);
+        // } 
         // Always create a login-logout-button regardless of loginStatus.
         this.createLoginLogoutButton(loginStatus.isLoggedIn, loginStatus.loginLogoutURL);
       })
