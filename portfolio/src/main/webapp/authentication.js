@@ -14,6 +14,9 @@
 
 import {Comments} from './comments.js';
 
+/**
+ * This class handles User Authentication.
+ */
 class Authentication {  
   constructor() {
     this.loginLogoutButton = document.getElementById('login-logout-button');
@@ -27,11 +30,6 @@ class Authentication {
     fetch('/authenticate-user')
       .then(this.checkFetchError)
       .then((loginStatus) => {
-        // Show comments if you're logged in.
-        if (loginStatus.isLoggedIn) {
-          const comments = new Comments();
-          comments.getComments(10);
-        } 
         // Always create a login-logout-button regardless of loginStatus.
         this.createLoginLogoutButton(loginStatus);
       })
@@ -40,19 +38,28 @@ class Authentication {
       });
   }
 
+  
   /**
-   * Create login-logout button depending on whether the user is logged in or not.
-   * @param {*} loginStatus - JSON response containing information 
-   *   about a user's login status.
+   * Create login-logout button inside the commentsListContainer depending 
+   *   on whether the user is logged in or not.
+   * @param {*} loginStatus - The object representing the status of 
+   *    whether the user is logged in and the
+   *    the associated login/logout link & email.
    */
   createLoginLogoutButton(loginStatus) {
+    const commentsListContainer = document.getElementById('comments-container');
+    const link = document.createElement("a");
+    link.href = loginStatus.loginLogoutURL;
     if (loginStatus.isLoggedIn) {
-      this.loginLogoutButton.innerHTML = `<a href=${loginStatus.loginLogoutURL}>Log Out</a>`;
-      this.loginLogoutStatusMessage.innerText = `Welcome ${loginStatus.userEmail} ! You are logged in!`;
+      link.innerText = 'Log out';
+      this.loginLogoutStatusMessage.innerText = `Welcome ${loginStatus.userEmail}! You are logged in!`;
+      commentsListContainer.classList.toggle('default-none', /** addClass= */ false);
     } else {
-      this.loginLogoutButton.innerHTML = `<a href=${loginStatus.loginLogoutURL}>Log In</a>`;
+      link.innerText = 'Log in';
       this.loginLogoutStatusMessage.innerText = 'Access Denied. Please log in!';
+      commentsListContainer.classList.toggle('default-none', /** addClass= */ true);
     }
+    this.loginLogoutButton.appendChild(link);
   }
 
   /**
