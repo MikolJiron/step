@@ -52,11 +52,11 @@ class Authentication {
     if (isLoggedIn) {
       link.innerText = 'Log out';
       this.loginLogoutStatusMessage.innerText = 'Welcome! You are logged in!';
-      commentsListContainer.classList.toggle('default-none', false);
+      commentsListContainer.classList.toggle('default-none', /** addClass= */ false);
     } else {
       link.innerText = 'Log in';
       this.loginLogoutStatusMessage.innerText = 'Access Denied. Please log in!';
-      commentsListContainer.classList.toggle('default-none', true);
+      commentsListContainer.classList.toggle('default-none', /** addClass= */ true);
     }
     this.loginLogoutButton.appendChild(link);
   }
