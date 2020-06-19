@@ -14,6 +14,7 @@
 
 class Map {
   constructor() {
+    this.ZOOM = 16;
     this.MAP_COORDINATES = {
       duke : {lat: 36.001111, lng: -78.938889},
       wilson : {lat: 35.9974, lng: -78.9414},
@@ -31,7 +32,7 @@ class Map {
   createMap() {
     const map = new google.maps.Map(
       document.getElementById('map'),
-      {center: this.MAP_COORDINATES.duke, zoom: 16}
+      {center: this.MAP_COORDINATES.duke, zoom: this.ZOOM}
     );
 
     this.createMarker(this.MAP_COORDINATES.duke, map, this.MAP_TITLES.duke);
