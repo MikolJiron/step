@@ -26,7 +26,7 @@ class Location {
     this._title = title;
     this._description = description;
   }
-  
+
   get coords() {
     return this._coords;
   }
@@ -38,7 +38,6 @@ class Location {
   get description() {
     return this._description;
   }
-
 }
 
 export {Location};
