@@ -17,11 +17,26 @@ package com.google.sps.data;
 /** A UserStatus object to be converted to JSON and sent to the client. */
 public final class UserStatus {
 
-  private final int isLoggedIn;
+  private final Boolean isLoggedIn;
   private final String loginLogoutURL;
   private final String userEmail;
 
-  public UserStatus(int isLoggedIn, String loginLogoutURL, String userEmail) {
+  public static enum AuthState {
+    LOGGED_OUT(false),
+    LOGGED_IN(true);
+
+    private boolean state;
+
+    private AuthState(Boolean state) {
+      this.state = state;
+    }
+
+    public Boolean getState() {
+      return this.state;
+    }
+  }
+
+  public UserStatus(Boolean isLoggedIn, String loginLogoutURL, String userEmail) {
     this.isLoggedIn = isLoggedIn;
     this.loginLogoutURL = loginLogoutURL;
     this.userEmail = userEmail;
