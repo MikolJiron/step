@@ -14,32 +14,39 @@
 
 class Map {
   constructor() {
-    this.dukeLocation = {lat: 36.001111, lng: -78.938889};
-    this.wilsonLocation = {lat: 35.9974, lng: -78.9414};
-    this.chapelLocation = {lat: 36.0019, lng: -78.9403};
+    this.MAP_COORDINATES = {
+      duke : {lat: 36.001111, lng: -78.938889},
+      wilson : {lat: 35.9974, lng: -78.9414},
+      chapel : {lat: 36.0019, lng: -78.9403}
+    };
+
+    this.MAP_TITLES = {
+      duke : 'Duke University',
+      wilson : 'Wilson Recreation Center',
+      chapel : 'Duke Chapel'
+    };
   }
   
   /** Creates a map and adds it to the page. */
   createMap() {
     const map = new google.maps.Map(
       document.getElementById('map'),
-      {center: this.dukeLocation, zoom: 16}
+      {center: this.MAP_COORDINATES.duke, zoom: 16}
     );
 
-    const dukeMarker = this.createMarker(this.dukeLocation, map, 'Duke University');
-    const wilsonMarker = this.createMarker(this.wilsonLocation, map,
-     'Wilson Recreation Center');
-    const chapelMarker = this.createMarker(this.chapelLocation, map, 'Duke Chapel');
+    this.createMarker(this.MAP_COORDINATES.duke, map, this.MAP_TITLES.duke);
+    this.createMarker(this.MAP_COORDINATES.wilson, map,
+     this.MAP_TITLES.wilson);
+    this.createMarker(this.MAP_COORDINATES.chapel, map, this.MAP_TITLES.chapel);
   }
 
   /** Adds a marker to the map.
    * @param {*} position - Lat,Lng object indicating global coordinates.
    * @param {*} map - Instance of a Google Map. 
    * @param {String} title - Title of the marker.
-   * @return {*} - Returns the map marker.
    */
   createMarker(position, map, title) {
-    return new google.maps.Marker({
+    const marker = new google.maps.Marker({
       position: position,
       map: map,
       title: title
