@@ -156,6 +156,8 @@ public final class FindMeetingQueryTest {
 
   @Test
   public void onlyOptionalAttendeesWithGaps() {
+    // There are only optional attendees but they have gaps in their schedules,
+    // which means these optional attendees will be able to attend in certain TimeRanges.
     Collection<Event> events = Arrays.asList(
         new Event("Event 1", TimeRange.fromStartDuration(TIME_0800AM, DURATION_30_MINUTES),
             Arrays.asList(PERSON_A)),
@@ -176,6 +178,8 @@ public final class FindMeetingQueryTest {
 
   @Test
   public void onlyOptionalAttendeesNoGaps() {
+    // All optional attendees are booked all day. This means there are no options
+    // for the MeetingRequest.
     Collection<Event> events = Arrays.asList(
         new Event("Event 1", TimeRange.WHOLE_DAY,
             Arrays.asList(PERSON_A)),
@@ -186,11 +190,7 @@ public final class FindMeetingQueryTest {
       request.addOptionalAttendee(PERSON_B);
 
     Collection<TimeRange> actual = query.query(events, request);
-    Collection<TimeRange> expected =
-        Arrays.asList(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0800AM, false),
-            TimeRange.fromStartEnd(TIME_0830AM, TIME_0900AM, false),
-            TimeRange.fromStartEnd(TIME_0930AM, TimeRange.END_OF_DAY, true));
-
+    Collection<TimeRange> expected =  Arrays.asList();
     Assert.assertEquals(expected, actual);
   }
 
@@ -203,7 +203,6 @@ public final class FindMeetingQueryTest {
 
     Assert.assertEquals(expected, actual);
   }
-
 
   @Test
   public void noOptionsForTooLongOfARequest() {
