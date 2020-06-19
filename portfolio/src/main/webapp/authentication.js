@@ -47,15 +47,18 @@ class Authentication {
    */
   createLoginLogoutButton(isLoggedIn, loginLogoutURL) {
     const commentsListContainer = document.getElementById('comments-container');
+    const link = document.createElement("a");
+    link.href = loginLogoutURL;
     if (isLoggedIn) {
-      this.loginLogoutButton.innerHTML = `<a href=${loginLogoutURL}>Log Out</a>`;
+      link.innerText = 'Log out';
       this.loginLogoutStatusMessage.innerText = 'Welcome! You are logged in!';
       commentsListContainer.classList.toggle('default-none', false);
     } else {
-      this.loginLogoutButton.innerHTML = `<a href=${loginLogoutURL}>Log In</a>`;
+      link.innerText = 'Log in';
       this.loginLogoutStatusMessage.innerText = 'Access Denied. Please log in!';
       commentsListContainer.classList.toggle('default-none', true);
     }
+    this.loginLogoutButton.appendChild(link);
   }
 
   /**
