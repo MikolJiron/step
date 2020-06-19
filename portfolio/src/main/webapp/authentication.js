@@ -30,11 +30,6 @@ class Authentication {
     fetch('/authenticate-user')
       .then(this.checkFetchError)
       .then((loginStatus) => {
-        // Show comments if you're logged in.
-        // if (loginStatus.isLoggedIn) {
-        //   const comments = new Comments();
-        //   comments.getComments(10);
-        // } 
         // Always create a login-logout-button regardless of loginStatus.
         this.createLoginLogoutButton(loginStatus.isLoggedIn, loginStatus.loginLogoutURL);
       })
@@ -50,12 +45,15 @@ class Authentication {
    *   redirected once they click on the button.
    */
   createLoginLogoutButton(isLoggedIn, loginLogoutURL) {
+    const commentsListContainer = document.getElementById('comments-container');
     if (isLoggedIn) {
       this.loginLogoutButton.innerHTML = `<a href=${loginLogoutURL}>Log Out</a>`;
       this.loginLogoutStatusMessage.innerText = 'Welcome! You are logged in!';
+      commentsListContainer.classList.toggle('default-none', false);
     } else {
       this.loginLogoutButton.innerHTML = `<a href=${loginLogoutURL}>Log In</a>`;
       this.loginLogoutStatusMessage.innerText = 'Access Denied. Please log in!';
+      commentsListContainer.classList.toggle('default-none', true);
     }
   }
 
