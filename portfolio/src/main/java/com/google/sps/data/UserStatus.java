@@ -17,9 +17,6 @@ package com.google.sps.data;
 /** A UserStatus object to be converted to JSON and sent to the client. */
 public final class UserStatus {
 
-  private final Boolean isLoggedIn;
-  private final String loginLogoutURL;
-
   public static enum AuthState {
     LOGGED_OUT(false),
     LOGGED_IN(true);
@@ -35,7 +32,10 @@ public final class UserStatus {
     }
   }
 
-  public UserStatus(Boolean isLoggedIn, String loginLogoutURL) {
+  private final AuthState isLoggedIn;
+  private final String loginLogoutURL;
+
+  public UserStatus(AuthState isLoggedIn, String loginLogoutURL) {
     this.isLoggedIn = isLoggedIn;
     this.loginLogoutURL = loginLogoutURL;
   }
