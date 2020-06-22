@@ -28,4 +28,5 @@ public final class Params {
 
   // URL constants.
   public static final String INDEX_PATH = "/index.html";
+  public static final String BASE_URL_PATH = "/";
 }
