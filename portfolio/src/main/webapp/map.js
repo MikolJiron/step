@@ -22,37 +22,6 @@ const DEFAULT_ZOOM = 16;
  */
 class Map {
   constructor() {
-    // Map that contains Location objects representing each marker.
-    this.LOCATIONS = {
-      duke : new Location(
-        {lat: 36.001111, lng: -78.938889},
-        'Duke University',
-        `This is the center of Duke University, founded in 1838.
-        Im currently a sophomore there studying computer science.`),
-
-      wilson : new Location(
-        {lat: 35.9974, lng: -78.9414},
-        'Wilson Recreation Center',
-        `This is Wilson Recreation Center, with a huge gym, several
-        basketball courts, olympic-sized pools, a rock-climbing wall,
-        and other cool features. I like going there to work out with
-        my friends all the time.`),
-
-      chapel : new Location(
-        {lat: 36.0019, lng: -78.9403},
-        'Duke Chapel',
-        `This is Duke Chapel, one of the tallest university chapels in
-        the world. It's architecture is Collegiate Gothic, many of Duke's
-        academic buildings have this style of architecture. It's absolutely
-        breathtaking.`),
-
-      keohane : new Location(
-        {lat: 35.9989, lng: -78.9373},
-        'Keohane 4E',
-        `This is Keohane 4E, my dorm sophomore year. It is in a great location
-        far enough away from main quad without being too far to be
-        incovenient to walk to class. It's also one of the nicest dorms on campus.`)
-    };
     this.LOCATIONS = [
       new Location({lat: 36.001111, lng: -78.938889}, 'Duke University', 
         `This is the center of Duke University, founded in 1838.
