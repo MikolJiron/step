@@ -100,9 +100,7 @@ class Comments {
    * @return {*} - If an error is not thrown, returns the response (not JSON).
    */
   checkPostError(response) {
-    if (response.ok) {
-      return;
-    } else {
+    if (!response.ok) {
       throw Error(`${response.statusText}. Status: ${response.status}`);
     }
   }
