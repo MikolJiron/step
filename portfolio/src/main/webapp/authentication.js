@@ -31,27 +31,28 @@ class Authentication {
       .then(this.checkFetchError)
       .then((loginStatus) => {
         // Always create a login-logout-button regardless of loginStatus.
-        this.createLoginLogoutButton(loginStatus.isLoggedIn, loginStatus.loginLogoutURL);
+        this.createLoginLogoutButton(loginStatus);
       })
       .catch((error) => {
         console.log(`${error}. Failed to fetch login status of the user.`);
       });
   }
 
+  
   /**
    * Create login-logout button inside the commentsListContainer depending 
    *   on whether the user is logged in or not.
-   * @param {boolean} isLoggedIn - Is the user logged in? Yes or No?
-   * @param {string} loginLogoutURL - The URL the user will be
-   *   redirected once they click on the button.
+   * @param {*} loginStatus - The object representing the status of 
+   *    whether the user is logged in and the
+   *    the associated login/logout link & email.
    */
-  createLoginLogoutButton(isLoggedIn, loginLogoutURL) {
+  createLoginLogoutButton(loginStatus) {
     const commentsListContainer = document.getElementById('comments-container');
     const link = document.createElement("a");
-    link.href = loginLogoutURL;
-    if (isLoggedIn) {
+    link.href = loginStatus.loginLogoutURL;
+    if (loginStatus.isLoggedIn) {
       link.innerText = 'Log out';
-      this.loginLogoutStatusMessage.innerText = 'Welcome! You are logged in!';
+      this.loginLogoutStatusMessage.innerText = `Welcome ${loginStatus.userEmail}! You are logged in!`;
       commentsListContainer.classList.toggle('default-none', /** addClass= */ false);
     } else {
       link.innerText = 'Log in';

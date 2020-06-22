@@ -39,7 +39,7 @@ class Comments {
         // Add each comment in the JSON to the DOM.
         commentsList.forEach((comment) => {
           this.commentsListContainer.appendChild(
-            this.createCommentElement(comment.commentText)
+            this.createCommentElement(`${comment.userEmail} says: \t ${comment.commentText}`)
           );
         });
       })
