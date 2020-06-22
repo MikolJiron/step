@@ -46,7 +46,7 @@ public class AuthenticationServlet extends HttpServlet {
       loginLogoutURL = userService.createLoginURL(Params.BASE_URL_PATH);
     }
 
-    UserStatus status = new UserStatus(UserService.isUserLoggedIn(), loginLogoutUrl);
+    UserStatus status = new UserStatus(UserService.isUserLoggedIn(), loginLogoutURL);
 
     // Convert the status object to JSON and send the response.
     String json = convertToJson(status);
