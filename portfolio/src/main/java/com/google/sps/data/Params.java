@@ -25,8 +25,10 @@ public final class Params {
   public static final String JSON_CONTENT_TYPE = "application/json;";
   public static final String HTML_CONTENT_TYPE = "text/html";
   public static final String TIMESTAMP_PARAM = "timestamp";
+  public static final String USER_EMAIL_PARAM = "userEmail";
 
   // URL constants.
+  public static final String BASE_URL_PATH = "/";
   public static final String INDEX_PATH = "/index.html";
   public static final String BASE_URL_PATH = "/";
 }
