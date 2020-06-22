@@ -40,12 +40,12 @@ public class AuthenticationServlet extends HttpServlet {
     String loginLogoutURL;
     if (userService.isUserLoggedIn()) {
       // The user IS logged in.
-      loginLogoutUrl = userService.createLogoutURL(Params.BASE_URL_PATH);
+      loginLogoutURL = userService.createLogoutURL(Params.BASE_URL_PATH);
     } else {
       // The user IS NOT logged in.
-      loginLogoutUrl = userService.createLoginURL(Params.BASE_URL_PATH);
+      loginLogoutURL = userService.createLoginURL(Params.BASE_URL_PATH);
     }
-    
+
     UserStatus status = new UserStatus(UserService.isUserLoggedIn(), loginLogoutUrl);
 
     // Convert the status object to JSON and send the response.
