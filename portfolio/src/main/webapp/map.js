@@ -39,7 +39,6 @@ class Map {
     this.LOCATIONS.forEach((entry) => {
       this.createMarker(entry.coords, map, entry.title);
     });
-    
   }
 
   /** Adds a marker to the map.
