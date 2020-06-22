@@ -37,8 +37,9 @@ window.onload = function() {
 
   // Get the comments from the server and populate them into the 
   // comments-container.
-  comments.getComments(/** commentsLimit= */10);
+  comments.getComments(/** commentsLimit= */ 10);
   authentication.getLoginStatus();
+  
   // Set up default tab and slideshow.
   tab.displayDefaultSection();
   Utils.setToNone(/** classToModify= */ "slide");
