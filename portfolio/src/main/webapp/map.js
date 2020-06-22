@@ -12,33 +12,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import {Location} from './location.js';
+
+/** Default zoom for my map. */
+const DEFAULT_ZOOM = 16;
+
+/**
+ * This class is used to create a map to display in the Places tab.
+ */
 class Map {
   constructor() {
-    this.ZOOM = 16;
-    this.MAP_COORDINATES = {
-      duke : {lat: 36.001111, lng: -78.938889},
-      wilson : {lat: 35.9974, lng: -78.9414},
-      chapel : {lat: 36.0019, lng: -78.9403}
-    };
-
-    this.MAP_TITLES = {
-      duke : 'Duke University',
-      wilson : 'Wilson Recreation Center',
-      chapel : 'Duke Chapel'
-    };
+    this.LOCATIONS = [
+      new Location({lat: 36.001111, lng: -78.938889}, 'Duke University'),
+      new Location({lat: 35.9974, lng: -78.9414}, 'Wilson Recreation Center'),
+      new Location({lat: 36.0019, lng: -78.9403}, 'Duke Chapel')
+    ];
   }
   
   /** Creates a map and adds it to the page. */
   createMap() {
     const map = new google.maps.Map(
       document.getElementById('map'),
-      {center: this.MAP_COORDINATES.duke, zoom: this.ZOOM}
+      {center: this.LOCATIONS[0].coords, zoom: DEFAULT_ZOOM}
     );
 
-    this.createMarker(this.MAP_COORDINATES.duke, map, this.MAP_TITLES.duke);
-    this.createMarker(this.MAP_COORDINATES.wilson, map,
-     this.MAP_TITLES.wilson);
-    this.createMarker(this.MAP_COORDINATES.chapel, map, this.MAP_TITLES.chapel);
+    this.LOCATIONS.forEach((entry) => {
+      this.createMarker(entry.coords, map, entry.title);
+    });
+    
   }
 
   /** Adds a marker to the map.
