@@ -44,7 +44,7 @@ class Comments {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.log(`${error}. Failed to fetch comments.`);
       });
   }
 
@@ -68,7 +68,7 @@ class Comments {
     fetch(request)
       .then(this.checkPostError)
       .catch((error) => {
-        console.log(error);
+        console.log(`${error}. Error occurred after attempting to delete comments.`);
       });
   }
 
@@ -100,9 +100,7 @@ class Comments {
    * @return {*} - If an error is not thrown, returns the response (not JSON).
    */
   checkPostError(response) {
-    if (response.ok) {
-      return;
-    } else {
+    if (!response.ok) {
       throw Error(`${response.statusText}. Status: ${response.status}`);
     }
   }
