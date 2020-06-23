@@ -48,7 +48,7 @@ class Authentication {
    */
   createLoginLogoutButton(loginStatus) {
     const commentsListContainer = document.getElementById('comments-container');
-    const link = document.createElement("a");
+    const link = document.createElement('a');
     link.href = loginStatus.loginLogoutURL;
     if (loginStatus.isLoggedIn) {
       link.innerText = 'Log out';

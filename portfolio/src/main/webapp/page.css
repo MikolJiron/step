@@ -116,6 +116,13 @@ body {
   color: var(--text-color);
 }
 
+#map {
+  border: thin solid var(--blue-active);
+  color: var(--blue-default);
+  height: 500px;
+  width: 500px;
+}
+
 @keyframes fade-in { 
   0% {
     opacity: 0;
