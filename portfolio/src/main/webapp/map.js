@@ -17,40 +17,41 @@ import {Location} from './location.js';
 /** Default zoom for my map. */
 const DEFAULT_ZOOM = 16;
 
+/** Locations for each marker. */
+const LOCATIONS = [
+  new Location({lat: 36.001111, lng: -78.938889}, 'Duke University', 
+    `This is the center of Duke University, founded in 1838.
+    Im currently a sophomore there studying computer science.`),
+  new Location({lat: 35.9974, lng: -78.9414}, 'Wilson Recreation Center',
+    `This is Wilson Recreation Center, with a huge gym, several
+    basketball courts, olympic-sized pools, a rock-climbing wall,
+    and other cool features. I like going there to work out with
+    my friends all the time.`),
+  new Location({lat: 36.0019, lng: -78.9403}, 'Duke Chapel',
+    `This is Duke Chapel, one of the tallest university chapels in
+    the world. It's architecture is Collegiate Gothic, many of Duke's
+    academic buildings have this style of architecture. It's absolutely
+    breathtaking.`),
+  new Location({lat: 35.9989, lng: -78.9373}, 'Keohane 4E',
+    `This is Keohane 4E, my dorm sophomore year. It is in a great location
+    far enough away from main quad without being too far to be
+    incovenient to walk to class. It's also one of the nicest dorms on campus.`)
+];
+
 /**
  * This class is used to create a map to display in the Places tab.
  */
 class Map {
-  constructor() {
-    this.LOCATIONS = [
-      new Location({lat: 36.001111, lng: -78.938889}, 'Duke University', 
-        `This is the center of Duke University, founded in 1838.
-        Im currently a sophomore there studying computer science.`),
-      new Location({lat: 35.9974, lng: -78.9414}, 'Wilson Recreation Center',
-        `This is Wilson Recreation Center, with a huge gym, several
-        basketball courts, olympic-sized pools, a rock-climbing wall,
-        and other cool features. I like going there to work out with
-        my friends all the time.`),
-      new Location({lat: 36.0019, lng: -78.9403}, 'Duke Chapel',
-        `This is Duke Chapel, one of the tallest university chapels in
-        the world. It's architecture is Collegiate Gothic, many of Duke's
-        academic buildings have this style of architecture. It's absolutely
-        breathtaking.`),
-      new Location({lat: 35.9989, lng: -78.9373}, 'Keohane 4E',
-        `This is Keohane 4E, my dorm sophomore year. It is in a great location
-        far enough away from main quad without being too far to be
-        incovenient to walk to class. It's also one of the nicest dorms on campus.`)
-    ];
-  }
+  constructor() {}
   
   /** Creates a map and adds it to the page. */
   createMap() {
     const map = new google.maps.Map(
       document.getElementById('map'),
-      {center: this.LOCATIONS[0].coords, zoom: DEFAULT_ZOOM}
+      {center: LOCATIONS[0].coords, zoom: DEFAULT_ZOOM}
     );
 
-    this.LOCATIONS.forEach((entry) => {
+    LOCATIONS.forEach((entry) => {
       this.createMarker(entry.coords, map, entry.title, entry.description);
     });
   }
