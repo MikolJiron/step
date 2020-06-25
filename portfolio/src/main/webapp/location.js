@@ -19,10 +19,12 @@ class Location {
   /**
    * @param {object} coords - Object map containing lat and long coordinates.
    * @param {string} title - The title of the marker.
+   * @param {string} description - The description of the marker's location.
    */
-  constructor(coords, title){
+  constructor(coords, title, description){
     this._coords = coords;
     this._title = title;
+    this._description = description;
   }
 
   get coords() {
@@ -31,6 +33,10 @@ class Location {
 
   get title() {
     return this._title;
+  }
+
+  get description() {
+    return this._description;
   }
 }
 
