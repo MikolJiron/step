@@ -33,6 +33,7 @@ class Comments {
     fetch(endpoint)
       .then(this.checkFetchError)
       .then((commentsList) => {
+        console.log(commentsList);
         // Reset the commentsListContainer to reload it with the new list of comments.
         this.commentsListContainer.innerHTML = '';
 
